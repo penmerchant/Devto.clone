@@ -1,0 +1,31 @@
+.form{
+    background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: 500;
+  align-items: center;
+  padding: 3.5rem 2rem 4.375rem 2rem;
+  max-width: 64rem;
+  width: 100%;
+}
+
+.form_container{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    width: 50%;
+    padding: 0.5rem;
+    margin-top: 16px;
+}
+
+.form_btn{
+    width: 50%;
+    padding: 0.5rem;
+    background: green;
+    color: #fff;
+    margin-top: 16px;
+}

@@ -1,0 +1,34 @@
+
+.form{
+    background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 3.5rem 2rem 4.375rem 2rem;
+  max-width: 64rem;
+  width: 100%;
+}
+
+
+
+.form_container{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #8012A3;
+    width: 100px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background: #fff;
+    color : #8012A3;
+    border: 2px solid #8012A3;
+}

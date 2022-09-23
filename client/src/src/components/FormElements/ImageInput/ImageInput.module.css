@@ -1,0 +1,23 @@
+.btn:hover{
+    background: #fff;
+    color : #3489eb;
+    border: 2px solid #3489eb;
+}
+
+.btn{
+    background: #3489eb;
+    color : #fff;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    padding: 0.8rem;
+}
+
+.image_container{
+    margin-top: 1rem;
+}
+
+.image_preview{
+    width: 200px;
+    height: 150px;
+}

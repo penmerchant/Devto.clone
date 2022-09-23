@@ -1,0 +1,84 @@
+usecases
+------------
+1- Authentication
+- login/registration
+- reset password
+
+
+2- view blogs
+------------------
+- view post details
+- comment , like and share
+
+3- create post 
+-----------------------
+- create a post about about anything like travel etc.
+
+4- delete post 
+
+5- profile
+------------------
+- edit , delete
+
+
+business rules
+-------------------------
+
+1- authenticaton page (using JWT auththentication)
+-------------------------
+ - email - String
+ - password - String
+ - google auth
+ - github auth
+
+2- blogs
+----------------
+ - title - String
+ - createdAt - Date
+ - header image - String
+ - comment section - List<String>
+ - likedBy - [userId]
+ - tags - [String]
+
+3- Profile
+-----------
+ -Name - String
+ -twitter link - String
+ -linkedIn-link - github
+ -Bio - String
+ -Email - String
+ -tags - [tags]
+ -saved post - [postId]
+ -liked post - [postId]
+ -commentedPost - [postId]
+ -blog posts - [postId]
+ -followers - [id]
+ -following - [id]
+ -Skills language - [String]
+
+4- podcast
+---------------------
+- title - String
+- tags - [String]
+- body content - String
+- audio - String
+
+
+techs used
+----------------
+1- JWT authentication
+2- cloudinary - file compression
+3- Reactjs
+4- Express
+5- Node
+6- Mongoose
+7- MongoDB
+
+dependencies used 
+-----------------
+1- eslint
+2- cors
+3- body-parser
+4- SimpleMDE - npm
+5- webpack
+6- nodemon

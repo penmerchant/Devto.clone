@@ -4,13 +4,13 @@ import classes from './TagsInput.module.css';
 const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
     const [valid , setValid] = useState(false);
-
     const onKeyPress = (e) => {
         
         const value = e.target.value;
         if(!value.trim()) return;
         if(e.key === 'Enter'){
             setTags([...tags, value]);
+            e.target.value = null;
             setValid(true);
         }
         else if(tags.length === 0){
@@ -39,7 +39,11 @@ const TagsInput = (props) => {
             </>
         })
     }
-    <input id={props.id} className={classes.input} type={props.text} onKeyDown={onKeyPress} placeholder={props.placeholder} /> 
+    <input id={props.id}
+    className={classes.input}
+    type={props.text}
+    onKeyDown={onKeyPress}
+    placeholder={props.placeholder}/> 
     </div>;
 };
 

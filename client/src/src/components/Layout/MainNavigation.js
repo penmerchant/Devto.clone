@@ -4,6 +4,7 @@ import AuthContext from '../../context/authContext';
 import { useContext } from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const MainNavigation = () => {
     //get user provider
@@ -38,7 +39,7 @@ const MainNavigation = () => {
             <ul>
             <li>{
                 
-               user? <NavLink to='/profile'> Profile</NavLink> : <NavLink to='/login'>Sign In</NavLink>
+               user?  <ProfileMenu /> : <NavLink to='/login'>Sign In</NavLink>
             }
             </li>
             </ul>

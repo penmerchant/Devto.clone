@@ -10,8 +10,8 @@ const TagsInput = (props) => {
         if(!value.trim()) return;
         if(e.key === 'Enter'){
             setTags([...tags, value]);
-            e.target.value = null;
             setValid(true);
+            e.target.value = null;
         }
         else if(tags.length === 0){
             setValid(false);
@@ -28,7 +28,9 @@ const TagsInput = (props) => {
     };
 
 
-    return <div className={classes.container}>
+    return <>
+    { <p>{props.label}</p>}
+    <div className={classes.container}>
     {   
         tags.map((tag,index)=>{
             return <>
@@ -44,7 +46,8 @@ const TagsInput = (props) => {
     type={props.text}
     onKeyDown={onKeyPress}
     placeholder={props.placeholder}/> 
-    </div>;
+    </div>
+    </>
 };
 
 export default TagsInput;

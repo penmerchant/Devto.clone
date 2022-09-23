@@ -3,7 +3,8 @@
     margin-top: 16px;
     width: 100%;
     border: 1px solid black;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 0.5fr);
+    background: #fff;
 }
 .input{
     border:none;
@@ -16,14 +17,27 @@
 
 .tags{
   display:flex;
-  width: 30px;
+  background: #4E4E49;
+  color: #fff;
+  height: 30px;
+  width: 100px;
+  margin-left: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+  padding: 16px;
+  line-height: auto;
+  font-size: 16px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
 }
 
 .btn{
     outline: none;
     border: none;
     color: red;
-    background: #F2F6FA;
+    background: #4E4E49;
 }
 
 .btn:hover{

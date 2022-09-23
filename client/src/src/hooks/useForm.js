@@ -30,7 +30,6 @@ const useForm = (formObj) =>{
           inputObj = {...inputObj, valid:false, touched: false};
         }
         setForm({...form, [name]: inputObj }); 
-        console.log({...form});
     }, [form]);
 
 

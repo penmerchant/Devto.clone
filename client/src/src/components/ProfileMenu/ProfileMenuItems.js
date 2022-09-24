@@ -11,8 +11,5 @@ export const ProfileMenuItems = [
         title: 'Reading list',
         url : '/readinglist',
     },
-    {
-        title: 'Sign out',
-        url: '/signout',
-    },
+
 ];

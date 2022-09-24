@@ -8,46 +8,84 @@ import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const MainNavigation = () => {
     //get user provider
-    const {user} = useContext(AuthContext);
-    
-    return (
-        <div className={classes.header}>
+    const { currentUser, isLoggedIn} = useContext(AuthContext);
+    const {isLoggedin} = currentUser;
+    console.log(isLoggedin);
+    if(!isLoggedin){
+
+        return (
+            
+            <div className={classes.header}>
         <div className={classes.nav}>
         <div>
         <li>
-                    <NavLink to='/home'>
-                        <img src={logo} alt='png'/>
-                    </NavLink>
-                </li>
-                </div>
-            <ul>
-                <li>Search bar</li>
-            </ul>
-            </div>
-            <div className={classes.nav}>
-            <ul>
-            <li> { user?
-                <NavLink to='/newPost'> 
-                    <Button label='Create Post'/>
-                </NavLink> 
-                : <NavLink to='/register'>
+        <NavLink to='/home'>
+        <img src={logo} alt='png'/>
+        </NavLink>
+        </li>
+        </div>
+        <ul>
+        <li>Search bar</li>
+        </ul>
+        </div>
+        <div className={classes.nav}>
+        <ul>
+        <li> 
+             <NavLink to='/register'>
                     <Button label='Create account'/>
-                 </NavLink>
-            }
+             </NavLink>
+            
             </li>
             </ul>
             <ul>
-            <li>{
+            <li>
                 
-               user?  <ProfileMenu /> : <NavLink to='/login'>Sign In</NavLink>
-            }
+             <NavLink to='/login'>Sign In</NavLink>
+            
             </li>
             </ul>
             </div>
             
-            </div>
-        
+            </div> );
+
+        } else{
+
+            
+            return  ( <div className={classes.header}>
+                <div className={classes.nav}>
+                <div>
+                <li>
+                <NavLink to='/home'>
+                <img src={logo} alt='png'/>
+                </NavLink>
+                </li>
+                </div>
+                <ul>
+                <li>Search bar</li>
+                </ul>
+                </div>
+                <div className={classes.nav}>
+                <ul>
+                <li> 
+                    <NavLink to='/newPost'> 
+                    <Button label='Create Post'/>
+                    </NavLink> 
+                    
+                    </li>
+                    </ul>
+                    <ul>
+                    <li>
+                        
+                         <ProfileMenu /> 
+                    
+                    </li>
+                    </ul>
+                    </div>
+                    
+                    </div>
+            
             );
-};
+        }
+    };
 
 export default MainNavigation;

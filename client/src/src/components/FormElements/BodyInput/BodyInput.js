@@ -1,4 +1,5 @@
 import MarkdownEditor from '@uiw/react-markdown-editor';
+
 import { useEffect, useState } from 'react';
 
 const BodyInput = (props) => {
@@ -25,6 +26,15 @@ const BodyInput = (props) => {
         props.onChange(props.label.toLowerCase(), value, valid);
     };
 
-    return <MarkdownEditor height={500} onChange={onChange}/>    
+    return (
+    <div >
+    <MarkdownEditor
+    visible={true}
+    height={500}
+    onChange={onChange}
+    />    
+
+    </div>
+    )
 };
 export default BodyInput;

@@ -45,7 +45,6 @@ const Auth = () =>{
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      console.log(values);
       const responseData = await sendRequest('http://localhost:4444/api/user/login', 
        'POST' ,
         JSON.stringify(values),
@@ -53,17 +52,19 @@ const Auth = () =>{
           'Content-Type' : 'application/json'
         }  
       );
-      setUser(JSON.stringify(responseData));
+      setUser({...responseData});
+      console.log(currentUser);
       login(currentUser);
-      console.log('hello' + responseData);
+      console.log( responseData);
       navigate('/home', {replace: true});
     } catch(error) {
       setError(true);
     }   
   };
-  console.log(isError);
+
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    const {name, value} = e.target;
+    setValues({ ...values, [name]: value });
   };
 
   return (

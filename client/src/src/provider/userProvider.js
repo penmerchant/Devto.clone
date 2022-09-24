@@ -2,24 +2,18 @@ import { useState } from "react";
 import AuthContext from "../context/authContext";
 
 const UserProvider = ({children}) =>{
-    const [user, setUser] = useState({isLoggedIn: false, user: {}});
-
+    //operational error in user setup;
+    const [currentUser, setUser] = useState({isLoggedin: false, user: {}});
     const login = (user) =>{
-        setUser({
-            isLoggedIn: true,
-            user : user,
-        });
+        setUser({ isLoggedin :true , user : user});
     };
 
     const logout = () =>{
-        setUser({
-            isLoggedIn: false,
-            user : {},
-        });
+        setUser({isLoggedin :false , user :{}});
     };
 
     return (
-        <AuthContext.Provider value={{user,login,logout}}>
+        <AuthContext.Provider value={{currentUser,login,logout}}>
             {children}
         </AuthContext.Provider>
     );

@@ -8,7 +8,14 @@ const Input = (props) => {
         
     return (<>
     <p>{props.label}</p>
-    <input className={classes.input} name={name} value={value} label={label} type={type} onChange={onChange} placeholder={props.placeholder} required/>
+    <input className={classes.input}
+    name={name}
+    value={value} 
+    label={label} 
+    type={type} 
+    onChange={onChange}
+    placeholder={props.placeholder}
+    required />
     </>
     );
 };

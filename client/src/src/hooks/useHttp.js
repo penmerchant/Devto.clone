@@ -42,7 +42,6 @@ const useHttp = () =>{
         //     (reqCtrl) => reqCtrl !== !httpAbortControl
         //   );
         setLoading(false);
-        console.log(responseData);
         return responseData;
     },[]);
 

@@ -1,5 +1,5 @@
 .form{
-    background: var(--color-white);
+  background: var(--color-white);
   display: flex;
   flex-direction: column;
   font-size: 1.6rem;
@@ -24,8 +24,15 @@ input{
 
 .form_btn{
     width: 50%;
-    padding: 0.5rem;
-    background: green;
+    padding: 1rem;
+    background: #0D0E0B;
+    border: none;
     color: #fff;
     margin-top: 16px;
+}
+
+.form_btn:hover{
+    cursor: pointer;
+    background: #383934;
+    color: #fff;
 }

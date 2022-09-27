@@ -1,31 +1,44 @@
 import classes from './MainNavigation.module.css';
 import {NavLink} from 'react-router-dom';
 import AuthContext from '../../context/authContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
+import SearchBar from '../FormElements/SearchBar/SearchBar';
 
 const MainNavigation = () => {
     //get user provider
-    const { currentUser, isLoggedIn} = useContext(AuthContext);
+    // const [initialValue , setInitial] = useState();
+    const { currentUser} = useContext(AuthContext);
     const {isLoggedin} = currentUser;
-    console.log(isLoggedin);
+
+    // useEffect(() => {
+    //    const initialVal = window.localStorage.getItem('currentUser');
+    //     // const {isLoggedin} = s;
+    //     setInitial(JSON.parse(initialVal));
+    //     // setLogin(s);
+        
+    // },[]);
     if(!isLoggedin){
 
         return (
             
-            <div className={classes.header}>
-        <div className={classes.nav}>
+        <div className={classes.header}>
+          <div className={classes.nav}>
+        
         <div>
-        <li>
-        <NavLink to='/home'>
-        <img src={logo} alt='png'/>
-        </NavLink>
-        </li>
+         <li>
+           <NavLink to='/home'>
+            <img src={logo} alt='png'/>
+           </NavLink>
+          </li>
         </div>
+        
         <ul>
-        <li>Search bar</li>
+         <li>
+            <SearchBar />
+         </li>
         </ul>
         </div>
         <div className={classes.nav}>

@@ -21,7 +21,6 @@ const Post = () => {
     if(isLoading) {
         return <div>Loading...</div>
     }
-    console.log(postData.length);
     if(isError){
         return <div>There is no data</div>
     }

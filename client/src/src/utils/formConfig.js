@@ -31,6 +31,33 @@ const createForm = (
     };
 }; //render inputs
 
+export const loginForm = {
+    email: {
+        ...createForm('email', 'email' , '' , 'Please enter an email'),
+    },
+    password: {
+        ...createForm('password', 'password' , '', 'Please enter password'),
+    },
+};
+
+export const signUpForm = {
+    email: {
+        ...createForm('email', 'email' , '' , 'Please enter an email'),
+    },
+    password: {
+        ...createForm('password', 'password' , '', 'Please enter password'),
+    },
+    // confirmPassword: {
+    //     ...createForm('password', 'password' , 'Confirm password', 'Confirm password'),
+    // },
+    firstName: {
+        ...createForm('text', 'firstName' , '' , 'First name'),
+    },
+    lastName: {
+        ...createForm('text', 'lastName' , '', 'Last name'),
+    },
+};
+
 export const newPostForm = {
     title: {
      ...createForm('text', 'title', 'Title' ,'Please enter a title'),
@@ -50,5 +77,3 @@ export const newPostForm = {
         key: '4',
     },
 };// values of input
-export const loginForm = {}; // values of input
-export const signUpForm = {}; // values of input

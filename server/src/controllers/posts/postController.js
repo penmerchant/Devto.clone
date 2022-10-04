@@ -1,35 +1,38 @@
 const Post = require('../../models/posts/post');
 const {validationResult} = require('express-validator');
+const {uploadImageToCloud, getDateNow} = require('../../utils/utils');
 
 const createPost = async ( req, res, next)=>{
   const error = validationResult(req.body);
   // const {image} = req.files;
   // console.log(`hi ${image}`);
+  console.log(req.body);
   if (!error.isEmpty()) {
     throw Error('Invalid inputs');
   }
-  if (!req.body) {
-    return new Error('Empty form', 401);
-  }
-  // const {title, imageUrl, createdAt, content, author} = req.body;
+
+  const {title, body, tags, author} = req.body;
   // validate inputs
   // upload image to cloud
+  const imageUrl = await uploadImageToCloud(req.file.path);
+  const createdAt = getDateNow();
+  let createdPost;
   try {
-    // console.log('hi');
-    // const createdPost = await Post.create({
-    //   title,
-    //   imageUrl,
-    //   createdAt,
-    //   content,
-    //   author,
-    // });
-    // await createdPost.save();
+    const uploadContent = await new Post({
+      title: title,
+      body: body,
+      createdAt: createdAt,
+      imageUrl: imageUrl,
+      author: author,
+      tags: tags,
+    });
+    await uploadContent.save();
+    createdPost = uploadContent;
   } catch (error) {
-    return next(new Error('unable to upload to server'));
+    throw new Error('unable to upload to server');
   }
-  console.log(req.file);
   // res.status(200).json({title: title, imageUrl, createdAt, content, author});
-  res.json(req.body);
+  res.status(201).json({createdPost});
 };
 
 const getAllPosts = async (req, res, next) =>{

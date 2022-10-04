@@ -39,7 +39,7 @@ const signIn = async (req, res, next) => {
   let existingUser;
 
   try {
-    existingUser = await User.findOne( {email});
+    existingUser = await User.findOne({email});
   } catch (error) {
     next(new Error('Something is wrong with the server'), 500);
   }
@@ -70,5 +70,22 @@ const signIn = async (req, res, next) => {
   });
 };
 
+const getUserById = async (req, res, next) => {
+  const {userId} = req.params;
+  let searchedUser;
+  try {
+    searchedUser = await User.findById(userId);
+  } catch (error) {
+    next(new Error('Something is wrong with the server', 500));
+  }
+
+  if (!searchedUser) {
+    throw new Error('Unable to find the user', 401);
+  }
+
+  res.status(201).json(searchedUser);
+};
+
 exports.signUp = signUp;
 exports.signIn = signIn;
+exports.getUserById = getUserById;

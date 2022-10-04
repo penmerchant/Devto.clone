@@ -19,7 +19,7 @@ const useHttp = () =>{
         }
 
         try{ 
-
+            console.log(body);
             response = await fetch(url,{
                 method,
                 body,

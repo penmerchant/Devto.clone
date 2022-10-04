@@ -14,11 +14,11 @@ const uploadImageToCloud = async (image) =>{
   return url;
 };
 
-
-const getDateNow = () => {
-  const date = Date();
-  return date;
+const getDateNow = () =>{
+  const dateNow = Date();
+  return dateNow;
 };
+
 
 exports.uploadImageToCloud = uploadImageToCloud;
 exports.getDateNow = getDateNow;

@@ -12,15 +12,15 @@ const UserProvider = ({children}) =>{
     //    console.log(localUser);
     // },[]);
 
-    const setUserPersistency = (user) =>{
-        window.localStorage.setItem('currentuser', JSON.stringify(user));
-    };
+    // const setUserPersistency = (user) =>{
+    //     window.localStorage.setItem('currentuser', JSON.stringify(user));
+    // };
 
     const login = (user) =>{
         const data = {...currentUser, isLoggedin: true, data: user};
         // setUser({isLoggedin: true, data: user});
         setUser(data);
-        setUserPersistency(data);
+        // setUserPersistency(data);
     };
 
     const logout = () =>{

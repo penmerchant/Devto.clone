@@ -53,7 +53,7 @@ const Auth = () =>{
       isError && <ErrorMessage message="login"/> 
     } */}
     <div className={classes.form_container}>
-      <form onSubmit={handleSubmit} className={classes.form}>
+      <form  className={classes.form}>
         <h1>Login</h1>
         {/* {inputs.map((input) => (
           <input
@@ -64,7 +64,7 @@ const Auth = () =>{
           />
           ))} */}
           {formInputs}
-        <button className={classes.form_btn} disabled={!isFormValid()}>Submit</button>
+        <button className={classes.form_btn} onClick={handleSubmit} disabled={!isFormValid()}>Submit</button>
       </form>
     </div>
     </>

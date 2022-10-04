@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
 app.use(bodyParser.json());
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
 }));
 
 app.use('/api/posts/', PostRoute);

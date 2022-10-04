@@ -7,7 +7,7 @@ import useHttp from '../../hooks/useHttp';
 import AuthContext from '../../context/authContext';
 import useForm from '../../hooks/useForm';
 import { loginForm } from '../../utils/formConfig';
-import { appendData } from '../../utils';
+// import { appendData } from '../../utils';
 // import ErrorMessage from '../../components/ErrorMessage/authError';
 
 const Auth = () =>{
@@ -20,46 +20,24 @@ const Auth = () =>{
   const {login} = useContext(AuthContext);
   const formValues = renderValues();
   const formInputs = renderInputs();
-  // const inputs = [
-    
-  //   {
-  //     id: 1,
-  //     name: "email",
-  //     type: "email",
-  //     placeholder: "Email",
-  //     errorMessage: "It should be a valid email address!",
-  //     label: "Email",
-  //     required: true,
-  //   },
-    
-  //   {
-  //     id: 2,
-  //     name: "password",
-  //     type: "password",
-  //     placeholder: "Password",
-  //     errorMessage:
-  //       "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-  //     label: "Password",
-  //     // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-  //     required: true,
-  //   },
-   
-  // ];
+  
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      const formData = appendData(formValues);
+      // const formData = appendData(formValues);
       const responseData = await sendRequest('http://localhost:4444/api/user/login', 
        'POST' ,
-        JSON.stringify(formData),
+        JSON.stringify(formValues),
         {
-          'Content-Type' : 'application/json'
+          'Content-Type' : 'application/json',
+          'Accept': 'application/json'
         }  
       );
       setUser(responseData);
       console.log(currentUser.email);
       login(currentUser);
+      console.log(currentUser);
       navigate('/home', {replace: true});
     } catch(error) {}   
   };

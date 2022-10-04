@@ -35,7 +35,7 @@ const signUp = async ( req, res, next) => {
 };
 const signIn = async (req, res, next) => {
   const {email, password} = req.body;
-
+  console.log(req.body);
   let existingUser;
 
   try {
@@ -59,7 +59,7 @@ const signIn = async (req, res, next) => {
   }
 
   const token = jwt.sign({email: existingUser.email},
-      process.env.ACCESS_TOKEN, {expiresIn: '5s'} );
+      process.env.ACCESS_TOKEN, {expiresIn: '1hr'} );
 
   res.status(200).json({
     'email': existingUser.email,

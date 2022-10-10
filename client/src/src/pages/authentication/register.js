@@ -7,22 +7,25 @@ import classes from './auth.module.css';
 const CreateAccount = () => {
     const {renderInputs, renderValues , isFormValid} = useForm(signUpForm);
     const {sendRequest} = useHttp();
+    const formValues = renderValues();
     const formInputs = renderInputs();
 
     const handleSubmit = async(e) => {
         
         e.preventDefault();
-        const formValues = renderValues();
-
+        const formData = appendData(formValues);
+        // console.log(...formData);
+        // let currentUser;
         try {
-            const formData = appendData(formValues);
-            await sendRequest('http://localhost:4444/api/user/register',
+            await sendRequest('http://localhost:4444/api/user/register/',
             'POST',
-            JSON.stringify(formData),
-            {
-              'Content-Type' : 'application/json'
-            }  
-            );
+            formData,
+            // JSON.stringify(formValues),
+            // {
+            //     'Content-Type' : 'application/json',
+            //     'Accept': 'application/json',
+            // }
+        );
         } catch(error) {
             alert('Unable to create an account');
         }

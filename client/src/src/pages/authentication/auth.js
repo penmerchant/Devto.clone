@@ -31,7 +31,8 @@ const Auth = () =>{
         JSON.stringify(formValues),
         {
           'Content-Type' : 'application/json',
-          'Accept': 'application/json'
+          // 'Acces-Control-Allow-Origin' : '*',
+          Accept: 'application/json'
         }  
       );
       setUser(responseData);

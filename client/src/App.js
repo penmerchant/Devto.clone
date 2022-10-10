@@ -5,6 +5,7 @@ import Home from "./src/pages/home/home";
 import Login from "./src/pages/login";
 import CreateAccount from "./src/pages/authentication/register";
 import SearchPage from "./src/pages/SearchPage/SearchPage";
+import PostDetails from "./src/pages/post/postDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/searchResult/:searchValue' element={<SearchPage />} />
         <Route path='/register' element={<CreateAccount />}/>
+        <Route path='/post-details/:title/:postId' element={ <PostDetails />}/>
       </Routes>
     </Layout>
   );

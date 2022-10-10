@@ -6,6 +6,7 @@ const UserSchema = new Schema({
   password: {type: String},
   firstName: {type: String},
   lastName: {type: String},
+  profilePicture: {type: String, default: null},
   bio: {type: String, default: null},
   socialLink: [{type: String, default: null, ref: 'Sociallink'}],
 });

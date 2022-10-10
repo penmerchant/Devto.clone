@@ -80,7 +80,9 @@ const deleteAllComments = async ( req, res, next) => {
 
   res.status(200).json('Succesfully deleted comments');
 };
-
+// comment on a post
+// like a comment
+// reply a comment
 exports.getCommentById = getCommentById;
 exports.createComment = createComment;
 exports.deleteAllComments = deleteAllComments;

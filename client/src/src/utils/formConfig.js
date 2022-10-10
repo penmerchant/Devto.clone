@@ -34,27 +34,37 @@ const createForm = (
 export const loginForm = {
     email: {
         ...createForm('email', 'email' , '' , 'Please enter an email'),
+        key: '1',
     },
     password: {
         ...createForm('password', 'password' , '', 'Please enter password'),
+        key: '2',
     },
 };
 
 export const signUpForm = {
     email: {
         ...createForm('email', 'email' , '' , 'Please enter an email'),
+        key: '1',
     },
     password: {
         ...createForm('password', 'password' , '', 'Please enter password'),
+        key: '2',
     },
     // confirmPassword: {
     //     ...createForm('password', 'password' , 'Confirm password', 'Confirm password'),
     // },
     firstName: {
         ...createForm('text', 'firstName' , '' , 'First name'),
+        key: '3',
     },
     lastName: {
         ...createForm('text', 'lastName' , '', 'Last name'),
+        key: '4',
+    },
+    image: {
+        ...createForm('file', 'image', 'Image'),
+        key: '5',
     },
 };
 

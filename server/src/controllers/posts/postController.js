@@ -16,6 +16,7 @@ const createPost = async ( req, res, next)=>{
   // upload image to cloud
   const imageUrl = await uploadImageToCloud(req.file.path);
   const createdAt = getDateNow();
+  // console.log(tags);
   let createdPost;
   try {
     const uploadContent = await new Post({
@@ -85,8 +86,14 @@ const deletePostById = async ( req, res, next) => {
 
   res.status(200).json({message: 'Post has been deleted'});
 };
+// save post as a reading list
+const savePost = async (req, res, next) => {
+};
 
+// get saved post
+// like a post
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;
 exports.deletePostById = deletePostById;
+exports.savePost = savePost;

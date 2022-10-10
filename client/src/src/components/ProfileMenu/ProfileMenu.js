@@ -9,7 +9,7 @@ const {ProfileMenuItems} = require('./ProfileMenuItems');
 const ProfileMenu = () =>{
 
     const [show, setShow] = useState(false);
-    const {logout} = useContext(AuthContext);
+    const {logout,currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const profilePicture =
@@ -18,6 +18,7 @@ const ProfileMenu = () =>{
     const showMenu = () =>{
         setShow(!show);
     }
+    const {data} = currentUser;
 
     const signout =() =>{
         logout();
@@ -26,7 +27,7 @@ const ProfileMenu = () =>{
 
     return (
         <>
-        <img src={profilePicture} onClick={showMenu}  className={classes.img} alt='user'/>
+        <img src={data.profilePicture || profilePicture} onClick={showMenu}  className={classes.img} alt='user'/>
 
         <ul className={show? classes.dropdown_show :classes.dropdown}>
 

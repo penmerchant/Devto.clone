@@ -1,5 +1,4 @@
 import MarkdownEditor from '@uiw/react-markdown-editor';
-
 import { useEffect, useState } from 'react';
 
 const BodyInput = (props) => {

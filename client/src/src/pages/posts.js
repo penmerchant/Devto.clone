@@ -29,7 +29,7 @@ const Post = () => {
         return (
                 
              <PostList post={postData}/>
-            ) ;
+        ) ;
     }
         
     

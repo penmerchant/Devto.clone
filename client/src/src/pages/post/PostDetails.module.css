@@ -1,0 +1,21 @@
+.container{
+    display: grid;
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    grid-auto-rows: minmax(1fr, auto);
+    grid-template-areas: 'pf pt sb';
+}
+
+.profile{
+    background: white;
+    grid-area: pf;
+}
+
+.sidebar_menu{
+    grid-area: sb;
+}
+
+.post_section{
+    width: 50vw;
+    grid-area: pt;
+}

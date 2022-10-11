@@ -3,12 +3,13 @@ import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
+import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
     const {sendRequest} = useHttp();
     const [post, setPost] = useState({});
     const {postId} = useParams();
-   
+    // get currentUser id for commenting the post
     useEffect(()=>{
         const fetchPost = async() => {
 
@@ -24,11 +25,15 @@ const PostDetails = () => {
 
     },[sendRequest,postId]);
     // const body = post.body;
-    const {body} = post;
+
+    const styles = { padding: '30px' };
+    const {body,title,imageUrl} = post;
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>sidebar</div>
-        <div className={classes.post_section}>
-            <MarkdownPreview source={body} key={post.id} />
+        <div className={classes.post_section} >
+            {imageUrl? <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />: null}
+            <h1>{title}</h1>
+            <MarkdownPreview source={body} key={post.id} style={styles} />
         </div>
         <div className={classes.profile}>author's profile</div>
     </div>

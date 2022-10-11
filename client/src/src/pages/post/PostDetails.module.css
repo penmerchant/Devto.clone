@@ -2,20 +2,29 @@
     display: grid;
     /* justify-content: center; */
     /* justify-content: space-between; */
-    grid-auto-rows: minmax(1fr, auto);
-    grid-template-areas: 'pf pt sb';
+    /* grid-auto-rows: minmax(1fr, auto); */
+    grid-auto-columns: 0.3fr 1.1fr 0.6fr;
+    grid-template-areas: 'sb pt pf';
+    grid-gap: 5px;
+    margin-top: 16px;
 }
 
 .profile{
-    background: white;
+    /* background: black; */
     grid-area: pf;
 }
 
 .sidebar_menu{
+    /* background: red; */
     grid-area: sb;
 }
 
 .post_section{
-    width: 50vw;
+    /* border-radius: 10px; */
     grid-area: pt;
+}
+
+.post_img{
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
 }

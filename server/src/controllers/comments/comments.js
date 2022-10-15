@@ -3,34 +3,34 @@ const Post = require('../../models/posts/post');
 const Comment = require('../../models/comments/comment');
 
 const createComment = async ( req, res, next) => {
-  const {content, commenterId, parentPost, parentId} = req.body;
+  // get postId, userId(author), parentAuthor, comment
+  const {content, author, post} = req.body;
+  console.log(req.body);
   // const {parentPost} = req.body;
-  let post;
+  let blog;
 
   try {
-    post = await Post.findById(parentPost);
+    blog = await Post.findById(post);
   } catch (error) {
     next(new Error('Something wrong with the server. ', 500));
   }
 
-  if (!post) {
-    return next( new Error('No comment found by an id', 401));
+  if (!blog) {
+    return next( new Error('Found no post', 401));
   }
 
-  const createdComment = new Comment({
-    content,
-    commenterId,
-    parentPost,
-    parentId,
-  });
-
+  let createdComment;
   try {
     // const newCreatedComment = await Comment.findById({parentId: parentId}).populate(createdComment, {path: 'commenterId'});
-    console.log(createdComment);
+    createdComment = new Comment({
+      content: content,
+      author: author,
+      post: post,
+    });
+    // console.log(createdComment);
+    await blog.comments.push(createdComment._id);
+    await blog.save();
     await createdComment.save();
-    post.comments.push(createdComment);
-    // console.log(post);
-    await post.save();
   } catch (error) {
     return next( new Error('Unable to create a comment', 401));
   }
@@ -38,21 +38,22 @@ const createComment = async ( req, res, next) => {
   res.status(201).json(createdComment);
 };
 
-const getCommentById = async ( req, res, next) => {
+const getAllComments = async ( req, res, next) => {
   const {postId} = req.params;
-
+  // console.log(postId);
   let comment;
 
   try {
-    comment = await Comment.findById({parentPost: postId}).populate('parentPost');
+    comment = await Post.findOne({_id: postId}).populate('comments');
+    // console.log(comment.populated('comments'));
   } catch (error) {
     next(new Error('Something is wrong with the server', 500));
   }
 
-  if (!comment) {
-    return next(new Error('Unable to find a comment by the post id', 401));
-  }
-
+  // if (!comment) {
+  //   return next(new Error('Unable to find a comment by the post id', 401));
+  // }
+  console.log(comment);
   res.status(200).json(comment);
 };
 
@@ -80,9 +81,8 @@ const deleteAllComments = async ( req, res, next) => {
 
   res.status(200).json('Succesfully deleted comments');
 };
-// comment on a post
 // like a comment
 // reply a comment
-exports.getCommentById = getCommentById;
+exports.getAllComments = getAllComments;
 exports.createComment = createComment;
 exports.deleteAllComments = deleteAllComments;

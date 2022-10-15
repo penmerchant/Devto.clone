@@ -1,12 +1,13 @@
 const express = require('express');
 const {createComment,
-  getCommentById,
+  getAllComments,
   deleteAllComments} = require('../../controllers/comments/comments');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
 router.post('/', createComment);
-router.get('/:postId', getCommentById);
+router.get('/:postId', getAllComments);
+// router.get('/', getAllComments);
 router.delete('/:commentId/:postId', deleteAllComments);
 
 module.exports = router;

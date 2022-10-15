@@ -3,7 +3,7 @@ import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
-import AuthContext from "../../context/authContext";
+// import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
     const {sendRequest} = useHttp();

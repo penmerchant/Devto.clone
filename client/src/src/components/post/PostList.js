@@ -9,7 +9,7 @@ const PostList = (props) => {
             props.post.map((entry)=>(
                 <PostCard post={entry} key={entry.id}/>
                 ))
-            }
+        }
         </Fragment>
         </div>
     );

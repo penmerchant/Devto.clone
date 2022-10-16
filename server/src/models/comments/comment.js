@@ -6,7 +6,8 @@ const CommentSchema = new Schema({
   parentComment: {type: mongoose.Types.ObjectId, ref: 'Comment', default: null},
   author: {type: mongoose.Types.ObjectId, ref: 'User'},
   post: {type: mongoose.Types.ObjectId, ref: 'Post'},
-  likedBy: [{type: mongoose.Types.ObjectId, ref: 'User', default: null}],
+  replies: [{type: mongoose.Types.ObjectId, ref: 'Comment', default: null}],
+  likes: [{type: mongoose.Types.ObjectId, ref: 'User', default: null}],
 });
 
 

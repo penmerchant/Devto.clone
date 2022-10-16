@@ -92,8 +92,51 @@ const savePost = async (req, res, next) => {
 
 // get saved post
 // like a post
+const likePost = async (req, res, next) => {
+  const {postId, userId} = req.params;
+
+  let post;
+
+  try {
+    post = await Post.findOne({_id: postId});
+  } catch (error) {
+    next(new Error('Something is wrong with the server', 500));
+  }
+
+  if (!post) {
+    return (new Error('Unable to like the post', 401));
+  } else {
+    post.likes.push(userId);
+    await post.save();
+  }
+  console.log(post);
+  res.status(201).json('You have liked the post!');
+};
+
+const unlikePost = async (req, res, next) => {
+  const {postId, userId} = req.params;
+  let post;
+  try {
+    post = await Post.findOne({_id: postId});
+  } catch (error) {
+    next(new Error('Something is wrong with the server', 500));
+  }
+
+  if (post) {
+    try {
+      post.likes.pull(userId);
+      await post.save();
+    } catch (error) {
+      return (new Error('Unable to unlike the post', 401));
+    }
+  }
+  console.log(post);
+  res.status(201).json('You have unliked the post!');
+};
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;
 exports.deletePostById = deletePostById;
 exports.savePost = savePost;
+exports.likePost = likePost;
+exports.unlikePost = unlikePost;

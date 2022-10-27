@@ -3,24 +3,28 @@
     /* justify-content: center; */
     /* justify-content: space-between; */
     /* grid-auto-rows: minmax(1fr, auto); */
-    grid-auto-columns: 0.3fr 1.1fr 0.6fr;
+    grid-auto-columns: 0.3fr 0.2fr 0.6fr;
     grid-template-areas: 'sb pt pf';
-    grid-gap: 5px;
     margin-top: 16px;
 }
 
 .profile{
     /* background: black; */
+    max-width: 10vw;
     grid-area: pf;
 }
 
 .sidebar_menu{
     /* background: red; */
+    max-width: 30vw;
     grid-area: sb;
 }
 
 .post_section{
     /* border-radius: 10px; */
+    padding: 6px;
+    background: #fff;
+    max-width: 60vw;
     grid-area: pt;
 }
 

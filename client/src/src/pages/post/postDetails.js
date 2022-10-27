@@ -3,8 +3,8 @@ import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
-import CommentSection from "../../components/CommentSection/CommentSection";
-// import AuthContext from "../../context/authContext";
+// import CommentSection from "../../components/CommentSection/CommentSection";
+// // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
     const {sendRequest} = useHttp();
@@ -49,7 +49,7 @@ const PostDetails = () => {
             {imageUrl? <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />: null}
             <h1>{title}</h1>
             <MarkdownPreview source={body} key={post.id} style={styles} />
-            <CommentSection comments={comments} />
+            {/* <CommentSection comments={comments} /> */}
         </div>
         <div className={classes.profile}>
             Author's profile

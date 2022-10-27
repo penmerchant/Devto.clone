@@ -2,6 +2,7 @@ import useForm from "../../hooks/useForm";
 import useHttp from "../../hooks/useHttp";
 import { appendData } from "../../utils";
 import { signUpForm } from "../../utils/formConfig";
+import { useNavigate } from "react-router-dom";
 import classes from './auth.module.css';
 
 const CreateAccount = () => {
@@ -9,6 +10,7 @@ const CreateAccount = () => {
     const {sendRequest} = useHttp();
     const formValues = renderValues();
     const formInputs = renderInputs();
+    const navigate = useNavigate();
 
     const handleSubmit = async(e) => {
         
@@ -25,7 +27,9 @@ const CreateAccount = () => {
             //     'Content-Type' : 'application/json',
             //     'Accept': 'application/json',
             // }
-        );
+            );
+            alert('Succesfully created an account');
+            navigate('/login', {replace: true});
         } catch(error) {
             alert('Unable to create an account');
         }

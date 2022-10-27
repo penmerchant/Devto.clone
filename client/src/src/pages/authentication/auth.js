@@ -38,9 +38,11 @@ const Auth = () =>{
       setUser(responseData);
       console.log(currentUser.email);
       login(currentUser);
-      console.log(currentUser);
+      alert('Welcome')
       navigate('/home', {replace: true});
-    } catch(error) {}   
+    } catch(error) {
+      alert('Unable to login')
+    }   
   };
 
   // const onChange = (e) => {

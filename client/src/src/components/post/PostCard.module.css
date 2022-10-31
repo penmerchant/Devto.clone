@@ -2,12 +2,13 @@
     display: flex;
     padding: 1.2rem;
     color: #A4ABB2;
+    gap: 4px;
     font-size: 0.8rem;
 }
 
 .card{
     margin-top: 100px;
-    padding: 1rem;
+    /* padding: 1rem; */
     display: inline-block;
     width: 40vw;
     overflow: hidden;
@@ -15,7 +16,9 @@
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
 }
-
+.img{
+    width: 100%;
+}
 .card:hover{
     cursor: pointer;
 }
@@ -23,7 +26,12 @@
     color:blue;
 }
 
-.container{
+.profile_picture{
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+}
+/* .container{
     display: flex;
     justify-content: center;
-}
+} */

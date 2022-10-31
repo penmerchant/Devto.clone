@@ -1,0 +1,25 @@
+.container{
+}
+
+.sidebar{
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.sidebar a{
+    text-decoration: none;
+}
+
+.p{
+    text-decoration: none;
+}
+.sidebar:hover{
+    background: #bfefff;
+    border-radius: 10px;
+}
+.img{
+    width: 60px;
+    padding: 1rem;
+}

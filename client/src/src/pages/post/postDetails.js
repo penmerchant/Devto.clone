@@ -41,7 +41,7 @@ const PostDetails = () => {
         fetchComments();
 
     },[sendRequest,postId]);
-    const styles = { padding: '30px' };
+    const styles = { padding: '30px'};
     const {body,title,imageUrl} = post;
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>Sidebar</div>

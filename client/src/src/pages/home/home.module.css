@@ -1,0 +1,19 @@
+.grid{
+  display: grid;
+  grid-template-areas: 'sb ps ts';
+}
+
+.sidebar{
+    max-width: 25vw;
+    grid-area: sb;
+}
+
+.post_section{
+    max-width: 50vw;
+    grid-area: ps;
+}
+
+.tag_section{
+  max-width: 25vw;
+  grid-area: ts;
+}

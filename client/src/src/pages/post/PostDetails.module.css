@@ -3,20 +3,20 @@
     /* justify-content: center; */
     /* justify-content: space-between; */
     /* grid-auto-rows: minmax(1fr, auto); */
-    grid-auto-columns: 0.3fr 0.2fr 0.6fr;
+    /* grid-auto-columns: 0.3fr 0.2fr 0.6fr; */
     grid-template-areas: 'sb pt pf';
     margin-top: 16px;
 }
 
 .profile{
     /* background: black; */
-    max-width: 10vw;
+    max-width: 40vw;
     grid-area: pf;
 }
 
 .sidebar_menu{
     /* background: red; */
-    max-width: 30vw;
+    max-width: 10vw;
     grid-area: sb;
 }
 
@@ -24,11 +24,17 @@
     /* border-radius: 10px; */
     padding: 6px;
     background: #fff;
-    max-width: 60vw;
+    max-width: 50vw;
     grid-area: pt;
 }
 
 .post_img{
     width: 100%;
     border-radius: 10px 10px 0px 0px;
+}
+
+.profile_image{
+    padding: 1rem;
+    width: 50px;
+    height: 100px;
 }

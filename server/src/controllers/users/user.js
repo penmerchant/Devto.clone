@@ -98,7 +98,7 @@ const getUserById = async (req, res, next) => {
   }
 
   if (!searchedUser) {
-    throw new Error('Unable to find the user', 401);
+    return new Error('Unable to find the user', 401);
   }
 
   res.status(201).json(searchedUser);

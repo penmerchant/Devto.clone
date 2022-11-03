@@ -2,12 +2,13 @@ import { Fragment } from "react";
 import PostCard from "./PostCard";
 import classes from './PostCard.module.css';
 const PostList = (props) => {
+    const {post} = props;
     return (
         <div className={classes.container}>
         <Fragment>
         {   
-            props.post.map((entry, index)=>(
-                <PostCard post={entry} key={entry.id} index={index}/>
+            post.map((entry, index)=>(
+                <PostCard post={entry} key={entry._id} index={index}/>
                 ))
         }
         </Fragment>

@@ -18,6 +18,7 @@ const Post = () => {
         };
         fetchPost();
     }, [sendRequest]);
+
     if(isLoading) {
         return <div>Loading...</div>
     }

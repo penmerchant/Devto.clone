@@ -6,18 +6,19 @@
     display: flex;
     flex-direction: row;
     gap: 4px;
+    font-size: 0.9rem;
+    color: #464646;
 }
 
 .sidebar a{
     text-decoration: none;
 }
 
-.p{
-    text-decoration: none;
-}
+
 .sidebar:hover{
     background: #bfefff;
     border-radius: 10px;
+    text-decoration:  underline;
 }
 .img{
     width: 60px;

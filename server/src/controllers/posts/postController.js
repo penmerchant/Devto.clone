@@ -51,7 +51,7 @@ const getPostById = async ( req, res, next) => {
   const {postId} = req.params;
   let post;
   try {
-    post = await Post.findById(postId).populate('author');
+    post = await Post.findById(postId);
   } catch (err) {
     next(new Error('Something wrong with the server', 500));
   }

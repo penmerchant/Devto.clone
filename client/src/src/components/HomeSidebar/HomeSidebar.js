@@ -28,12 +28,11 @@ const HomeSideBar = () => {
             'src': ContactLogo
         },
     ];
-    console.log(sidebarMenu);
     return <div className={classes.container}>
         {
             sidebarMenu.map((items)=>{
                 return <div className={classes.sidebar}>
-                <NavLink to={items.link} className={classes.sidebar}>
+                <NavLink to={items.link} className={classes.sidebar} >
                         <img src={items.src} className={classes.img} alt='logo'/>
                         <p>{items.subject}</p>
                 </NavLink>

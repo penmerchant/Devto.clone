@@ -7,11 +7,17 @@ import useHttp from "../../hooks/useHttp";
 // // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
-    const {sendRequest} = useHttp();
+    const {sendRequest, isLoading, isError} = useHttp();
     const [post, setPost] = useState({});
+    const [authorDetails, setAuthor] = useState({});
     const [comments, setComments] = useState([]);
-    const {postId} = useParams();
-    // get currentUser id for commenting the post
+    const {postId,} = useParams();
+
+    const { body,
+        title,
+        imageUrl,
+        author} = post;
+    // get currentUser id  for commenting the post
     useEffect(()=>{
         const fetchPost = async() => {
 
@@ -40,9 +46,38 @@ const PostDetails = () => {
 
         fetchComments();
 
-    },[sendRequest,postId]);
+    },[sendRequest,post,postId]);
+
+
+    useEffect(()=>{
+        const getAuthorDetails = async() => {
+
+            try{
+                const response = await sendRequest(`http://localhost:4444/api/user/${author}`);
+                setAuthor(response);
+            } catch(error) {
+                console.log('failed');
+            }
+        }
+
+        getAuthorDetails();
+
+    },[sendRequest,author]);
+    // save post 
+    // like post
+    // go to comment section
+    // create a comment
+
+    // sidebar
+
     const styles = { padding: '30px'};
-    const {body,title,imageUrl} = post;
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    if(isError) {
+        return <>Error</>
+    }
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>Sidebar</div>
         <div className={classes.post_section} >
@@ -52,7 +87,7 @@ const PostDetails = () => {
             {/* <CommentSection comments={comments} /> */}
         </div>
         <div className={classes.profile}>
-            Author's profile
+            <p>{authorDetails.email}</p>
         </div>
     </div>
 };

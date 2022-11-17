@@ -4,6 +4,7 @@ const PostCard = (props) => {
     const navigate = useNavigate();
     
     const {post, index} = props;
+    
     const {author,
         likes,
         comments,

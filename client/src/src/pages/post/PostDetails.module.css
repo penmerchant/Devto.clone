@@ -10,21 +10,31 @@
 
 .profile{
     /* background: black; */
-    max-width: 40vw;
     grid-area: pf;
+    width: 25vw;
+    height: 300px;
+    overflow:hidden;
+    border-radius: 10px;
+    border: 1px solid #E0DCDB;
 }
 
 .sidebar_menu{
     /* background: red; */
-    max-width: 10vw;
+    max-width: 20vw;
     grid-area: sb;
+    border: 1px solid #E0DCDB;
 }
+
+a{
+    text-decoration: none;
+}
+
 
 .post_section{
     /* border-radius: 10px; */
     padding: 6px;
     background: #fff;
-    max-width: 50vw;
+    width: 55vw;
     grid-area: pt;
 }
 
@@ -33,8 +43,48 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-.profile_image{
-    padding: 1rem;
+.circle{
+    height: 50px;
     width: 50px;
-    height: 100px;
+    background-color: gray;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.row{
+    margin-left: 5px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.text_wrapper{
+    line-height: auto;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: #27313B;
+}
+
+.text_wrapper:hover{
+    color:blue;
+}
+
+.btn_wrapper{
+    padding: 1rem;
+}
+
+.btn{
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    background: #2663A3;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background: #154F8C;
 }

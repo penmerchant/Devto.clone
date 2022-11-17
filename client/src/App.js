@@ -6,6 +6,7 @@ import Login from "./src/pages/login";
 import CreateAccount from "./src/pages/authentication/register";
 import SearchPage from "./src/pages/SearchPage/SearchPage";
 import PostDetails from "./src/pages/post/postDetails";
+import Footer from "./src/components/Footer/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/register' element={<CreateAccount />}/>
         <Route path='/post-details/:title/:postId/' element={ <PostDetails />}/>
       </Routes>
+      <Footer />
     </Layout>
   );
 }

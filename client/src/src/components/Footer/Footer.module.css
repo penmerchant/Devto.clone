@@ -1,0 +1,28 @@
+.footer{
+    width: 100%;
+    position: relative;
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D0DBE7;
+    bottom: 0;
+    left:0;
+    right: 0;
+}
+
+.txt_wrapper{
+    padding: 1rem;
+    text-align: center;
+    line-height: auto;
+    font-size: 14px;
+    color: #474D53;
+}
+
+a{
+    color: #3A74AE;
+}
+
+a:hover{
+    text-decoration: underline;
+}

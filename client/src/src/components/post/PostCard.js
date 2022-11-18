@@ -1,5 +1,7 @@
 import classes from './PostCard.module.css';
 import { useNavigate } from 'react-router-dom';
+import  HeartIcon  from  '../../images/card/heart.svg';
+import CommentIcon from '../../images/card/comment-pen.svg';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
@@ -15,6 +17,7 @@ const PostCard = (props) => {
     const {firstName,
         lastName} = author;
     const fullName = firstName + ' ' + lastName;
+    
 
     const onClick = () => {
         navigate(`/post-details/${title}/${_id}`);
@@ -29,8 +32,15 @@ const PostCard = (props) => {
             </div>
             <h1 className={classes.card_title}>{title}</h1>
             <div className={classes.row}>
-                <p>{likes.length} likes</p>
-                <p>{comments.length} comments</p>
+                <div className={classes.clickable}>
+                {likes.length} 
+                    <img src={HeartIcon} className={classes.icon} alt='?' />
+                </div>
+                <div></div>
+                <div className={classes.clickable}>
+                {comments.length}
+                    <img src={CommentIcon} className={classes.icon} alt='?' />
+                </div>
             </div>
         </div>
     );

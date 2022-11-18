@@ -1,0 +1,12 @@
+.body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 800px;
+    display: block;
+    justify-content: flex-start;
+    margin-top: 2.5rem;
+}

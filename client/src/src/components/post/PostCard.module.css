@@ -1,8 +1,9 @@
 .row{
     display: flex;
     padding: 1.2rem;
+    align-items: center;
     color: #474D53;
-    gap: 4px;
+    gap: 8px;
     font-size: 0.8rem;
 }
 
@@ -39,3 +40,13 @@
     display: flex;
     justify-content: center;
 } */
+
+.icon{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+
+.clickable:hover{
+    color: black;
+}

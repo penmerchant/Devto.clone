@@ -1,0 +1,35 @@
+.circle{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #9CA1A5;
+}
+
+.base{
+    display: block;
+}
+
+.group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    height: 400px;
+    width: 550px;
+    background-color: gray;
+    overflow: hidden;
+    margin: 1.5em 0;
+}
+
+.row{
+    display: flex;
+    gap: 4px;
+}
+
+.txt{
+    height: 10px;
+    width: 60px;
+    background: gray;
+}

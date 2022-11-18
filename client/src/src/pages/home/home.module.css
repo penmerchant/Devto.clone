@@ -3,6 +3,10 @@
   grid-template-areas: 'sb ps ts';
 }
 
+/* .container{
+  height: 100%;
+} */
+
 .sidebar{
     max-width: 25vw;
     grid-area: sb;

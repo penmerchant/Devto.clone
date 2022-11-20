@@ -29,7 +29,7 @@ const MainNavigation = () => {
         
         <div>
          <li>
-           <NavLink to='/home'>
+           <NavLink to='/'>
             <img src={logo} alt='png'/>
            </NavLink>
           </li>

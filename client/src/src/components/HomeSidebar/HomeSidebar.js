@@ -9,7 +9,7 @@ const HomeSideBar = () => {
     const sidebarMenu = [
         {
             'subject' : 'Home',
-            'link': '/home',
+            'link': '/',
             'src' : HomeLogo
         },
         {

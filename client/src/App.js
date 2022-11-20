@@ -11,9 +11,10 @@ import About from "./src/pages/about/about";
 
 function App() {
   return (
+    <>
     <Layout>
       <Routes>
-        <Route path= '/home' element={<Home/>}/>
+        <Route path= '/' element={<Home/>}/>
         <Route path='/newPost' element={<NewPost />}/>
         <Route to='/profile' element={<div>helo</div>}/>
         <Route path='/login' element={<Login />}/>
@@ -22,8 +23,9 @@ function App() {
         <Route path='/post-details/:title/:postId/' element={ <PostDetails />}/>
         <Route path='/about' element={<About />} />
       </Routes>
-      <Footer />
     </Layout>
+    <Footer />
+    </>
   );
 }
 

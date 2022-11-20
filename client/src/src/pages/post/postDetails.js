@@ -1,12 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
+import AuthContext from "../../context/authContext";
 // import CommentSection from "../../components/CommentSection/CommentSection";
 // // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
+    const { currentUser } = useContext(AuthContext);
     const {sendRequest, isError,setError} = useHttp();
     const [isLoading, setLoading] = useState(true);
     const [post, setPost] = useState({});
@@ -80,7 +82,24 @@ const PostDetails = () => {
         };
     },[sendRequest,isError,setName,authorDetails, author]);
     // save post 
+    // const savePost = () => {
+    //     if(currentUser.isLoggedIn){
+    //         try {
+
+    //         } catch (error) {
+    //             // setError()
+    //             console.log('unable to save post');
+    //         }
+    //     }
+    // }
     // like post
+    // follow user
+    const followUser = () =>{
+        if(currentUser.isLoggedin) {
+            console.log('followed a user')
+        }
+        else console.log('fail to follow');
+    }
     // go to comment section
     // create a comment
 
@@ -113,7 +132,7 @@ const PostDetails = () => {
                     authorDetails.bio !== null? authorDetails.bio: null
                 }
                 <div className={classes.btn_wrapper}>
-                    <button className={classes.btn}>Follow</button>
+                    <button className={classes.btn} onClick={followUser}>Follow</button>
                 </div>
                 </div>
         </div>

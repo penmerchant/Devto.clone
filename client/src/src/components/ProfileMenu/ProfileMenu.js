@@ -22,7 +22,7 @@ const ProfileMenu = () =>{
 
     const signout =() =>{
         logout();
-        navigate('/home', {replace: true});
+        navigate('/', {replace: true});
     }
 
     return (

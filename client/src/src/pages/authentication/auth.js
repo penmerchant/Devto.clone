@@ -39,7 +39,7 @@ const Auth = () =>{
       console.log(currentUser.email);
       login(currentUser);
       alert('Welcome')
-      navigate('/home', {replace: true});
+      navigate('/', {replace: true});
     } catch(error) {
       alert('Unable to login')
     }   

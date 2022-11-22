@@ -8,7 +8,7 @@ const PostList = (props) => {
         <Fragment>
         {   
             post.map((entry, index)=>(
-                <PostCard post={entry} key={entry._id} index={index}/>
+                <PostCard post={entry} index={index}/>
                 ))
         }
         </Fragment>

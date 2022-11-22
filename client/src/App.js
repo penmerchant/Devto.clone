@@ -20,7 +20,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/searchResult/:searchValue' element={<SearchPage />} />
         <Route path='/register' element={<CreateAccount />}/>
-        <Route path='/post-details/:title/:postId/' element={ <PostDetails />}/>
+        <Route path='/post-details/:postId/' element={ <PostDetails />}/>
         <Route path='/about' element={<About />} />
       </Routes>
     </Layout>

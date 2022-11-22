@@ -18,9 +18,8 @@ const PostCard = (props) => {
         lastName} = author;
     const fullName = firstName + ' ' + lastName;
     
-
     const onClick = () => {
-        navigate(`/post-details/${title}/${_id}`);
+        navigate(`/post-details/${_id}`, {replace: true});
     }
 
     return (

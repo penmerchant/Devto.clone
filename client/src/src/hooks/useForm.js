@@ -26,7 +26,6 @@ const useForm = (formObj) =>{
           inputObj = {...inputObj, valid:true, touched: true};
         }
         else if(inputObj.value.length === 0){
-          console.log('eh');
           inputObj = {...inputObj, valid:false, touched: false};
         }
         setForm({...form, [name]: inputObj }); 

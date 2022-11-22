@@ -21,7 +21,7 @@ const PostDetails = () => {
         title,
         imageUrl,
         author} = post;
-    // get currentUser id  for commenting the post
+
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {
@@ -40,7 +40,7 @@ const PostDetails = () => {
         return () => {
             isCancelled = true;
         }
-    },[sendRequest, setLoading, postId]);
+    },[sendRequest, setLoading, setError ,postId]);
     // const body = post.body;
     useEffect(()=>{
         let isCancelled = false;
@@ -112,6 +112,7 @@ const PostDetails = () => {
     // if(isError) {
     //     return <>Error</>
     // }
+    
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>Sidebar</div>
         <div className={classes.post_section} >
@@ -121,6 +122,7 @@ const PostDetails = () => {
             {/* <CommentSection comments={comments} /> */}
         </div>
         <div className={classes.profile}>
+            <div className={classes.top_border}></div>
                 <Link to='/' className={classes.row}>
                     <img src={authorDetails.profilePicture} className={classes.circle} alt='profile'/>
                     <div className={classes.text_wrapper}>
@@ -132,7 +134,11 @@ const PostDetails = () => {
                     authorDetails.bio !== null? authorDetails.bio: null
                 }
                 <div className={classes.btn_wrapper}>
-                    <button className={classes.btn} onClick={followUser}>Follow</button>
+                    {
+                       authorDetails._id !== currentUser.data.id? <button className={classes.btn} onClick={followUser}>Follow</button> :
+                       <button className={classes.btn_disabled} disabled>Follow</button>
+
+                    }
                 </div>
                 </div>
         </div>

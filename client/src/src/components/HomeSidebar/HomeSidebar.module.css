@@ -1,6 +1,31 @@
 /* .container{
 } */
+.box{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    padding: 1rem;
+}
 
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    width: 200px;
+    background: white;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.txt_wrapper{
+    line-height: auto;
+    padding: 5px;
+}
+
+p{
+    color: grey;
+}
 .sidebar{
     margin-left: 5px;
     display: flex;

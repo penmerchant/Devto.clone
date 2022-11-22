@@ -28,8 +28,16 @@ const HomeSideBar = () => {
             'src': ContactLogo
         },
     ];
-    return <div className={classes.container}>
-        {
+    return <div>
+        <div className={classes.box}>
+            <div className={classes.container}>
+                <div className={classes.txt_wrapper}>
+                    <b>DEV Community 👩‍💻👨‍💻 is a community of 960,002 amazing developers</b>
+                    <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
+                </div>
+            </div>
+        </div>
+        {   
             sidebarMenu.map((items)=>{
                 return <div className={classes.sidebar}>
                 <NavLink to={items.link} className={classes.sidebar} >

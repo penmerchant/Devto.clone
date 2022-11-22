@@ -15,6 +15,7 @@
     height: 300px;
     overflow:hidden;
     border-radius: 10px;
+    background: #fff;
     border: 1px solid #E0DCDB;
 }
 
@@ -33,7 +34,7 @@ a{
 .post_section{
     /* border-radius: 10px; */
     padding: 6px;
-    background: #fff;
+    /* background: #fff; */
     width: 55vw;
     grid-area: pt;
 }
@@ -84,7 +85,26 @@ a{
     background: #2663A3;
 }
 
+.btn_disabled{
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    background: #9CACB8;
+}
+
+.btn_disabled:hover{
+    cursor: not-allowed;
+}
+
 .btn:hover{
     cursor: pointer;
     background: #154F8C;
+}
+
+.top_border{
+    width: 100%;
+    height: 20px;
+    background: #46535C;
 }

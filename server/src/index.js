@@ -10,7 +10,15 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGOD);
+// const mongodb = process.env.mongod;
+const ATLAS_CONN = 'mongodb+srv://pillarofdark:mvTJvjpIzToNGF1o@cluster0.93jfp.mongodb.net/?retryWrites=true&w=majority'
+
+// const connectionParams = {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// };
+
+mongoose.connect(ATLAS_CONN);
 
 app.get('/', (req, res) => {
   res.json('welcome to express app');

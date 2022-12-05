@@ -32,7 +32,7 @@ const HomeSideBar = () => {
         <div className={classes.box}>
             <div className={classes.container}>
                 <div className={classes.txt_wrapper}>
-                    <b>DEV Community 👩‍💻👨‍💻 is a community of 960,002 amazing developers</b>
+                    <b>DEV Community is a community of 960,002 amazing developers</b>
                     <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
                 </div>
             </div>

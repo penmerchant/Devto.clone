@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostList from "../components/post/PostList";
+import HomeSkeleton from "../components/Skeleton/HomeSkeleton";
 import useHttp from "../hooks/useHttp";
 
 const Post = () => {
@@ -20,7 +21,9 @@ const Post = () => {
     }, [sendRequest]);
 
     if(isLoading) {
-        return <div>Loading...</div>
+        return <div>
+            <HomeSkeleton />
+        </div>
     }
     if(isError){
         return <div>There is no data</div>

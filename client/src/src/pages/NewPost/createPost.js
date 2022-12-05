@@ -25,12 +25,12 @@ const NewPost = () =>{
             await sendRequest('http://localhost:4444/api/posts',
              'POST',
              formData,
-             {  
-                Authorization: `Bearer ${data.token}`,
-             }
+            //  {  
+            //     Authorization: `Bearer ${data.token}`,
+            //  }
              );
              alert('Succesfully submitted the blog');
-             navigate('/home', {replace:true});  
+             navigate('/', {replace:true});  
         } catch (error) {
             alert('Unable to submit the blog');
         }

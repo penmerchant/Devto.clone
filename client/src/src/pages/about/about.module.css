@@ -12,6 +12,7 @@
     justify-content: flex-start;
     overflow: hidden;
     margin-top: 2.5rem;
+    background: #fff;
     /* box-shadow: 0 2px 8px 0  #D3DDE5; */
     border: 1px solid #D3DDE5;
 }

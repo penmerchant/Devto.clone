@@ -13,7 +13,7 @@ const TagsInput = (props) => {
             setValid(true);
             e.target.value = null;
         }
-        else if(tags.length === 0){
+        if(tags.length === 0){
             setValid(false);
         }
         props.onChange(props.label.toLowerCase(), tags, valid);

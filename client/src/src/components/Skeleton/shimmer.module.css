@@ -3,6 +3,8 @@
     width: 50px;
     border-radius: 50%;
     background: #9CA1A5;
+    animation: skeleton-loading 1s linear infinite alternate;
+
 }
 
 .base{
@@ -12,24 +14,53 @@
 .group{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .card{
-    height: 400px;
+    height: 300px;
     width: 550px;
-    background-color: gray;
+    background-color: #fff;
     overflow: hidden;
     margin: 1.5em 0;
+    border-radius: 5px;
 }
 
 .row{
+    margin-top: 1rem;
+    padding: 5px;
     display: flex;
+    align-items: center;
     gap: 4px;
 }
 
-.txt{
+.text{
     height: 10px;
     width: 60px;
-    background: gray;
+    background: grey;
+    border-radius: 5px;
+    animation: skeleton-loading 1s linear infinite alternate;
+
 }
+
+.paragraph{
+    margin-top: 10px;
+    animation: skeleton-loading 1s linear infinite alternate;
+    margin-left: 5px;
+    height: 50px;
+    width: 300px;
+    border-radius: 5px;
+    background: grey;
+}
+
+
+
+@keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 70%);
+    }
+  
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+  

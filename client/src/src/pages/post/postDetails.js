@@ -4,6 +4,7 @@ import MarkdownPreview from '@uiw/react-markdown-preview';
 import { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
 import AuthContext from "../../context/authContext";
+import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 // import CommentSection from "../../components/CommentSection/CommentSection";
 // // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
@@ -107,7 +108,7 @@ const PostDetails = () => {
 
     const styles = { padding: '30px'};
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div> <PostDetailsSkeleton /> </div>
     }
     // if(isError) {
     //     return <>Error</>

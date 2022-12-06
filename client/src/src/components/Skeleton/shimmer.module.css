@@ -17,12 +17,19 @@
 }
 
 .card{
-    height: 300px;
-    width: 550px;
+    height: 150px;
+    width: 350px;
     background-color: #fff;
     overflow: hidden;
     margin: 1.5em 0;
     border-radius: 5px;
+}
+
+.post_card{
+    display: block;
+    height: 500px;
+    background: #fff;
+    border-radius: 10px;
 }
 
 .row{
@@ -35,7 +42,7 @@
 
 .text{
     height: 10px;
-    width: 60px;
+    width: 100px;
     background: grey;
     border-radius: 5px;
     animation: skeleton-loading 1s linear infinite alternate;
@@ -52,8 +59,58 @@
     background: grey;
 }
 
+.container{
+    display: grid;
+    margin-top: 1rem;
+    grid-template-areas: 'grid1 grid2 grid3';
+}
 
+.grid1{
+    grid-area: grid1;
+    width: 20vw;
+}
+.sidebar{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    background: #fff;
+}
 
+.grid2{
+    grid-area: grid2;
+    /* border-radius: 10px; */
+    padding: 6px;
+    /* background: #fff; */
+    width: 55vw;
+}
+
+.image_shimmer{
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    background : grey;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.grid3{
+    grid-area: grid3;
+    width: 25vw;
+    height: 300px;
+    overflow:hidden;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #E0DCDB;
+}
+
+.title_shimmer{
+    width: 300px;
+    height: 40px;
+    background: grey;
+    border-radius: 10px;
+    margin-left: 5px;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
 @keyframes skeleton-loading {
     0% {
       background-color: hsl(200, 20%, 70%);

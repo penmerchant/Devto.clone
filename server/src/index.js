@@ -11,7 +11,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
 // const mongodb = process.env.mongod;
-const ATLAS_CONN = 'mongodb+srv://pillarofdark:mvTJvjpIzToNGF1o@cluster0.93jfp.mongodb.net/?retryWrites=true&w=majority'
+const ATLAS_CONN = process.env.MONGODB;
 
 // const connectionParams = {
 //   useNewUrlParser: true,

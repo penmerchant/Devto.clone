@@ -4,8 +4,8 @@ const Comment = require('../../models/comments/comment');
 
 const createComment = async ( req, res, next) => {
   // get postId, userId(author), parentAuthor, comment
-  const {content, parentComment, author, post} = req.body;
-  // const {content, author, post} = req.body;
+  const {comment, parentComment, author, post} = req.body;
+  // const {comment, author, post} = req.body;
   console.log(parentComment);
   let blog;
 
@@ -16,34 +16,36 @@ const createComment = async ( req, res, next) => {
   }
 
   if (!blog) {
-    return next( new Error('Found no post', 401));
+    return next(new Error('Found no post', 401));
   }
 
   let existingComment;
-  if (parentComment) {
-    // try to find the parentComment
-    try {
-      console.log(parentComment);
-      existingComment = await Comment.findOne({_id: parentComment});
-      console.log(existingComment);
-    } catch (error) {
-      return (new Error('Comment does not exist!', 401));
-    }
+  // try to find the parentComment
+  // console.log(parentComment);
+  if (parentComment !== 'null') {
+    existingComment = await Comment.findOne({_id: parentComment});
   }
-
   let createdComment;
   try {
-    createdComment = new Comment({
-      content: content,
-      parentComment: parentComment,
-      author: author,
-      post: post,
-    });
+    if (parentComment !== 'null') {
+      createdComment = new Comment({
+        comment: comment,
+        parentComment: parentComment,
+        author: author,
+        post: post,
+      });
+    } else {
+      createdComment = new Comment({
+        comment: comment,
+        author: author,
+        post: post,
+      });
+    }
     await createdComment.save();
   } catch (error) {
-    return next( new Error('Unable to create a comment', 401));
+    return next(new Error('Unable to create a comment', 401));
   }
-  // if user does not reply to any user's comments of viewed blog
+  // if user replies to any user's comments of viewed blog
   if (existingComment) {
     existingComment.replies.push(createdComment._id);
     existingComment.save();
@@ -62,10 +64,11 @@ const getAllComments = async ( req, res, next) => {
   let comment;
 
   try {
-    comment = await Post.findOne({_id: postId}).populate({
+    comment = await Post.findById(postId).populate({
       path: 'comments',
       // Get friends of friends - populate the 'friends' array for every friend
       populate: {path: 'replies'},
+      populate: {path: 'author'},
     });
     // console.log(comment.populated('comments'));
   } catch (error) {

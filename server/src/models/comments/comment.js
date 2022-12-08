@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-  content: {type: String},
+  comment: {type: String},
   parentComment: {type: mongoose.Types.ObjectId, ref: 'Comment', default: null},
+  createdAt: {type: Date},
   author: {type: mongoose.Types.ObjectId, ref: 'User'},
-  post: {type: mongoose.Types.ObjectId, ref: 'Post'},
+  post: {type: mongoose.Types.ObjectId},
   replies: [{type: mongoose.Types.ObjectId, ref: 'Comment', default: null}],
   likes: [{type: mongoose.Types.ObjectId, ref: 'User', default: null}],
 });

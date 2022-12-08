@@ -4,8 +4,9 @@ const {createComment,
   deleteAllComments} = require('../../controllers/comments/comments');
 // eslint-disable-next-line new-cap
 const router = express.Router();
+const upload = require('../../middleware/file-upload');
 
-router.post('/', createComment);
+router.post('/', upload.none(), createComment);
 router.get('/:postId', getAllComments);
 // router.get('/', getAllComments);
 router.delete('/:commentId/:postId', deleteAllComments);

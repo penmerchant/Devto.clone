@@ -6,7 +6,6 @@ const createPost = async ( req, res, next)=>{
   const error = validationResult(req.body);
   // const {image} = req.files;
   // console.log(`hi ${image}`);
-  console.log(req.body);
   if (!error.isEmpty()) {
     throw Error('Invalid inputs');
   }

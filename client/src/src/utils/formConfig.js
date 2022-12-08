@@ -1,4 +1,5 @@
 import BodyInput from "../components/FormElements/BodyInput/BodyInput";
+import CommentInput from "../components/FormElements/CommentInput/CommentInput";
 import InputImage from "../components/FormElements/ImageInput/ImageInput";
 import Input from "../components/FormElements/Input/Input";
 import TagsInput from "../components/FormElements/TagsInput/TagsInput";
@@ -19,7 +20,10 @@ const createForm = (
             }
             if(label === 'Tags'){
                 return <TagsInput type={type} label={label} onChange={onCustomInputChange} placeholder={placeholder}/>
-            }           
+            }
+            if(label === 'Comment'){
+                return <CommentInput type={type} label={label} value={value} onChange={onCustomInputChange} placeHolder={placeholder} />
+            }          
             return <Input name={name} label={label} type={type} onChange={onInputChange} placeholder={placeholder}/>
             
         },
@@ -87,3 +91,10 @@ export const newPostForm = {
         key: '4',
     },
 };// values of input
+
+export const CommentForm = {
+    comment: {
+        ...createForm('text', 'comment', 'Comment'),
+        key: '1',
+    },
+};

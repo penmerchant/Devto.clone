@@ -5,6 +5,12 @@ import { useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
 import AuthContext from "../../context/authContext";
 import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
+import useForm from "../../hooks/useForm";
+import { CommentForm } from "../../utils/formConfig";
+import Button from "../../components/Button/Button";
+import { appendData } from "../../utils";
+import LikeButton from "../../components/Button/LikeButton";
+import CommentButton from "../../components/Button/CommentButton";
 // import CommentSection from "../../components/CommentSection/CommentSection";
 // // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
@@ -16,13 +22,15 @@ const PostDetails = () => {
     const [fullName, setName] = useState({});
     const [authorDetails, setAuthor] = useState({});
     const [comments, setComments] = useState([]);
-    const {postId,} = useParams();
+    const {postId} = useParams();
+    const {renderInputs , renderValues} = useForm(CommentForm);
+    const formInputs = renderInputs();
+    const formValues = renderValues();
 
     const { body,
         title,
         imageUrl,
         author} = post;
-
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {
@@ -99,11 +107,31 @@ const PostDetails = () => {
         if(currentUser.isLoggedin) {
             console.log('followed a user')
         }
-        else console.log('fail to follow');
+        else alert('Please login');
     }
     // go to comment section
     // create a comment
-
+    const submitComment = async(e) =>{
+        e.preventDefault()
+        const formData = appendData(formValues);
+        // {comment, parentComment, author, post}
+        formData.append('parentComment', null);
+        formData.append('author', currentUser.data.id);
+        formData.append('post', postId);
+        //get author id
+        if(currentUser.isLoggedin){
+            try{
+                await sendRequest('http://localhost:4444/api/comments',
+                'POST',
+                formData,
+            );
+            }catch(error){
+                alert('failed to submit comment');
+            }
+            alert('submitted comment');
+        }
+        else alert('Please login first');
+    };
     // sidebar
 
     const styles = { padding: '30px'};
@@ -120,7 +148,34 @@ const PostDetails = () => {
             {imageUrl? <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />: null}
             <h1>{title}</h1>
             <MarkdownPreview source={body} key={post.id} style={styles} />
-            {/* <CommentSection comments={comments} /> */}
+            <div className={classes.comment_form}>
+                <h2>Comments ({comments.length})</h2>
+                { formInputs }
+                <Button label='Comment' onClick={submitComment}/>
+            </div>
+            {
+                comments.map((comment)=>(
+                    <>
+                    <div className={classes.row}>
+                        <img src={comment.author.profilePicture} alt='profile' className={classes.circle}/>
+                    <div className={classes.comment_box}>
+                    <div className={classes.profile_name_wrapper}>
+                        {comment.author.firstName}
+                    </div>
+                    <div className={classes.text_wrapper}>
+                        {comment.comment}
+                    </div>
+                    </div>
+                    </div>
+                    <div className={classes.align_right}>
+                        <div className={classes.row}>
+                            <LikeButton onClick={followUser} mode={true}/>
+                            <CommentButton onClick={followUser} action='Reply' mode={true}/>
+                        </div>
+                    </div>
+                    </>
+                ))
+            }
         </div>
         <div className={classes.profile}>
             <div className={classes.top_border}></div>

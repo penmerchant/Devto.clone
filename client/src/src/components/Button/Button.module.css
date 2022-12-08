@@ -15,3 +15,30 @@
     padding: 0.8rem;
     border-radius: 5px;
 }
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.btn_wrapper{
+    height: 50px;
+    width: 50px;
+}
+
+.btn_wrapper:hover{
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.icon_wrapper{
+    height: 20px;
+    width: 20px;
+}
+
+.text_wrapper{
+    line-height: auto;
+}

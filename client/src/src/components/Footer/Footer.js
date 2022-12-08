@@ -4,7 +4,7 @@ const Footer = () => {
     return <div className={classes.footer}>
         <div className={classes.txt_wrapper}>
        <p>
-        <a href='https://dev.to/'> DEV Community</a>  👩‍💻👨‍💻 — A constructive and inclusive social network for software developers. With you every step of your journey.
+        <a href='https://dev.to/'> DEV Community</a> — A constructive and inclusive social network for software developers. With you every step of your journey.
         </p> 
 
     <p>

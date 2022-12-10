@@ -6,12 +6,14 @@ import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 import SearchBar from '../FormElements/SearchBar/SearchBar';
+import ButtonStyle from '../../utils/ButtonStyle';
 
 const MainNavigation = () => {
     //get user provider
     // const [initialValue , setInitial] = useState();
     const { currentUser} = useContext(AuthContext);
     const {isLoggedin} = currentUser;
+    const {btn_post} = ButtonStyle();
 
     // useEffect(() => {
     //    const initialVal = window.localStorage.getItem('currentUser');
@@ -45,7 +47,7 @@ const MainNavigation = () => {
         <ul>
         <li> 
              <NavLink to='/register'>
-                    <Button label='Create account'/>
+                    <Button label='Create account' style={btn_post}/>
              </NavLink>
             
             </li>
@@ -81,7 +83,7 @@ const MainNavigation = () => {
                 <ul>
                 <li> 
                     <NavLink to='/newPost'> 
-                    <Button label='Create Post'/>
+                    <Button label='Create Post' style={btn_post}/>
                     </NavLink> 
                     
                     </li>

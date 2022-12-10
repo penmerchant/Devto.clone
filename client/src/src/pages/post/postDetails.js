@@ -11,12 +11,13 @@ import Button from "../../components/Button/Button";
 import { appendData } from "../../utils";
 import LikeButton from "../../components/Button/LikeButton";
 import CommentButton from "../../components/Button/CommentButton";
+import ButtonStyle from "../../utils/ButtonStyle";
 // import CommentSection from "../../components/CommentSection/CommentSection";
 // // import AuthContext from "../../context/authContext";
 const PostDetails = () => {
     // get id of a post
     const { currentUser } = useContext(AuthContext);
-    const {sendRequest, isError,setError} = useHttp();
+    const {sendRequest, isError,setError, isFormValid} = useHttp();
     const [isLoading, setLoading] = useState(true);
     const [post, setPost] = useState({});
     const [fullName, setName] = useState({});
@@ -26,11 +27,13 @@ const PostDetails = () => {
     const {renderInputs , renderValues} = useForm(CommentForm);
     const formInputs = renderInputs();
     const formValues = renderValues();
-
+    const [isReplying, setReplying] = useState(false);
     const { body,
         title,
         imageUrl,
         author} = post;
+
+    const {btn_comment, btn_dismiss} = ButtonStyle();
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {
@@ -59,7 +62,6 @@ const PostDetails = () => {
                     const response = await sendRequest(`http://localhost:4444/api/comments/${postId}`);
                     setComments(response);
                 } catch(error) {
-                    console.log('failed');
                 }
             }
         }
@@ -78,7 +80,6 @@ const PostDetails = () => {
                     const response = await sendRequest(`http://localhost:4444/api/user/${author}`);
                     setAuthor(response);
                 } catch(error) {
-                    console.log('failed');
                 }
             }
         }
@@ -97,7 +98,6 @@ const PostDetails = () => {
 
     //         } catch (error) {
     //             // setError()
-    //             console.log('unable to save post');
     //         }
     //     }
     // }
@@ -105,7 +105,6 @@ const PostDetails = () => {
     // follow user
     const followUser = () =>{
         if(currentUser.isLoggedin) {
-            console.log('followed a user')
         }
         else alert('Please login');
     }
@@ -133,8 +132,15 @@ const PostDetails = () => {
         else alert('Please login first');
     };
     // sidebar
+    const toggleReply = () => {
+        setReplying(true);
+    };
 
-    const styles = { padding: '30px'};
+    const dissmissReply = () => {
+        setReplying(false);
+    };
+
+    const styles = { padding: '30px', background: '#fff'};
     if (isLoading) {
         return <div> <PostDetailsSkeleton /> </div>
     }
@@ -151,7 +157,7 @@ const PostDetails = () => {
             <div className={classes.comment_form}>
                 <h2>Comments ({comments.length})</h2>
                 { formInputs }
-                <Button label='Comment' onClick={submitComment}/>
+                <Button label='Comment' style={btn_comment} onClick={submitComment} />
             </div>
             {
                 comments.map((comment)=>(
@@ -168,17 +174,31 @@ const PostDetails = () => {
                     </div>
                     </div>
                     <div className={classes.align_right}>
-                        <div className={classes.row}>
-                            <LikeButton onClick={followUser} mode={true}/>
-                            <CommentButton onClick={followUser} action='Reply' mode={true}/>
-                        </div>
+                    {
+                     !isReplying && <div className={classes.row}>
+                    <LikeButton onClick={followUser} mode={true}/>
+                    <CommentButton onClick={toggleReply} action='Reply' mode={true}/>
                     </div>
+                    
+                    }
+                    </div>
+                    {
+                        isReplying && <>
+                            {formInputs}
+                            <div className={classes.row}>
+                                <div className={classes.align_right}>
+                                    <Button label='Dismiss' style={btn_dismiss} onClick={dissmissReply}/>
+                                    <Button label='Submit' style={btn_comment} />
+                                </div>
+                            </div>
+                        </>
+                    }
                     </>
                 ))
             }
         </div>
         <div className={classes.profile}>
-            <div className={classes.top_border}></div>
+                <div className={classes.top_border}></div>
                 <Link to='/' className={classes.row}>
                     <img src={authorDetails.profilePicture} className={classes.circle} alt='profile'/>
                     <div className={classes.text_wrapper}>
@@ -187,16 +207,17 @@ const PostDetails = () => {
                 </Link>
                 <div>
                 {
-                    authorDetails.bio !== null? authorDetails.bio: null
+                    authorDetails.bio && authorDetails.bio
                 }
                 <div className={classes.btn_wrapper}>
                     {
-                       authorDetails._id !== currentUser.data.id? <button className={classes.btn} onClick={followUser}>Follow</button> :
+                        authorDetails._id !== currentUser.data.id? <button className={classes.btn} onClick={followUser}>Follow</button> :
                        <button className={classes.btn_disabled} disabled>Follow</button>
 
                     }
                 </div>
                 </div>
+                
         </div>
     </div>
 };

@@ -21,6 +21,7 @@
 
 .sidebar_menu{
     /* background: red; */
+    position: fixed;
     max-width: 20vw;
     grid-area: sb;
     border: 1px solid #E0DCDB;
@@ -121,6 +122,7 @@ a{
 }
 .row{
     display: flex;
+    gap: 4px;
 }
 
 .comment_box{

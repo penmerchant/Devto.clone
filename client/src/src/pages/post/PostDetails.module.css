@@ -69,6 +69,10 @@ a{
     color: #27313B;
 }
 
+.reply_section{
+    margin-left: 1rem; 
+}
+
 .text_wrapper:hover{
     color:blue;
 }

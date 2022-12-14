@@ -1,7 +1,7 @@
 import classes from './MainNavigation.module.css';
 import {NavLink} from 'react-router-dom';
 import AuthContext from '../../context/authContext';
-import { useContext, useEffect, useState } from 'react';
+import {useContext} from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
@@ -83,7 +83,7 @@ const MainNavigation = () => {
                 <ul>
                 <li> 
                     <NavLink to='/newPost'> 
-                    <Button label='Create Post' style={btn_post}/>
+                    <Button label='Create Post' style={btn_post} valid={true}/>
                     </NavLink> 
                     
                     </li>

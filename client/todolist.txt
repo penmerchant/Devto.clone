@@ -1,0 +1,41 @@
+1-homepage
+ - reading list []
+ - contact list []
+ - about [x]
+ - post list [x]
+ - sidebar [x]
+ - tag list []
+
+- Post details page
+ - comment function [x]
+ - reply comment [x]
+ - read comments [x]
+ - read post [x]
+ - read author's profile [x]
+ - follow author []
+ - like post []
+ - save post []
+ - delete comment - []
+
+3- search page
+  - search by matching keyword []
+  - read returned searched list []
+
+4- profile page
+  - read user's biography []
+  - read social media links (github, twitter, instagram) []
+  - read created post []
+  - read saved post []
+  - read liked post []
+  - read commented post []
+  - edit user's info []
+  - delete created post []
+  - change password, email []
+  - delete account []
+
+5- authentication - [x]
+
+track of activity
+------------------
+x - done
+og - ongoing development

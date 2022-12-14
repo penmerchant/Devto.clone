@@ -5,6 +5,7 @@ const Button = (props) =>{
     return <button className={classes.btn}
      onClick={props.onClick}
      style={props.style}
+     disabled={!props.valid}
     >
     {props.label}
     </button>

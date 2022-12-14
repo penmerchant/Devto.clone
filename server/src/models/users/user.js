@@ -9,6 +9,9 @@ const UserSchema = new Schema({
   profilePicture: {type: String, default: null},
   bio: {type: String, default: null},
   socialLink: [{type: String, default: null, ref: 'Sociallink'}],
+  followed: [{type: mongoose.Types.ObjectId, default: [], ref: 'User'}],
+  follower: [{type: mongoose.Types.ObjectId, default: [], ref: 'User'}],
+  post: [{type: mongoose.Types.ObjectId, default: [], ref: 'Post'}],
 });
 
 const User = mongoose.model('User', UserSchema);

@@ -6,7 +6,7 @@ const createComment = async ( req, res, next) => {
   // get postId, userId(author), parentAuthor, comment
   const {comment, parentComment, author, post} = req.body;
   // const {comment, author, post} = req.body;
-  console.log(parentComment);
+  console.log(req.body);
   let blog;
 
   try {
@@ -67,8 +67,14 @@ const getAllComments = async ( req, res, next) => {
     comment = await Post.findById(postId).populate({
       path: 'comments',
       // Get friends of friends - populate the 'friends' array for every friend
-      populate: {path: 'replies'},
-      populate: {path: 'author'},
+      populate: [{
+        path: 'author',
+      },
+      {
+        path: 'replies',
+        populate: 'author',
+      },
+      ],
     });
     // console.log(comment.populated('comments'));
   } catch (error) {

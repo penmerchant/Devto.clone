@@ -2,6 +2,7 @@ const User = require('../../models/users/user');
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator');
 const {uploadImageToCloud} = require('../../utils/utils');
+const {getDateNow} = require('../../utils/utils');
 require('dotenv').config();
 
 const signUp = async ( req, res, next) => {
@@ -12,6 +13,7 @@ const signUp = async ( req, res, next) => {
   }
 
   const {email, password, firstName, lastName} = req.body;
+  const createdAt= getDateNow();
 
   let existingUser;
   console.log(req.body);
@@ -33,6 +35,7 @@ const signUp = async ( req, res, next) => {
       firstName: firstName,
       lastName: lastName,
       profilePicture: profilePicture,
+      createdAt: createdAt,
     });
     await createdUser.save();
   } catch (error) {

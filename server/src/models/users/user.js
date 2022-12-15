@@ -6,6 +6,8 @@ const UserSchema = new Schema({
   password: {type: String},
   firstName: {type: String},
   lastName: {type: String},
+  createdAt: {type: Date},
+  followedTags: [{types: mongoose.Types.ObjectId, default: []}],
   profilePicture: {type: String, default: null},
   bio: {type: String, default: null},
   socialLink: [{type: String, default: null, ref: 'Sociallink'}],

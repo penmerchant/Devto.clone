@@ -1,12 +1,14 @@
 /* eslint-disable max-len */
 const Post = require('../../models/posts/post');
 const Comment = require('../../models/comments/comment');
+const {getDateNow} = require('../../utils/utils');
 
 const createComment = async ( req, res, next) => {
   // get postId, userId(author), parentAuthor, comment
   const {comment, parentComment, author, post} = req.body;
+  const createdAt = getDateNow();
+
   // const {comment, author, post} = req.body;
-  console.log(req.body);
   let blog;
 
   try {
@@ -21,7 +23,6 @@ const createComment = async ( req, res, next) => {
 
   let existingComment;
   // try to find the parentComment
-  // console.log(parentComment);
   if (parentComment !== 'null') {
     existingComment = await Comment.findOne({_id: parentComment});
   }
@@ -32,6 +33,7 @@ const createComment = async ( req, res, next) => {
         comment: comment,
         parentComment: parentComment,
         author: author,
+        createdAt: createdAt,
         post: post,
       });
     } else {
@@ -39,6 +41,7 @@ const createComment = async ( req, res, next) => {
         comment: comment,
         author: author,
         post: post,
+        createdAt: createdAt,
       });
     }
     await createdComment.save();
@@ -60,7 +63,6 @@ const createComment = async ( req, res, next) => {
 
 const getAllComments = async ( req, res, next) => {
   const {postId} = req.params;
-  // console.log(postId);
   let comment;
 
   try {
@@ -76,7 +78,6 @@ const getAllComments = async ( req, res, next) => {
       },
       ],
     });
-    // console.log(comment.populated('comments'));
   } catch (error) {
     next(new Error('Something is wrong with the server', 500));
   }
@@ -102,7 +103,6 @@ const deleteAllComments = async ( req, res, next) => {
   if (!comments) {
     return next( new Error('no comment found'), 401);
   }
-  console.log(comments);
   try {
     await comments.remove();
     await post.comments.reduce();

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Post = new Schema({
   title: {type: String},
   body: {type: String},
-  createdAt: {type: String},
+  createdAt: {type: Date},
   imageUrl: {type: String},
   author: {type: mongoose.Types.ObjectId, ref: 'User'},
   comments: [{type: mongoose.Types.ObjectId, ref: 'Comment', default: null}],

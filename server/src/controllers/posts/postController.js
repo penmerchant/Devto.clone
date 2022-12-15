@@ -5,7 +5,6 @@ const {uploadImageToCloud, getDateNow} = require('../../utils/utils');
 const createPost = async ( req, res, next)=>{
   const error = validationResult(req.body);
   // const {image} = req.files;
-  // console.log(`hi ${image}`);
   if (!error.isEmpty()) {
     throw Error('Invalid inputs');
   }
@@ -15,7 +14,6 @@ const createPost = async ( req, res, next)=>{
   // upload image to cloud
   const imageUrl = await uploadImageToCloud(req.file.path);
   const createdAt = getDateNow();
-  // console.log(tags);
   let createdPost;
   try {
     const uploadContent = await new Post({
@@ -108,7 +106,6 @@ const likePost = async (req, res, next) => {
     post.likes.push(userId);
     await post.save();
   }
-  console.log(post);
   res.status(201).json('You have liked the post!');
 };
 
@@ -129,7 +126,6 @@ const unlikePost = async (req, res, next) => {
       return (new Error('Unable to unlike the post', 401));
     }
   }
-  console.log(post);
   res.status(201).json('You have unliked the post!');
 };
 exports.getPostById = getPostById;

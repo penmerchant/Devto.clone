@@ -8,3 +8,8 @@ export const appendData = (data) => {
     }
     return formData;
 };
+
+export const formatDate = (date) => {
+  const parsedDate = date.getMonth();
+  return parsedDate;
+};

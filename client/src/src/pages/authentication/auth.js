@@ -45,11 +45,6 @@ const Auth = () =>{
     }   
   };
 
-  // const onChange = (e) => {
-  //   const {name, value} = e.target;
-  //   setValues({ ...values, [name]: value });
-  // };
-  
   return (
     <>
     {/* {
@@ -57,17 +52,11 @@ const Auth = () =>{
     } */}
     <div className={classes.form_container}>
       <form  className={classes.form}>
-        <h1>Login</h1>
-        {/* {inputs.map((input) => (
-          <input
-          key={input.id}
-          {...input}
-          value={values[input.name]}
-          onChange={onChange}
-          />
-          ))} */}
+        <div className={classes.text_wrapper}>
+          <h1>Welcome to DEV Community DEV Community is a community of 972,161 amazing developers</h1>
+        </div>
           {formInputs}
-        <button className={classes.form_btn} onClick={handleSubmit} disabled={!isFormValid()}>Submit</button>
+        <button className={classes.form_btn} onClick={handleSubmit} disabled={!isFormValid}>Login</button>
       </form>
     </div>
     </>

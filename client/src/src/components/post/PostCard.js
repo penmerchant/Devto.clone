@@ -12,7 +12,9 @@ const PostCard = (props) => {
         comments,
         imageUrl,
         title,
-        _id } = post;
+        _id,
+        createdAt } = post;
+    
 
     const {firstName,
         lastName} = author;
@@ -28,6 +30,7 @@ const PostCard = (props) => {
             <div className={classes.row}>
                 <img src={author.profilePicture} alt='user profile' className={classes.profile_picture}/>
                 <p>{fullName}</p>
+                <b>{createdAt}</b>
             </div>
             <h1 className={classes.card_title}>{title}</h1>
             <div className={classes.row}>

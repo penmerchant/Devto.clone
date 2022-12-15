@@ -36,3 +36,12 @@ input{
     background: #383934;
     color: #fff;
 }
+
+.text_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: auto;
+    font-size: 17px;
+}

@@ -6,14 +6,13 @@ import useHttp from '../../../hooks/useHttp';
 import { CommentForm } from '../../../utils/formConfig';
 import { appendData } from '../../../utils';
 import AuthContext from '../../../context/authContext';
-
+import Button from '../../../components/Button/Button';
 const Comment = (props) => {
     const [isReplying, setReplying] = useState(false);
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
-    const {renderInputs, renderValues} = useForm(CommentForm);
+    const {renderInputs, renderValues, isFormValid} = useForm(CommentForm);
     const formInputs = renderInputs();
-    
     const submitComment = async(e) => {
         e.preventDefault();
         const formValue = renderValues();
@@ -62,14 +61,14 @@ const Comment = (props) => {
             </div>{
                 !isReplying && 
                 <div className={classes.align_right}>
-                <button onClick={toggleReply}>reply</button>
+                <Button onClick={toggleReply} label='Reply' disabled={true}/>
                 </div>
             }
             {isReplying && 
             <>
             {formInputs}
-            <button onClick={dissmissReply}>dismiss</button>
-            <button onClick={submitComment}>submit</button>
+            <Button onClick={dissmissReply} label='Dismiss' disabled={true}/>
+            <Button onClick={submitComment} label='Submit' disabled={isFormValid}/>
             </>
 }
             { props.comment.replies && <Replies replies={props.comment.replies} post={props.post}/> }

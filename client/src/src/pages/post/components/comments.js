@@ -6,13 +6,14 @@ import { CommentForm } from "../../../utils/formConfig";
 import { appendData } from "../../../utils";
 import AuthContext from "../../../context/authContext";
 import { useContext } from "react";
-import Auth from "../../authentication/auth";
-
+import Button from "../../../components/Button/Button";
+import ButtonStyle from "../../../utils/ButtonStyle";
 const Comments = (props) => {
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
     const {renderInputs, renderValues} = useForm(CommentForm);
     const formInputs = renderInputs();
+    const {btn_comment} = ButtonStyle();
 
     const submitComment = async(e) => {
         e.preventDefault();
@@ -20,7 +21,6 @@ const Comments = (props) => {
         const formData = appendData(formValue);
         formData.append('author', currentUser.data.id);
         formData.append('post', props.post);
-        console.log(1);
         if(currentUser.isLoggedin) {
             try{
                 await sendRequest('http://localhost:4444/api/comments/',
@@ -39,7 +39,7 @@ const Comments = (props) => {
     <div className={classes.comment_form}>
         {formInputs}
     </div>
-        <button onClick={submitComment}>submit</button>
+        <Button onSubmit={submitComment} label='Submit' disabled={true} style={btn_comment}/>
     {
         props.comments.map((comment)=>(
             <Comment key={props.id} comment={comment} post={props.post}/>

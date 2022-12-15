@@ -35,8 +35,18 @@ const CreateAccount = () => {
         }
     };
 
-    return (<div className={classes.form_container}>
+    return (
+    <div>
+
+    <div className={classes.form_container}>
+        
         <form className={classes.form}>
+        <div className={classes.text_wrapper}>
+            <h1>
+DEV Community is a community of 972,161 amazing developers
+    Welcome to DEV Community 
+    </h1>
+</div>
          {formInputs}
         
         <button className={classes.form_btn}
@@ -45,6 +55,7 @@ const CreateAccount = () => {
             Create account
         </button>
         </form>
+    </div>
     </div>
     )
 };

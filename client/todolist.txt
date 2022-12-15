@@ -11,7 +11,7 @@
  - reply comment [x]
  - read comments [x]
  - read post [x]
- - read author's profile [x]
+ - read author's profile [og]
  - follow author []
  - like post []
  - save post []

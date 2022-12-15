@@ -103,7 +103,7 @@ const PostDetails = () => {
             <MarkdownPreview source={body} key={post.id} style={styles} />
             <div className={classes.comment_form}>
                 <h2>Comments ({comments.length})</h2>
-                <Comments comments={comments}/>
+                <Comments comments={comments} post={postId}/>
             </div>
         </div>
         <div className={classes.profile}>

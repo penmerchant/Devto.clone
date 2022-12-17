@@ -7,12 +7,16 @@ import { CommentForm } from '../../../utils/formConfig';
 import { appendData } from '../../../utils';
 import AuthContext from '../../../context/authContext';
 import Button from '../../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+
 const Comment = (props) => {
     const [isReplying, setReplying] = useState(false);
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
     const {renderInputs, renderValues, isFormValid} = useForm(CommentForm);
     const formInputs = renderInputs();
+    const navigate = useNavigate();
+
     const submitComment = async(e) => {
         e.preventDefault();
         const formValue = renderValues();
@@ -34,6 +38,7 @@ const Comment = (props) => {
                     formData
                 );
                 alert('submitted the comment')
+                navigate(`/post-details/${props.post}`, {replace: true});
             } catch(error) {
                 alert('unable to submit comment')
             }
@@ -61,6 +66,7 @@ const Comment = (props) => {
             </div>{
                 !isReplying && 
                 <div className={classes.align_right}>
+                <Button label='Like' disabled={true}/>
                 <Button onClick={toggleReply} label='Reply' disabled={true}/>
                 </div>
             }

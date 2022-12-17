@@ -5,6 +5,7 @@ import {useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
 import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 import Comments from "./components/comments";
+import AuthorsProfile from "./components/profile";
 
 const PostDetails = () => {
     // get id of a post
@@ -41,21 +42,18 @@ const PostDetails = () => {
     },[sendRequest, setLoading, setError ,postId]);
     // const body = post.body;
     useEffect(()=>{
-        let isCancelled = false;
         const fetchComments = async() => {
-            if(!isCancelled){
-                try{
-                    const response = await sendRequest(`http://localhost:4444/api/comments/${postId}`);
-                    setComments(response);
-                } catch(error) {
-                }
+           
+            try{
+                const response = await sendRequest(`http://localhost:4444/api/comments/${postId}`);
+                setComments(response);
+            } catch(error) {
             }
+            
         }
 
         fetchComments();
-        return () =>{
-            isCancelled = true;
-        };
+      
     },[sendRequest,post,postId]);
 
     const styles = { padding: '30px', background: '#fff'};
@@ -69,7 +67,7 @@ const PostDetails = () => {
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>Sidebar</div>
         <div className={classes.post_section} >
-            {imageUrl? <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />: null}
+            {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}
             <h1>{title}</h1>
             <b>{createdAt}</b>
             <MarkdownPreview source={body} key={post.id} style={styles} />
@@ -79,7 +77,7 @@ const PostDetails = () => {
             </div>
         </div>
         <div className={classes.profile}>
-                profile
+            <AuthorsProfile author={author}/>
         </div>
     </div>
 };

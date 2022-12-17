@@ -3,10 +3,10 @@ const Button = (props) =>{
 
 
     return <button className={classes.btn}
-     onSubmit={props.onSubmit}
      onClick={props.onClick}
+     onSubmit={props.onSubmit}
      style={props.style}
-     disabled={!props.valid}
+     disabled={props.valid}
     >{props.label}</button>
 }
 

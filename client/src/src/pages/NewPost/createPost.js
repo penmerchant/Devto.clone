@@ -11,13 +11,14 @@ const NewPost = () =>{
     const {renderInputs, renderValues , isFormValid} = useForm(newPostForm);
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} =  useHttp();
+    const formValues = renderValues();
     const formInputs = renderInputs();
     const navigate = useNavigate();
 
     //post form to the server
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const formValues = renderValues();
+        console.log(formValues);
         const formData = appendData(formValues);
         const {data} = currentUser;
         formData.append('author', data.id);

@@ -1,6 +1,6 @@
 // import { useState } from "react";
 // import useHttp from "../hooks/useHttp";
-import { useState, useContext } from 'react';
+import {useContext} from 'react';
 import classes from './auth.module.css';
 import {useNavigate} from 'react-router-dom';
 import useHttp from '../../hooks/useHttp';
@@ -13,7 +13,7 @@ import { loginForm } from '../../utils/formConfig';
 const Auth = () =>{
 
   
-  const [currentUser , setUser] = useState();
+  // const [currentUser , setUser] = useState({});
   const {sendRequest} = useHttp();
   const {renderInputs , renderValues, isFormValid} = useForm(loginForm); 
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const Auth = () =>{
   const formValues = renderValues();
   const formInputs = renderInputs();
   
-
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
@@ -31,17 +30,13 @@ const Auth = () =>{
         JSON.stringify(formValues),
         {
           'Content-Type' : 'application/json',
-          // 'Acces-Control-Allow-Origin' : '*',
-          Accept: 'application/json'
         }  
       );
-      setUser(responseData);
-      console.log(currentUser.email);
-      login(currentUser);
-      alert('Welcome')
+      login(responseData);
+      alert('Welcome');
       navigate('/', {replace: true});
     } catch(error) {
-      alert('Unable to login')
+      alert('Unable to login');
     }   
   };
 
@@ -56,7 +51,7 @@ const Auth = () =>{
           <h1>Welcome to DEV Community DEV Community is a community of 972,161 amazing developers</h1>
         </div>
           {formInputs}
-        <button className={classes.form_btn} onClick={handleSubmit} disabled={!isFormValid}>Login</button>
+        <button className={classes.form_btn} onClick={handleSubmit} disabled={!isFormValid()}>Login</button>
       </form>
     </div>
     </>

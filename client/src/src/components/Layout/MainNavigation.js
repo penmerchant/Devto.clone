@@ -83,7 +83,7 @@ const MainNavigation = () => {
                 <ul>
                 <li> 
                     <NavLink to='/newPost'> 
-                    <Button labelname='Create Post' style={btn_post} valid={true}/>
+                    <Button label='Create Post' style={btn_post} />
                     </NavLink> 
                     
                     </li>

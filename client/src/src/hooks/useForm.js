@@ -19,18 +19,20 @@ const useForm = (formObj) =>{
     };
 
     //detect any changes on input component
-    const onInputChange = useCallback( (e) =>{
-        const {name , value} = e.target;
+    const onInputChange = useCallback( (event) =>{
+      const {name , value} = event.target;
         let inputObj = {...form[name], value};
         if(inputObj.value.length !== 0){
-          inputObj = {...inputObj, valid:true, touched: true};
+          setForm({...form, [name]:{...inputObj, valid: true}});
         }
         else if(inputObj.value.length === 0){
-          inputObj = {...inputObj, valid:false, touched: false};
-        }
-        setForm({...form, [name]: inputObj }); 
-    }, [form]);
+          setForm({...form, [name]:{...inputObj, valid: false}});
 
+        }
+        setForm({...form, [name]:{...inputObj, touched: true}});
+    }, [form]);
+    
+    
 
     //detect any changes for custom components 
     const onCustomInputChange = useCallback(
@@ -48,7 +50,7 @@ const useForm = (formObj) =>{
       let isValid = true;
       const arr = Object.values(form);
       for(let i=0;i<arr.length;i++){
-        if(!arr[i].valid){
+        if(!arr[i].valid && arr[i].value.length === 0){
           isValid = false;
           break;
         }

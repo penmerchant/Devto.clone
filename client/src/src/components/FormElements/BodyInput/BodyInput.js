@@ -1,28 +1,30 @@
 import MarkdownEditor from '@uiw/react-markdown-editor';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const BodyInput = (props) => {
-    const [value, setValue] = useState();
+    const [body, setBody] = useState();
     const [valid, setValid] = useState(false);
 
+    const valueRef = useRef();
+    valueRef.current = {body, valid};
     // renders an empty value each time this component is being called
     useEffect(()=>{
-        setValue(props.value);
+        setBody(props.value);
     }, [props.value]);
 
     //handle any changes of value
-    const onChange = (data) => {
+    const onChange = (value) => {
         let isValid = false;
-        if(data.length !== 0) {
+        setBody(value);
+        if(valueRef.current.body !== '') {
             isValid = true;
-            setValue(data);
             setValid(isValid);
         }
         else{
             isValid = false;
             setValid(isValid);
         }
-        props.onChange(props.label.toLowerCase(), value, valid);
+        props.onChange(props.label.toLowerCase(), body, valueRef.current.valid);
     };
 
     return (

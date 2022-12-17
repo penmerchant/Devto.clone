@@ -20,11 +20,8 @@ const createForm = (
             }
             if(label === 'Tags'){
                 return <TagsInput type={type} label={label} onChange={onCustomInputChange} placeholder={placeholder}/>
-            }
-            if(label === 'Comment'){
-                return <CommentInput type={type} label={label} value={value} onChange={onCustomInputChange} placeHolder={placeholder} />
-            }          
-            return <Input name={name} label={label} type={type} onChange={onInputChange} placeholder={placeholder}/>
+            }      
+            return <Input name={name} label={label} value={value} type={type} onChange={onInputChange} placeholder={placeholder}/>
             
         },
         label,
@@ -44,6 +41,7 @@ export const loginForm = {
         ...createForm('password', 'password' , '', 'Please enter password'),
         key: '2',
     },
+
 };
 
 export const signUpForm = {
@@ -78,23 +76,23 @@ export const newPostForm = {
 
      key: '1',
     },
+    body: {
+        ...createForm('text', 'body', 'Body'),
+        key: '2',
+    },
     tags: {
         ...createForm('text', 'tags', 'Tags', '#npm...'),
-        key: '2',
+        key: '3',
     },
     image: {
         ...createForm('file' , 'image' , 'Image'),
-        key: '3',
-    },
-    body: {
-        ...createForm('text', 'body', 'Body'),
         key: '4',
     },
 };// values of input
 
 export const CommentForm = {
     comment: {
-        ...createForm('text', 'comment', 'Comment'),
+        ...createForm('text', 'comment', 'Comment', 'Write a comment'),
         key: '1',
     },
 };

@@ -4,20 +4,19 @@ import classes from './TagsInput.module.css';
 const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
     const [valid , setValid] = useState(false);
-    
     const onKeyPress = (e) => {
         
-        const value = e.target.value;
-        if(!value.trim()) return;
+        const tag = e.target.value;
+        if(!tag.trim()) return;
         if(e.key === 'Enter'){
-            setTags([...tags, value]);
+            setTags([...tags, tag]);
+            e.target.value = '';
             setValid(true);
-            e.target.value = null;
         }
         if(tags.length === 0){
             setValid(false);
         }
-        props.onChange(props.label.toLowerCase(), tags, valid);
+        props.onChange(props.label.toLowerCase(), [...tags, tag], valid);
     };
 
     const removeTags = (removedIndex) =>{
@@ -25,7 +24,7 @@ const TagsInput = (props) => {
         const updatedTags = tags.filter((tag) => tag !== removedTag);
         setTags(updatedTags);
 
-        props.onChange(props.label.toLowerCase(), tags, true);
+        props.onChange(props.label.toLowerCase(), [tags], true);
     };
 
 

@@ -8,26 +8,33 @@ import AuthContext from "../../../context/authContext";
 import { useContext } from "react";
 import Button from "../../../components/Button/Button";
 import ButtonStyle from "../../../utils/ButtonStyle";
+import { useNavigate } from "react-router-dom";
+
 const Comments = (props) => {
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
-    const {renderInputs, renderValues} = useForm(CommentForm);
+    const {renderInputs, renderValues, isFormValid} = useForm(CommentForm);
+    const formValue = renderValues();
     const formInputs = renderInputs();
     const {btn_comment} = ButtonStyle();
+    const navigate = useNavigate();
+    let postId = props.post;
 
     const submitComment = async(e) => {
         e.preventDefault();
-        const formValue = renderValues();
         const formData = appendData(formValue);
         formData.append('author', currentUser.data.id);
-        formData.append('post', props.post);
+        formData.append('post', postId);
         if(currentUser.isLoggedin) {
             try{
                 await sendRequest('http://localhost:4444/api/comments/',
                     'POST',
                     formData
                 );
-                alert('submitted the comment')
+                alert('submitted the comment');
+                // navigate('/', {replace: true});
+                navigate(`/post-details/${postId}`, {replace: true});
+
             } catch(error) {
                 alert('unable to submit comment')
             }
@@ -39,10 +46,10 @@ const Comments = (props) => {
     <div className={classes.comment_form}>
         {formInputs}
     </div>
-        <Button onSubmit={submitComment} label='Submit' disabled={true} style={btn_comment}/>
+        <Button onClick={submitComment} label='Submit' valid={!isFormValid} style={btn_comment}/>
     {
         props.comments.map((comment)=>(
-            <Comment key={props.id} comment={comment} post={props.post}/>
+            <Comment key={props.id} comment={comment} post={postId}/>
         ))
     }</>)
 }

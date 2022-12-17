@@ -107,26 +107,25 @@ const getUserById = async (req, res, next) => {
 // follow a user
 const followUser = async (req, res, next) => {
   const {userId, authorId} = req.params;
-
   let currentUser;
 
   try {
-    currentUser = await User.findOne({userId});
+    currentUser = await User.findById(userId);
   } catch (error) {
     return next( Error('This user is not exist'), 401);
   }
 
   let followedUser;
   try {
-    followedUser = await User.findOne({authorId});
+    followedUser = await User.findById(authorId);
   } catch (error) {
     return next( Error('This user is not exist'), 401);
   }
 
   if (currentUser && followedUser) {
     try {
-      await currentUser.followed.push(authorId);
-      await followedUser.follower.push(userId);
+      await currentUser.followed.push(followedUser._id);
+      await followedUser.follower.push(currentUser._id);
       await followedUser.save();
       await currentUser.save();
     } catch (error) {

@@ -11,11 +11,11 @@
  - reply comment [x]
  - read comments [x]
  - read post [x]
- - read author's profile [og]
- - follow author []
- - like post []
- - save post []
- - delete comment - []
+ - read author's profile [x]
+ - follow author [x]
+ - like post [og]
+ - save post [og]
+ - delete comment - [og]
 
 3- search page
   - search by matching keyword []

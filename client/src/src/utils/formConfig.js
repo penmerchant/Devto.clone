@@ -1,5 +1,4 @@
 import BodyInput from "../components/FormElements/BodyInput/BodyInput";
-import CommentInput from "../components/FormElements/CommentInput/CommentInput";
 import InputImage from "../components/FormElements/ImageInput/ImageInput";
 import Input from "../components/FormElements/Input/Input";
 import TagsInput from "../components/FormElements/TagsInput/TagsInput";

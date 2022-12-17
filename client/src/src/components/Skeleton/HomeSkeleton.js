@@ -4,7 +4,7 @@ import classes from './shimmer.module.css';
 const keys = [1,2,3,4,5];
 
 const HomeSkeleton = () => {
-    return keys.map((key) => <div className={classes.card}>
+    return keys.map((key) => <div key={key} className={classes.card}>
         <div className={classes.row}>
             <div className={classes.circle}></div>
             <div className={classes.text}></div>

@@ -1,27 +1,22 @@
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import AuthContext from '../../../context/authContext';
 import useHttp from '../../../hooks/useHttp';
 import classes from '../PostDetails.module.css';
 
-const AuthorsProfile = (props) => {
+const AuthorsProfile = (props) => { 
     const {currentUser} = useContext(AuthContext);
-    const [isLogin, setLogin] = useState(false);
     const {sendRequest} = useHttp();
     const followUser = async() => {
         if(currentUser.isLoggedin){
-            setLogin(true);
             try {
-                await sendRequest(`http://localhost:4444/api/user/${currentUser.data.id}/${props._id}`,
+                await sendRequest(`http://localhost:4444/api/user/${currentUser.data.id}/${props.author._id}`,
                 'POST');
-            
+                alert('you have followed this user');
             } catch(error) {
-                setLogin(false);
             }
+        }else{
+            alert('Please login first');
         }
-    }
-    
-    if(isLogin) {
-        return <>error</>
     }
 
     return <div className={classes.card}>
@@ -36,7 +31,7 @@ const AuthorsProfile = (props) => {
             {props.author.bio && <p>{props.author.bio}</p>}
         </div>
         <div>
-            <button className={classes.btn} onClick={followUser}>Follow</button>
+            <button className={currentUser.data.id === props.author._id? classes.btn_disabled : classes.btn} onClick={followUser} disabled={currentUser.data.id === props.author._id? true : false}>Follow</button>
         </div>
     </div>;
 }

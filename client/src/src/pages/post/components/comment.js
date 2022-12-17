@@ -17,6 +17,8 @@ const Comment = (props) => {
     const formInputs = renderInputs();
     const navigate = useNavigate();
 
+    const style = {marginLeft: '2rem', width: '100%'};
+
     const submitComment = async(e) => {
         e.preventDefault();
         const formValue = renderValues();
@@ -71,12 +73,14 @@ const Comment = (props) => {
                 </div>
             }
             {isReplying && 
-            <>
+            <div className={classes.comment_form} style={style}>
             {formInputs}
-            <Button onClick={dissmissReply} label='Dismiss' disabled={true}/>
-            <Button onClick={submitComment} label='Submit' disabled={isFormValid}/>
-            </>
-}
+            <div>
+                <Button onClick={dissmissReply} label='Dismiss' disabled={true}/>
+                <Button onClick={submitComment} label='Submit' disabled={isFormValid}/>
+            </div>
+            </div>
+            }
             { props.comment.replies && <Replies replies={props.comment.replies} post={props.post}/> }
         </div>
     )

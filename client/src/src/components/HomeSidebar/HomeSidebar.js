@@ -38,8 +38,8 @@ const HomeSideBar = () => {
             </div>
         </div>
         {   
-            sidebarMenu.map((items)=>{
-                return <div className={classes.sidebar}>
+            sidebarMenu.map((items,index)=>{
+                return <div key={index} className={classes.sidebar}>
                 <NavLink to={items.link} className={classes.sidebar} >
                         <img src={items.src} className={classes.img} alt='logo'/>
                         <p>{items.subject}</p>

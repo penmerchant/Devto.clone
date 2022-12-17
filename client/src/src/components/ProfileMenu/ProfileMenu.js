@@ -31,10 +31,11 @@ const ProfileMenu = () =>{
         <ul className={show? classes.dropdown_show :classes.dropdown}>
 
         {
-            ProfileMenuItems.map((menu)=>{
+            ProfileMenuItems.map((menu,index)=>{
                 return <>   
                 <Link to={menu.url}>
-                    <li className={classes.menu_items}>
+                    <li key={index}
+                    className={classes.menu_items}>
                     {menu.title}
                 </li>
                 </Link>

@@ -114,6 +114,7 @@ a{
 
 .comment_form{
     display: block;
+    width: 100%;
     gap: 3px;
 }
 

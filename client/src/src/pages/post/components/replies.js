@@ -6,7 +6,7 @@ const Replies = (props) => {
         <div>
         {
             props.replies.map((reply)=>(
-                <Comment comment={reply} replies={null} style={style} post={props.post} />
+                <Comment comment={reply} key={props.id} replies={null} style={style} post={props.post} />
                 ))
             }
         </div>

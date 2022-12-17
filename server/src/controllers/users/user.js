@@ -16,7 +16,6 @@ const signUp = async ( req, res, next) => {
   const createdAt= getDateNow();
 
   let existingUser;
-  console.log(req.body);
   try {
     existingUser = await User.findOne({email});
   } catch (error) {
@@ -55,7 +54,6 @@ const signIn = async (req, res, next) => {
   }
 
   const {email, password} = req.body;
-  console.log(req.body);
   let existingUser;
 
   try {
@@ -107,7 +105,39 @@ const getUserById = async (req, res, next) => {
   res.status(201).json(searchedUser);
 };
 // follow a user
+const followUser = async (req, res, next) => {
+  const {userId, authorId} = req.params;
+
+  let currentUser;
+
+  try {
+    currentUser = await User.findOne({userId});
+  } catch (error) {
+    return next( Error('This user is not exist'), 401);
+  }
+
+  let followedUser;
+  try {
+    followedUser = await User.findOne({authorId});
+  } catch (error) {
+    return next( Error('This user is not exist'), 401);
+  }
+
+  if (currentUser && followedUser) {
+    try {
+      await currentUser.followed.push(authorId);
+      await followedUser.follower.push(userId);
+      await followedUser.save();
+      await currentUser.save();
+    } catch (error) {
+      return next(new Error('Unable to follow the user'), 401);
+    }
+  }
+
+  res.status(201).json('Operation is succeded');
+};
 // unfollow a user
+exports.followUser = followUser;
 exports.signUp = signUp;
 exports.signIn = signIn;
 exports.getUserById = getUserById;

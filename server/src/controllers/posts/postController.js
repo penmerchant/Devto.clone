@@ -85,6 +85,30 @@ const deletePostById = async ( req, res, next) => {
 };
 // save post as a reading list
 const savePost = async (req, res, next) => {
+  const {postId, userId} = req.params;
+
+  let post;
+
+  try {
+    post = await Post.findById(postId);
+  } catch (error) {
+    return next(new Error('Unable to find post', 401));
+  }
+
+  let loggedInUser;
+
+  try {
+    loggedInUser = await User.findById(userId);
+
+    await post.bookmarked.push(loggedInUser._id);
+    await user.savedPost.push(post._id);
+    await post.save();
+    await user.save();
+  } catch (error) {
+    return next(new Error('Unable to bookmark the post'), 401);
+  }
+
+  res.status(201).json('Succesfully bookmarked the post');
 };
 
 // get saved post
@@ -97,15 +121,29 @@ const likePost = async (req, res, next) => {
   try {
     post = await Post.findOne({_id: postId});
   } catch (error) {
-    next(new Error('Something is wrong with the server', 500));
+    next(new Error('Unable to like the post', 401));
   }
 
-  if (!post) {
-    return (new Error('Unable to like the post', 401));
-  } else {
-    post.likes.push(userId);
+  let loggedInUser;
+
+  try {
+    loggedInUser = await User.findById(userId);
+
+    await post.likes.push(loggedInUser._id);
+    await loggedInUser.likedPost.push(post._id);
     await post.save();
+    await loggedInUser.save();
+  } catch (error) {
+    return next(new Error('unable to like the post'));
   }
+
+
+  // if (!post) {
+  //   return (new Error('Unable to like the post', 401));
+  // } else {
+  //   post.likes.push(userId);
+  //   await post.save();
+  // }
   res.status(201).json('You have liked the post!');
 };
 

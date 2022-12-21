@@ -7,6 +7,7 @@ const {getAllPosts,
   deletePostById,
   likePost,
   unlikePost,
+  savePost,
 } = require('../../controllers/posts/postController');
 const upload = require('../../middleware/file-upload');
 
@@ -16,6 +17,7 @@ router.get('/:postId', getPostById);
 // router.delete('/:postId', deletePostById);
 router.delete('/:postId', deletePostById);
 // like a post
-router.post('/:postId/:userId', likePost);
+router.put('/likes/:postId/:userId', likePost);
+router.put('/bookmarks/:postId/:userId', savePost);
 router.put('/:postId/:userId', unlikePost);
 module.exports = router;

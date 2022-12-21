@@ -10,6 +10,8 @@ const Post = new Schema({
   comments: [{type: mongoose.Types.ObjectId, ref: 'Comment', default: null}],
   tags: [{type: String, ref: 'Tag', default: null}],
   likes: [{type: mongoose.Types.ObjectId, ref: 'User', default: null}],
+  bookmarked: [{type: mongoose.Types.ObjectId, ref: 'User', default: null}],
+  commented: [{types: mongoose.Types.ObjectId, ref: 'User', default: null}],
 });
 
 const Postschema = mongoose.model('Post', Post);

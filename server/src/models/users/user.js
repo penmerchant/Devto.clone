@@ -14,6 +14,8 @@ const UserSchema = new Schema({
   followed: [{type: mongoose.Types.ObjectId, default: [], ref: 'User'}],
   follower: [{type: mongoose.Types.ObjectId, default: [], ref: 'User'}],
   post: [{type: mongoose.Types.ObjectId, default: [], ref: 'Post'}],
+  likedPost: [{type: mongoose.Types.ObjectId, default: [], ref: 'Post'}],
+  savedPost: [{type: mongoose.Types.ObjectId, default: [], ref: 'Post'}],
 });
 
 const User = mongoose.model('User', UserSchema);

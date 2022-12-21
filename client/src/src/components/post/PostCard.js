@@ -22,7 +22,7 @@ const PostCard = (props) => {
     
     const onClick = () => {
         navigate(`/post-details/${_id}`, {replace: true});
-    }
+    }   
 
     return (
         <div className={classes.card} onClick={onClick}>

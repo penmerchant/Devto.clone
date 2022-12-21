@@ -2,6 +2,7 @@ import HomeLogo  from '../../images/sidebar/home.png';
 import ContactLogo  from '../../images/sidebar/contact.png';
 import ReadingLogo  from '../../images/sidebar/readinglist.png';
 import AboutLogo  from '../../images/sidebar/about.png';
+import TagLogo from '../../images/sidebar/tags.png';
 import classes from './HomeSidebar.module.css';
 import { NavLink } from 'react-router-dom';
 const HomeSideBar = () => {
@@ -27,6 +28,11 @@ const HomeSideBar = () => {
             'link': '/contact',
             'src': ContactLogo
         },
+        {
+            'subject': 'Tags',
+            'link': '/tags',
+            'src': TagLogo
+        }
     ];
     return <div>
         <div className={classes.box}>

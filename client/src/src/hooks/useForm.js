@@ -50,7 +50,7 @@ const useForm = (formObj) =>{
       let isValid = true;
       const arr = Object.values(form);
       for(let i=0;i<arr.length;i++){
-        if(!arr[i].valid && arr[i].value.length === 0){
+        if(!arr[i].valid && arr[i].value === ''){
           isValid = false;
           break;
         }

@@ -8,16 +8,14 @@ import AuthContext from "../../../context/authContext";
 import { useContext } from "react";
 import Button from "../../../components/Button/Button";
 import ButtonStyle from "../../../utils/ButtonStyle";
-import { useNavigate } from "react-router-dom";
 
 const Comments = (props) => {
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
-    const {renderInputs, renderValues, isFormValid} = useForm(CommentForm);
+    const {renderInputs, renderValues, isFormValid, setForm} = useForm(CommentForm);
     const formValue = renderValues();
     const formInputs = renderInputs();
     const {btn_comment} = ButtonStyle();
-    const navigate = useNavigate();
     let postId = props.post;
 
     const submitComment = async(e) => {
@@ -31,10 +29,8 @@ const Comments = (props) => {
                     'POST',
                     formData
                 );
+                setForm(CommentForm);
                 alert('submitted the comment');
-                // navigate('/', {replace: true});
-                navigate(`/post-details/${postId}`, {replace: true});
-
             } catch(error) {
                 alert('unable to submit comment')
             }

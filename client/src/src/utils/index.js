@@ -13,3 +13,7 @@ export const formatDate = (date) => {
   const parsedDate = date.getMonth();
   return parsedDate;
 };
+
+export const checkInArray = (arr, userId) => {
+  return arr && arr.indexOf(userId) !== -1;
+};

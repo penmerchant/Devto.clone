@@ -6,6 +6,7 @@ import useHttp from "../../hooks/useHttp";
 import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 import Comments from "./components/comments";
 import AuthorsProfile from "./components/profile";
+import PostReactions from "./components/PostReactions/PostReaction";
 
 const PostDetails = () => {
     // get id of a post
@@ -65,7 +66,9 @@ const PostDetails = () => {
     // }
     
     return <div className={classes.container}>
-        <div className={classes.sidebar_menu}>Sidebar</div>
+        <div className={classes.sidebar_menu}>
+            <PostReactions likes={post.likes} bookmarks={post.bookmarks} postId={postId}  />
+        </div>
         <div className={classes.post_section} >
             {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}
             <h1>{title}</h1>

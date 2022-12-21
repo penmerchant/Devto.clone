@@ -7,17 +7,16 @@ import { CommentForm } from '../../../utils/formConfig';
 import { appendData } from '../../../utils';
 import AuthContext from '../../../context/authContext';
 import Button from '../../../components/Button/Button';
-import { useNavigate } from 'react-router-dom';
 
 const Comment = (props) => {
     const [isReplying, setReplying] = useState(false);
     const {currentUser} = useContext(AuthContext);
     const {sendRequest} = useHttp();
-    const {renderInputs, renderValues, isFormValid} = useForm(CommentForm);
+    const {renderInputs, renderValues, isFormValid, setForm} = useForm(CommentForm);
     const formInputs = renderInputs();
-    const navigate = useNavigate();
 
     const style = {marginLeft: '2rem', width: '100%'};
+    let postId = props.post;
 
     const submitComment = async(e) => {
         e.preventDefault();
@@ -31,7 +30,7 @@ const Comment = (props) => {
 
         formData.append('parentComment', commentId);
         formData.append('author', currentUser.data.id);
-        formData.append('post', props.post);
+        formData.append('post', postId);
 
         if(currentUser.isLoggedin) {
             try{
@@ -39,8 +38,8 @@ const Comment = (props) => {
                     'POST',
                     formData
                 );
+                setForm(CommentForm);
                 alert('submitted the comment')
-                navigate(`/post-details/${props.post}`, {replace: true});
             } catch(error) {
                 alert('unable to submit comment')
             }

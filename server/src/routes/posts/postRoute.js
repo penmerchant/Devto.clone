@@ -17,7 +17,7 @@ router.get('/:postId', getPostById);
 // router.delete('/:postId', deletePostById);
 router.delete('/:postId', deletePostById);
 // like a post
-router.put('/likes/:postId/:userId', likePost);
-router.put('/bookmarks/:postId/:userId', savePost);
-router.put('/:postId/:userId', unlikePost);
+router.put('/likes/', likePost);
+router.put('/bookmarks/', savePost);
+router.put('/unlike/', unlikePost);
 module.exports = router;

@@ -85,8 +85,7 @@ const deletePostById = async ( req, res, next) => {
 };
 // save post as a reading list
 const savePost = async (req, res, next) => {
-  const {postId, userId} = req.params;
-
+  const {postId, userId} = req.body;
   let post;
 
   try {
@@ -114,27 +113,25 @@ const savePost = async (req, res, next) => {
 // get saved post
 // like a post
 const likePost = async (req, res, next) => {
-  const {postId, userId} = req.params;
-
-  let post;
+  const {postId, userId} = req.body;
+  console.log(req.body);
 
   try {
-    post = await Post.findOne({_id: postId});
+    await Post.findByIdAndUpdate(postId,
+        {$addToSet: {likes: userId}},
+        {new: true},
+    );
   } catch (error) {
-    next(new Error('Unable to like the post', 401));
+    return next(new Error('Post doesnt exist', 401));
   }
 
-  let loggedInUser;
-
   try {
-    loggedInUser = await User.findById(userId);
-
-    await post.likes.push(loggedInUser._id);
-    await loggedInUser.likedPost.push(post._id);
-    await post.save();
-    await loggedInUser.save();
+    await User.findByIdAndUpdate(userId,
+        {$addToSet: {likedPost: postId}},
+        {new: true},
+    );
   } catch (error) {
-    return next(new Error('unable to like the post'));
+    return next(new Error('unable to like the post', 401));
   }
 
 
@@ -148,7 +145,7 @@ const likePost = async (req, res, next) => {
 };
 
 const unlikePost = async (req, res, next) => {
-  const {postId, userId} = req.params;
+  const {postId, userId} = req.body;
   let post;
   try {
     post = await Post.findOne({_id: postId});

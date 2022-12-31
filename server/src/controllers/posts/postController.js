@@ -1,6 +1,7 @@
 const Post = require('../../models/posts/post');
 const {validationResult} = require('express-validator');
 const {uploadImageToCloud, getDateNow} = require('../../utils/utils');
+const User = require('../../models/users/user');
 
 const createPost = async ( req, res, next)=>{
   const error = validationResult(req.body);
@@ -95,10 +96,40 @@ const savePost = async (req, res, next) => {
     return next(new Error('Unable to find post', 401));
   }
 
+  try {
+    await User.findByIdAndUpdate(userId,
+        {$addToSet: {savedPost: actionId}},
+        {new: true},
+    );
+  } catch (error) {
+    return next(new Error('Unable to find post', 401));
+  }
+
   res.status(201).json('Succesfully bookmarked the post');
 };
 
-// get saved post
+const unBookmarkedPost = async (req, res, next) => {
+  const {actionId, userId} = req.body;
+  try {
+    await Post.findByIdAndUpdate(actionId,
+        {$pull: {bookmarked: userId}},
+        {new: true},
+    );
+  } catch (error) {
+    return next(new Error('Unable to unbookmark', 401));
+  }
+
+  try {
+    await User.findByIdAndUpdate(userId,
+        {$pull: {savedPost: actionId}},
+        {new: true},
+    );
+  } catch (error) {
+    return next(new Error('fail to take out from the saved post ', 401));
+  }
+
+  res.status(201).json('Succesfully unbookmarked the post');
+};
 // like a post
 const likePost = async (req, res, next) => {
   const {actionId, userId} = req.body;
@@ -158,5 +189,6 @@ exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;
 exports.deletePostById = deletePostById;
 exports.savePost = savePost;
+exports.unBookmarkedPost = unBookmarkedPost;
 exports.likePost = likePost;
 exports.unlikePost = unlikePost;

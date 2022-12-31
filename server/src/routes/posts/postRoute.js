@@ -8,6 +8,7 @@ const {getAllPosts,
   likePost,
   unlikePost,
   savePost,
+  unBookmarkedPost,
 } = require('../../controllers/posts/postController');
 const upload = require('../../middleware/file-upload');
 
@@ -19,5 +20,6 @@ router.delete('/:postId', deletePostById);
 // like a post
 router.put('/like/', likePost);
 router.put('/bookmark/', savePost);
+router.put('/unBookmark/', unBookmarkedPost);
 router.put('/unlike/', unlikePost);
 module.exports = router;

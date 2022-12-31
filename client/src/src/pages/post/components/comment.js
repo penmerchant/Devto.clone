@@ -79,7 +79,8 @@ const Comment = (props) => {
                  userId={currentUser.data.id}
                  actionId={props.comment._id}
                  /> 
-                 { likes.length + ' likes'}
+                 { likes.length }
+                 {  likes.length > 1 ? ' likes': ' like' }
                  </div> 
                 <Button onClick={toggleReply} label='Reply' disabled={true}/>
                 </div>

@@ -85,26 +85,14 @@ const deletePostById = async ( req, res, next) => {
 };
 // save post as a reading list
 const savePost = async (req, res, next) => {
-  const {postId, userId} = req.body;
-  let post;
-
+  const {actionId, userId} = req.body;
   try {
-    post = await Post.findById(postId);
+    await Post.findByIdAndUpdate(actionId,
+        {$addToSet: {bookmarked: userId}},
+        {new: true},
+    );
   } catch (error) {
     return next(new Error('Unable to find post', 401));
-  }
-
-  let loggedInUser;
-
-  try {
-    loggedInUser = await User.findById(userId);
-
-    await post.bookmarked.push(loggedInUser._id);
-    await user.savedPost.push(post._id);
-    await post.save();
-    await user.save();
-  } catch (error) {
-    return next(new Error('Unable to bookmark the post'), 401);
   }
 
   res.status(201).json('Succesfully bookmarked the post');

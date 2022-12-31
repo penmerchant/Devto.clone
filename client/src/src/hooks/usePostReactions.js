@@ -3,10 +3,10 @@ import useHttp from "./useHttp";
 const { useState } = require("react");
 const { checkInArray } = require("../utils");
 
-const usePostReactions = ({likes, bookmarks, userId}) => {
+const usePostReactions = ({likes, bookmarked, userId}) => {
     const [state, setState] = useState({
         isLiked: checkInArray(likes, userId),
-        isBookmarked: checkInArray(bookmarks, userId)});
+        isBookmarked: checkInArray(bookmarked, userId)});
     const {sendRequest} = useHttp();
     // interact with user actions for their activity
     // function receives userId, actionId , action and stateKey

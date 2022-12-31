@@ -67,7 +67,7 @@ const PostDetails = () => {
     
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>
-            <PostReactions likes={post.likes} bookmarks={post.bookmarks} postId={postId}  />
+            <PostReactions likes={post.likes} bookmarked={post.bookmarked} postId={postId}  />
         </div>
         <div className={classes.post_section} >
             {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}

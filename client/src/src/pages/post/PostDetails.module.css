@@ -21,7 +21,7 @@
     position: fixed;
     max-width: 5vw;
     grid-area: sb;
-    border: 1px solid #E0DCDB;
+    /* border: 1px solid #E0DCDB; */
 }
 
 a{
@@ -172,6 +172,7 @@ a{
     width: 40px;
     border-radius: 40px;
     display: flex;
+    background: #fff;
     justify-content: center;;
     align-items: center;
 }
@@ -184,4 +185,9 @@ a{
 
 .bookmark_icon{
     color: #0F76D1;
+}
+
+.heart_icon,
+.bookmark_icon:hover{
+    cursor:pointer;
 }

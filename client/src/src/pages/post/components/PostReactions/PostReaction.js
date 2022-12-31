@@ -10,7 +10,7 @@ const PostReactions = ({likes, bookmarks, postId}) => {
     const {state, handleReactions} = usePostReactions({likes, bookmarks, userId});
     const {isLiked, isBookmarked} = state;
     return (<>
-    <LikeReactionButton handleReactions={handleReactions} isLiked={isLiked} userId={userId} postId={postId}/>
+    <LikeReactionButton handleReactions={handleReactions} action='posts' isLiked={isLiked} userId={userId} actionId={postId}/>
     </>);
 }
 export default PostReactions;

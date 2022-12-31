@@ -7,6 +7,8 @@ import { CommentForm } from '../../../utils/formConfig';
 import { appendData } from '../../../utils';
 import AuthContext from '../../../context/authContext';
 import Button from '../../../components/Button/Button';
+import usePostReactions from '../../../hooks/usePostReactions';
+import LikeReactionButton from './PostReactions/LikeReactionButton';
 
 const Comment = (props) => {
     const [isReplying, setReplying] = useState(false);
@@ -15,6 +17,9 @@ const Comment = (props) => {
     const {renderInputs, renderValues, isFormValid, setForm} = useForm(CommentForm);
     const formInputs = renderInputs();
 
+    const {userId, comment} = props;
+    const {likes , replies} = comment;
+    const {handleReactions, state} = usePostReactions({likes, userId});
     const style = {marginLeft: '2rem', width: '100%'};
     let postId = props.post;
 
@@ -65,9 +70,17 @@ const Comment = (props) => {
                     </div>
                 </div>
             </div>{
-                !isReplying && 
+                !isReplying &&
                 <div className={classes.align_right}>
-                <Button label='Like' disabled={true}/>
+                <div className={classes.row}>
+                <LikeReactionButton isLiked={state.isLiked} 
+                 handleReactions={handleReactions}
+                 action='comments'
+                 userId={currentUser.data.id}
+                 actionId={props.comment._id}
+                 /> 
+                 { likes.length + ' likes'}
+                 </div> 
                 <Button onClick={toggleReply} label='Reply' disabled={true}/>
                 </div>
             }
@@ -80,7 +93,7 @@ const Comment = (props) => {
             </div>
             </div>
             }
-            { props.comment.replies && <Replies replies={props.comment.replies} post={props.post}/> }
+            { replies && <Replies replies={replies} post={props.post}/> }
         </div>
     )
 }

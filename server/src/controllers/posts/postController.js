@@ -113,11 +113,10 @@ const savePost = async (req, res, next) => {
 // get saved post
 // like a post
 const likePost = async (req, res, next) => {
-  const {postId, userId} = req.body;
-  console.log(req.body);
+  const {actionId, userId} = req.body;
 
   try {
-    await Post.findByIdAndUpdate(postId,
+    await Post.findByIdAndUpdate(actionId,
         {$addToSet: {likes: userId}},
         {new: true},
     );
@@ -127,7 +126,7 @@ const likePost = async (req, res, next) => {
 
   try {
     await User.findByIdAndUpdate(userId,
-        {$addToSet: {likedPost: postId}},
+        {$addToSet: {likedPost: actionId}},
         {new: true},
     );
   } catch (error) {
@@ -145,23 +144,26 @@ const likePost = async (req, res, next) => {
 };
 
 const unlikePost = async (req, res, next) => {
-  const {postId, userId} = req.body;
+  const {actionId, userId} = req.body;
   let post;
   try {
-    post = await Post.findOne({_id: postId});
+    post = await Post.findByIdAndUpdate(actionId,
+        {$pull: {likes: userId}},
+        {new: true},
+    );
   } catch (error) {
     next(new Error('Something is wrong with the server', 500));
   }
 
-  if (post) {
-    try {
-      post.likes.pull(userId);
-      await post.save();
-    } catch (error) {
-      return (new Error('Unable to unlike the post', 401));
-    }
-  }
-  res.status(201).json('You have unliked the post!');
+  // if (post) {
+  //   try {
+  //     post.likes.pull(userId);
+  //     await post.save();
+  //   } catch (error) {
+  //     return (new Error('Unable to unlike the post', 401));
+  //   }
+  // }
+  res.status(201).json(post + 'removed');
 };
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;

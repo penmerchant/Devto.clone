@@ -113,7 +113,45 @@ const deleteAllComments = async ( req, res, next) => {
   res.status(200).json('Succesfully deleted comments');
 };
 // like a comment
+const likeComment = async (req, res, next) =>{
+  const {actionId, userId} = req.body;
+
+  try {
+    await Comment.findByIdAndUpdate(actionId,
+        {$addToSet: {likes: userId}},
+        {new: true},
+    );
+  } catch (error) {
+    return next(new Error('Post doesnt exist', 401));
+  }
+
+  res.status(201).json('You have liked a comment');
+};
+
+const unlikeComment = async (req, res, next) => {
+  const {actionId, userId} = req.body;
+  try {
+    await Comment.findByIdAndUpdate(actionId,
+        {$pull: {likes: userId}},
+        {new: true},
+    );
+  } catch (error) {
+    next(new Error('Something is wrong with the server', 500));
+  }
+
+  // if (post) {
+  //   try {
+  //     post.likes.pull(userId);
+  //     await post.save();
+  //   } catch (error) {
+  //     return (new Error('Unable to unlike the post', 401));
+  //   }
+  // }
+  res.status(201).json('You have unliked a comment');
+};
 // reply a comment
 exports.getAllComments = getAllComments;
 exports.createComment = createComment;
 exports.deleteAllComments = deleteAllComments;
+exports.likeComment = likeComment;
+exports.unlikeComment = unlikeComment;

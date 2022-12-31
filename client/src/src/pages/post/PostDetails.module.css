@@ -11,7 +11,7 @@
 .profile{
     /* background: black; */
     grid-area: pf;
-    width: 20vw;
+    width: 30vw;
     overflow:hidden;
     border-radius: 10px;
 }
@@ -19,7 +19,7 @@
 .sidebar_menu{
     /* background: red; */
     position: fixed;
-    /* max-width: 20vw; */
+    max-width: 5vw;
     grid-area: sb;
     border: 1px solid #E0DCDB;
 }
@@ -33,7 +33,7 @@ a{
     /* border-radius: 10px; */
     padding: 6px;
     /* background: #fff; */
-    width: 70vw;
+    width: 50vw;
     grid-area: pt;
 }
 
@@ -178,8 +178,5 @@ a{
 .heart_icon{
     height: 20px;
     width: 20px;
-}
-
-.heart_icon:hover{
-    color: red;
+    color: #F65959;
 }

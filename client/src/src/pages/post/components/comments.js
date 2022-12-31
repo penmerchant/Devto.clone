@@ -45,7 +45,7 @@ const Comments = (props) => {
     <Button onClick={submitComment} label='Submit' valid={!isFormValid} style={btn_comment}/>
     {
         props.comments.map((comment,index)=>(
-            <Comment key={index} comment={comment} post={postId}/>
+            <Comment key={index} comment={comment} post={postId} userId={currentUser.data.id}/>
         ))
     }</>)
 }

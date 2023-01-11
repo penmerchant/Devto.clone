@@ -8,6 +8,7 @@ import SearchPage from "./src/pages/SearchPage/SearchPage";
 import PostDetails from "./src/pages/post/postDetails";
 import Footer from "./src/components/Footer/Footer";
 import About from "./src/pages/about/about";
+import Profile from "./src/pages/profile/profile";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path= '/' element={<Home/>}/>
         <Route path='/newPost' element={<NewPost />}/>
-        <Route to='/profile' element={<div>helo</div>}/>
+        <Route path='/profile' element={<Profile/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/searchResult/:searchValue' element={<SearchPage />} />
         <Route path='/register' element={<CreateAccount />}/>

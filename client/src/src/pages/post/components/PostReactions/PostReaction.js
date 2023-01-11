@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import AuthContext from "../../../../context/authContext";
 import usePostReactions from "../../../../hooks/usePostReactions";
-import BookmarkReactions from "./BookmarkReactionsButton";
+import BookmarkReactions from "./BookmarkReactions";
 import LikeReactionButton from "./LikeReactionButton";
 
 const PostReactions = ({likes, bookmarked, postId}) => {

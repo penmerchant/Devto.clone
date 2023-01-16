@@ -93,7 +93,7 @@ const getUserById = async (req, res, next) => {
   const {userId} = req.params;
   let searchedUser;
   try {
-    searchedUser = await User.findById(userId);
+    searchedUser = await User.findById(userId).select('-password');
   } catch (error) {
     next(new Error('Something is wrong with the server', 500));
   }

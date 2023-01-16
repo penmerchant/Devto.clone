@@ -10,10 +10,19 @@ export const appendData = (data) => {
 };
 
 export const formatDate = (date) => {
-  const parsedDate = date.getMonth();
-  return parsedDate;
+  const parsedDate = new Date(date);
+  
+  const year = parsedDate.getFullYear();
+  const month = parsedDate.getMonth();
+  const day = parsedDate.getDate();
+
+  return [year, month, day].join('/');
 };
 
 export const checkInArray = (arr, userId) => {
   return arr && arr.indexOf(userId) !== -1;
+};
+
+export const countArrayLength = (arr) => {
+  return arr && arr.length;
 };

@@ -7,6 +7,7 @@ import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 import Comments from "./components/comments";
 import AuthorsProfile from "./components/profile";
 import PostReactions from "./components/PostReactions/PostReaction";
+import { formatDate } from "../../utils";
 
 const PostDetails = () => {
     // get id of a post
@@ -27,7 +28,7 @@ const PostDetails = () => {
         const fetchPost = async() => {
             if(!isCancelled){
                 try{
-                    const response = await sendRequest(`http://localhost:4444/api/posts/${postId}`);
+                    const response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/${postId}`);
                     setPost(response);
                     setLoading(false);
                 } catch(error) {
@@ -64,15 +65,15 @@ const PostDetails = () => {
     // if(isError) {
     //     return <>Error</>
     // }
-    
     return <div className={classes.container}>
         <div className={classes.sidebar_menu}>
             <PostReactions likes={post.likes} bookmarked={post.bookmarked} postId={postId}  />
         </div>
         <div className={classes.post_section} >
-            {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}
-            <h1>{title}</h1>
-            <b>{createdAt}</b>
+                    {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}
+                    <h1>{title}</h1>
+                    <b>{formatDate(createdAt)}</b>
+                    
             <MarkdownPreview source={body} key={post.id} style={styles} />
             <div className={classes.comment_form}>
                 <h2>Comments ({comments.length})</h2>

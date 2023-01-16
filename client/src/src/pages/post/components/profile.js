@@ -1,4 +1,5 @@
 import { useContext} from 'react';
+import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/authContext';
 import useHttp from '../../../hooks/useHttp';
 import classes from '../PostDetails.module.css';
@@ -9,7 +10,7 @@ const AuthorsProfile = (props) => {
     const followUser = async() => {
         if(currentUser.isLoggedin){
             try {
-                await sendRequest(`http://localhost:4444/api/user/${currentUser.data.id}/${props.author._id}`,
+                await sendRequest(`${process.env.REACT_APP_API_URL}/api/user/${currentUser.data.id}/${props.author._id}`,
                 'POST');
                 alert('you have followed this user');
             } catch(error) {
@@ -24,7 +25,11 @@ const AuthorsProfile = (props) => {
         <div className={classes.row}>
             <img src={props.author.profilePicture} className={classes.circle} alt='profile'/>
             <div className={classes.wrapper}>
-                { props.author.firstName && <b>{props.author.firstName}</b>}
+                { props.author.firstName && <Link to={`/profile/${props.author._id}`}>
+                    <b>{props.author.firstName}</b>
+            
+                </Link>
+                }
             </div>
         </div>
         <div className={classes.text_wrapper}>

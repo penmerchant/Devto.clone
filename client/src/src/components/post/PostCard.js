@@ -2,6 +2,7 @@ import classes from './PostCard.module.css';
 import { useNavigate } from 'react-router-dom';
 import  HeartIcon  from  '../../images/card/heart.svg';
 import CommentIcon from '../../images/card/comment-pen.svg';
+import { formatDate } from '../../utils';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
@@ -30,7 +31,7 @@ const PostCard = (props) => {
             <div className={classes.row}>
                 <img src={author.profilePicture} alt='user profile' className={classes.profile_picture}/>
                 <p>{fullName}</p>
-                <b>{createdAt}</b>
+                <b>{formatDate(createdAt)}</b>
             </div>
             <h1 className={classes.card_title}>{title}</h1>
             <div className={classes.row}>

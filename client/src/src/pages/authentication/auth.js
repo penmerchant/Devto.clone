@@ -25,7 +25,7 @@ const Auth = () =>{
     e.preventDefault();
     try{
       // const formData = appendData(formValues);
-      const responseData = await sendRequest('http://localhost:4444/api/user/login', 
+      const responseData = await sendRequest(`${process.env.REACT_APP_API_URL}/api/user/login`, 
        'POST' ,
         JSON.stringify(formValues),
         {

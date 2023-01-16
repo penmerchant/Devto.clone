@@ -60,6 +60,7 @@ a{
 }
 
 .text_wrapper{
+    text-align: center;
     line-height: auto;
     font-weight: 500;
     font-size: 1.3rem;

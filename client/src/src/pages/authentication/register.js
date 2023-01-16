@@ -19,7 +19,7 @@ const CreateAccount = () => {
         // console.log(...formData);
         // let currentUser;
         try {
-            await sendRequest('http://localhost:4444/api/user/register/',
+            await sendRequest(`${process.env.REACT_APP_API_URL}/api/user/register/`,
             'POST',
             formData,
             // JSON.stringify(formValues),

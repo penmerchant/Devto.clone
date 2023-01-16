@@ -25,7 +25,7 @@ const Comments = (props) => {
         formData.append('post', postId);
         if(currentUser.isLoggedin) {
             try{
-                await sendRequest('http://localhost:4444/api/comments/',
+                await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/`,
                     'POST',
                     formData
                 );

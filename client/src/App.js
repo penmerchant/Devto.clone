@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path= '/' element={<Home/>}/>
         <Route path='/newPost' element={<NewPost />}/>
-        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/profile/:userId' element={<Profile/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/searchResult/:searchValue' element={<SearchPage />} />
         <Route path='/register' element={<CreateAccount />}/>

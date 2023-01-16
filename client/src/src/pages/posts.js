@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import PostList from "../components/post/PostList";
 import HomeSkeleton from "../components/Skeleton/HomeSkeleton";
 import useHttp from "../hooks/useHttp";
-
 const Post = () => {
     const {sendRequest, isError, isLoading} = useHttp();
     const [postData , setPostData] = useState([]);
     
-    const BASE_URL = 'http://localhost:4444';
+    // const BASE_URL = 'http://localhost:4444';
 
     useEffect(()=> {
         const fetchPost = async()=>{
             try {
 
-                const responseData = await sendRequest(`${BASE_URL}/api/posts/`, 'GET');
+                const responseData = await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/`, 'GET');
                 setPostData(responseData);
             } catch (err) {}
         };

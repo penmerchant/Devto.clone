@@ -23,7 +23,7 @@ const NewPost = () =>{
         const {data} = currentUser;
         formData.append('author', data.id);
         try {
-            await sendRequest('http://localhost:4444/api/posts',
+            await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts`,
              'POST',
              formData,
             //  {  

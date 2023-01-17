@@ -22,7 +22,6 @@ const Profile = () => {
         fetchProfile();
     },[setProfile, sendRequest, userId]);
 
-    console.log(userProfile.follower);
 
     return <div className={classes.container}>{
             userProfile && <BioSection profilePicture={userProfile.profilePicture}

@@ -6,7 +6,7 @@ const CommentList = (props) => {
     return <div>
         <Fragment>
             {
-                comments.map((comment)=>{
+                comments && comments.map((comment)=>{
                     return <CommentsCards comment={comment} user={user}/>
                 })
             }

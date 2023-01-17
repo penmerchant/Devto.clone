@@ -34,15 +34,15 @@ const RecentActivities = ({userId}) => {
        
 
     },[setPost, setComments, userId, sendRequest]);
-    console.log(recentComments);
     return <div>
         <div>
             <b>Recent posts</b>
             {recentPosts && <PostLists user={recentPosts} posts={recentPosts.post}/>}
         </div>
+        <br></br>
         <div className={classes.info_wrapper}>
             <b>Recent comments</b>
-            <CommentList comments={recentComments.comments} user={recentComments}/>
+            {recentComments && <CommentList comments={recentComments.comments} user={recentComments}/>}
         </div>
     </div>;
 };

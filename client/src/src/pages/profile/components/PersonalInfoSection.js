@@ -23,7 +23,7 @@ const BioSection = (props) => {
             {props.firstName && <h2 className={classes.text_center}>{props.firstName + ' ' + props.lastName}</h2> }
         </div>
         <div className={classes.text_center}>
-            <p>{props.bio}</p>
+            {props.bio? <p>{props.bio}</p> : <p>User hasn't updated bio yet</p>}
         </div>
         <div className={classes.link_wrapper}>
 

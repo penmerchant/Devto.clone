@@ -14,7 +14,8 @@ const PostCard = (props) => {
         imageUrl,
         title,
         _id,
-        createdAt } = post;
+        createdAt,
+        disable } = post;
     
 
     const {firstName,
@@ -27,7 +28,7 @@ const PostCard = (props) => {
 
     return (
         <div className={classes.card} onClick={onClick}>
-            {index === 0? <img src={imageUrl} className={classes.img} alt='url'/>: null}
+            {index === 0 && !disable ? <img src={imageUrl} className={classes.img} alt='url'/>: null}
             <div className={classes.row}>
                 <img src={author.profilePicture} alt='user profile' className={classes.profile_picture}/>
                 <p>{fullName}</p>

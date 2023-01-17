@@ -1,0 +1,37 @@
+.circle{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+}
+
+.text_wrapper{
+    line-height: auto;
+}
+
+.link{
+    color: black;
+}
+
+.link:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: grey;
+}
+
+.card{
+    height: auto;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 0px 1px 0px #2e2c30;
+    border-radius: 4px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.align_item{
+    margin-left: 35px;
+}

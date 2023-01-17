@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useHttp from '../../hooks/useHttp';
 import ActivitySection from './components/ActivitySection';
 import BioSection from './components/PersonalInfoSection';
+import RecentActivities from './components/RecentActivities';
 import classes from './profile_section.module.css';
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -38,7 +39,7 @@ const Profile = () => {
                     comments={userProfile.comments}
                     tags={userProfile.followedTags}/>
             </div>
-            <div>sedge</div>
+            <div> <RecentActivities userId={userId} /></div>
         </div>
         </div>;
 }

@@ -9,7 +9,6 @@ const useHttp = () =>{
     const sendRequest = useCallback(
         async (url, method='GET' , body= null, headers={}, credentials) =>{
         
-
         // const httpAbortControl = new AbortController();
         // activeHttpReqs.current.push(httpAbortControl);
         let response = {};

@@ -135,8 +135,58 @@ const followUser = async (req, res, next) => {
 
   res.status(201).json('Operation is succeded');
 };
+
+const getRecentComments = async (req, res, next) => {
+  const {userId} = req.params;
+
+  let searchedUser;
+
+  try {
+    searchedUser = await User.findById(userId);
+  } catch (error) {
+    return new Error('User is not found', 401);
+  }
+
+  let recentComments = [];
+
+  if (searchedUser) {
+    // populate: [{
+    //   path: 'author',
+    // },
+    recentComments = await searchedUser.populate({path: 'comments',
+      populate: [{
+        path: 'post',
+      }],
+    });
+  }
+
+  return res.status(201).json(recentComments);
+};
+
+const getRecentPosts = async (req, res, next) => {
+  const {userId} = req.params;
+
+  let searchedUser;
+
+  try {
+    searchedUser = await User.findById(userId);
+  } catch (error) {
+    return new Error('User is not found', 401);
+  }
+
+  let recentPosts = [];
+
+  if (searchedUser) {
+    recentPosts = await searchedUser.populate('post');
+  }
+
+  return res.status(201).json(recentPosts);
+};
+
 // unfollow a user
 exports.followUser = followUser;
 exports.signUp = signUp;
 exports.signIn = signIn;
 exports.getUserById = getUserById;
+exports.getRecentComments = getRecentComments;
+exports.getRecentPosts = getRecentPosts;

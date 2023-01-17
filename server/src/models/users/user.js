@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   bio: {type: String, default: null},
   github: {type: String, default: null},
   instagram: {type: String, default: null},
-  comments: [{type: mongoose.Types.ObjectId, default: null, ref: 'Post'}],
+  comments: [{type: mongoose.Types.ObjectId, default: null, ref: 'Comment'}],
   followedTags: [{type: mongoose.Types.ObjectId, default: null, ref: 'Tags'}],
   followed: [{type: mongoose.Types.ObjectId, default: null, ref: 'User'}],
   follower: [{type: mongoose.Types.ObjectId, default: null, ref: 'User'}],

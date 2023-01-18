@@ -89,6 +89,33 @@ export const newPostForm = {
     },
 };// values of input
 
+export let editPostForm = {
+    title: {
+     ...createForm('text', 'title', 'Title' ,'Please enter a title'),
+
+    },
+    body: {
+        ...createForm('text', 'body', 'Body'),
+    },
+    tags: {
+        ...createForm('text', 'tags', 'Tags', '#npm...'),
+    },
+    image: {
+        ...createForm('file' , 'image' , 'Image'),
+    },
+};
+
+export const prefillEditPostForm = (data) => {
+    for (let [key, value] of Object.entries(data)){
+        if(key in editPostForm){
+            editPostForm = { ...editPostForm,
+                [key] : {...editPostForm[key], value, valid: true}
+            };
+        }
+    }
+       
+};
+
 export const CommentForm = {
     comment: {
         ...createForm('text', 'comment', 'Comment', 'Write a comment'),

@@ -33,7 +33,7 @@ const BodyInput = (props) => {
     visible={true}
     height={500}
     onChange={onChange}
-    />    
+    value={body}/>    
 
     </div>
     )

@@ -9,6 +9,7 @@ import PostDetails from "./src/pages/post/postDetails";
 import Footer from "./src/components/Footer/Footer";
 import About from "./src/pages/about/about";
 import Profile from "./src/pages/profile/profile";
+import EditPost from "./src/pages/edit/editpost/EditPost";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/register' element={<CreateAccount />}/>
         <Route path='/post-details/:postId/' element={ <PostDetails />}/>
         <Route path='/about' element={<About />} />
+        <Route path='/edit-post/:postId' element={<EditPost />}/>
       </Routes>
     </Layout>
     <Footer />

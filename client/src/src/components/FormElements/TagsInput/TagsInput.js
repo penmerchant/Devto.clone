@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from './TagsInput.module.css';
 
 const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
     const [valid , setValid] = useState(false);
+    
+    console.log(props.tags);
+
+    useEffect(()=>{
+        setTags(props.tags);
+    },[props.tags]);
+
     const onKeyPress = (e) => {
         
         const tag = e.target.value;
@@ -32,7 +39,7 @@ const TagsInput = (props) => {
     { <p>{props.label}</p>}
     <div className={classes.container}>
     {   
-        tags.map((tag,index)=>{
+        tags && tags.map((tag,index)=>{
             return <>
                 <div className={classes.tags}>
                     <p>{tag}</p>

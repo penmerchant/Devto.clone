@@ -18,7 +18,6 @@ const NewPost = () =>{
     //post form to the server
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(formValues);
         const formData = appendData(formValues);
         const {data} = currentUser;
         formData.append('author', data.id);

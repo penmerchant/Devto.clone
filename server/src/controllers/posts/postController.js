@@ -21,7 +21,7 @@ const createPost = async ( req, res, next)=>{
       title: title,
       body: body,
       createdAt: createdAt,
-      imageUrl: imageUrl,
+      image: imageUrl,
       author: author,
       tags: tags,
     });
@@ -32,6 +32,11 @@ const createPost = async ( req, res, next)=>{
   }
   // res.status(200).json({title: title, imageUrl, createdAt, content, author});
   res.status(201).json({createdPost});
+};
+
+const editPost = async (req, res, next) => {
+  // const {title, image, body, tags} = req.body;
+  //
 };
 
 const getAllPosts = async (req, res, next) =>{
@@ -187,6 +192,7 @@ const unlikePost = async (req, res, next) => {
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;
+exports.editPost = editPost;
 exports.deletePostById = deletePostById;
 exports.savePost = savePost;
 exports.unBookmarkedPost = unBookmarkedPost;

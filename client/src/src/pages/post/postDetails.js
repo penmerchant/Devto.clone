@@ -18,7 +18,7 @@ const PostDetails = () => {
     const {postId} = useParams();
     const { body,
         title,
-        imageUrl,
+        image,
         author,
         createdAt} = post;
 
@@ -70,7 +70,7 @@ const PostDetails = () => {
             <PostReactions likes={post.likes} bookmarked={post.bookmarked} postId={postId}  />
         </div>
         <div className={classes.post_section} >
-                    {imageUrl && <img src={imageUrl} className={classes.post_img} alt='thumbnail of the post' />}
+                    {image && <img src={image} className={classes.post_img} alt='thumbnail of the post' />}
                     <h1>{title}</h1>
                     <b>{formatDate(createdAt)}</b>
                     

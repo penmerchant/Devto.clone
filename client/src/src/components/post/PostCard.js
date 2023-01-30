@@ -11,7 +11,7 @@ const PostCard = (props) => {
     const {author,
         likes,
         comments,
-        imageUrl,
+        image,
         title,
         _id,
         createdAt,
@@ -28,7 +28,7 @@ const PostCard = (props) => {
 
     return (
         <div className={classes.card} onClick={onClick}>
-            {index === 0 && !disable ? <img src={imageUrl} className={classes.img} alt='url'/>: null}
+            {index === 0 && !disable ? <img src={image} className={classes.img} alt='url'/>: null}
             <div className={classes.row}>
                 <img src={author.profilePicture} alt='user profile' className={classes.profile_picture}/>
                 <p>{fullName}</p>

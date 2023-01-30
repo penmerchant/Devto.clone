@@ -18,7 +18,7 @@ const createForm = (
                 return <BodyInput label={label} onChange={onCustomInputChange} value={value}/>
             }
             if(label === 'Tags'){
-                return <TagsInput type={type} label={label} onChange={onCustomInputChange} placeholder={placeholder}/>
+                return <TagsInput type={type} label={label} onChange={onCustomInputChange} placeholder={placeholder} tags={value}/>
             }      
             return <Input name={name} label={label} value={value} type={type} onChange={onInputChange} placeholder={placeholder}/>
             
@@ -108,12 +108,23 @@ export let editPostForm = {
 export const prefillEditPostForm = (data) => {
     for (let [key, value] of Object.entries(data)){
         if(key in editPostForm){
-            editPostForm = { ...editPostForm,
+            if (key === 'tags') {
+                let tags = [];
+                data[key].forEach((tag) => {
+                  tags.push(tag);
+                });
+                editPostForm = {
+                  ...editPostForm,
+                  [key]: { ...editPostForm[key], value: tags, valid: true },
+                };
+              } 
+            else {editPostForm = { ...editPostForm,
                 [key] : {...editPostForm[key], value, valid: true}
-            };
+                };
+            }
         }
     }
-       
+    
 };
 
 export const CommentForm = {

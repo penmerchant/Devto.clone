@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {useParams} from 'react-router-dom';
+import AuthContext from "../../../context/authContext";
 import useForm from "../../../hooks/useForm";
 import useHttp from "../../../hooks/useHttp";
+import { appendData } from "../../../utils";
 import { editPostForm, prefillEditPostForm } from "../../../utils/formConfig";
 
 const EditPost = () => {
@@ -9,6 +11,7 @@ const EditPost = () => {
     const [isError, setError] = useState(false);
     const {renderInputs, renderValues, setForm} = useForm(editPostForm);
     const {sendRequest, isLoading} = useHttp();
+    const {currentUser} = useContext(AuthContext);
     const formInputs = renderInputs();
     const formValues = renderValues();
 
@@ -18,24 +21,27 @@ const EditPost = () => {
             try {
                 const response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/${postId}`);
                 setLoaded(response);
-                prefillEditPostForm(response);
             } catch (error) {
                 setError(true);
             }
         };
         fetchPost();
-        setForm(editPostForm);
     },[setLoaded, postId, sendRequest,setForm]);
     
-    // useEffect(()=>{
-    //     try {
-    //         // if author.id === currentUser.id
-    //         prefillEditPostForm(loadedPost);
-    //         setForm(editPostForm);
-    //     } catch (error) {
-    //         // setError(true);
-    //     }
-    // },[loadedPost,setForm]);
+    useEffect(()=>{
+        try {
+            // if author.id === currentUser.id
+            prefillEditPostForm(loadedPost);
+            setForm(editPostForm);
+        } catch (error) {
+            setError(true);
+        }
+    },[loadedPost,setForm]);
+    
+    const submitHandler = (e) => {
+        e.preventDefault();
+        const formData = appendData(formValues);
+    };
 
     if (isLoading) {
         return <div>Loading ... </div>

@@ -7,7 +7,7 @@ const BodyInput = (props) => {
 
     const valueRef = useRef();
     valueRef.current = {body, valid};
-    // renders an empty value each time this component is being called
+    // renders an prev value each time this component is being editted
     useEffect(()=>{
         setBody(props.value);
     }, [props.value]);

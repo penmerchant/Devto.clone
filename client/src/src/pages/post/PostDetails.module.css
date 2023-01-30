@@ -191,3 +191,36 @@ a{
 .bookmark_icon:hover{
     cursor:pointer;
 }
+
+.dropdown{
+    display: none;
+}
+ 
+.toggle_setting:hover{
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.toggle_setting:focus{
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.dropdown_show{
+  position:absolute;
+  width: 100px;
+  transform: translateX(-80%);
+  background: #fff;
+  border: var(--border);
+  border-radius: 5px;
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid #8B8C83;
+  z-index: 999;
+}

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import {useParams} from 'react-router-dom';
+import classes from './EditPost.module.css';
 import AuthContext from "../../../context/authContext";
 import useForm from "../../../hooks/useForm";
 import useHttp from "../../../hooks/useHttp";
@@ -38,9 +39,20 @@ const EditPost = () => {
         }
     },[loadedPost,setForm]);
     
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
         const formData = appendData(formValues);
+        if( currentUser.data.id === loadedPost.author) {
+            try {
+                await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/edit-post/${postId}`,
+                    'PUT',
+                    formData
+                );
+                setError(false);
+            } catch (error) {
+                setError(true);
+            }
+        }
     };
 
     if (isLoading) {
@@ -50,7 +62,10 @@ const EditPost = () => {
         return <div> An error occurred</div>
     }
     return <div>{
-            loadedPost && formInputs
+            loadedPost && 
+            <div className={classes.form}>
+                { formInputs }
+            </div>
         }</div>
 
 };

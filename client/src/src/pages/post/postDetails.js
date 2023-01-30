@@ -1,27 +1,30 @@
-import {useParams } from "react-router-dom";
+import {Link, useParams } from "react-router-dom";
 import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import useHttp from "../../hooks/useHttp";
 import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 import Comments from "./components/comments";
 import AuthorsProfile from "./components/profile";
 import PostReactions from "./components/PostReactions/PostReaction";
 import { formatDate } from "../../utils";
+import {BsThreeDotsVertical} from 'react-icons/bs';
+import AuthContext from "../../context/authContext";
 
 const PostDetails = () => {
     // get id of a post
     const {sendRequest, setError} = useHttp();
+    const {currentUser} = useContext(AuthContext);
     const [isLoading, setLoading] = useState(true);
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
+    const [isToggled, setToggle] = useState(false);
     const {postId} = useParams();
     const { body,
         title,
         image,
         author,
         createdAt} = post;
-
     // reset input 
     useEffect(()=>{
         let isCancelled = false;
@@ -57,6 +60,14 @@ const PostDetails = () => {
         fetchComments();
       
     },[sendRequest,post,postId]);
+    
+    const toggleSettings = () => {
+        if(isToggled){
+            setToggle(false);
+        }else{
+            setToggle(true);
+        }
+    }
 
     const styles = { padding: '30px', background: '#fff'};
     if (isLoading) {
@@ -71,6 +82,17 @@ const PostDetails = () => {
         </div>
         <div className={classes.post_section} >
                     {image && <img src={image} className={classes.post_img} alt='thumbnail of the post' />}
+                    { currentUser.data.id === author._id &&
+                        <div className={classes.align_right}>
+                            <div onClick={toggleSettings} className={classes.toggle_setting}>
+                                <BsThreeDotsVertical />
+                                <ul className={isToggled? classes.dropdown_show: classes.dropdown}>
+                                    <Link to={`/edit-post/${postId}`}>Edit</Link>
+                                    <p>Delete</p>
+                                </ul>
+                            </div>
+                        </div> 
+                    }
                     <h1>{title}</h1>
                     <b>{formatDate(createdAt)}</b>
                     

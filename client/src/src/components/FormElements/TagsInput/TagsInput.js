@@ -9,21 +9,21 @@ const TagsInput = (props) => {
 
     useEffect(()=>{
         setTags(props.tags);
-    },[props.tags]);
+    },[props.tags, setTags]);
 
     const onKeyPress = (e) => {
         
         const tag = e.target.value;
         if(!tag.trim()) return;
         if(e.key === 'Enter'){
-            setTags([...tags, tag]);
+            setTags((tags)=>[...tags, tag]);
             e.target.value = '';
             setValid(true);
+            props.onChange(props.label.toLowerCase(), [...tags, tag], valid);
         }
         if(tags.length === 0){
             setValid(false);
         }
-        props.onChange(props.label.toLowerCase(), [...tags, tag], valid);
     };
 
     const removeTags = (removedIndex) =>{
@@ -31,7 +31,7 @@ const TagsInput = (props) => {
         const updatedTags = tags.filter((tag) => tag !== removedTag);
         setTags(updatedTags);
 
-        props.onChange(props.label.toLowerCase(), [tags], true);
+        props.onChange(props.label.toLowerCase(), updatedTags, true);
     };
 
 

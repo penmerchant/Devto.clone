@@ -15,7 +15,7 @@ const PostCards = (props) => {
             <p className={classes.date}>({formatDate(props.post.createdAt)})</p>
         </div>
         <div className={classes.align_item}>
-            <Link to={`/edit-post/${props.post._id}`} className={classes.link}>
+            <Link to={`/post-details/${props.post._id}`} className={classes.link}>
             <h2>{props.post.title}</h2>
             </Link>
         </div>

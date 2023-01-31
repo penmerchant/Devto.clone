@@ -19,7 +19,10 @@ const ButtonStyle = () =>{
 
     };
 
-    const btn_edit = {};
+    const btn_edit = {
+        background: '#000000',
+        color : '#fff',
+    };
 
     return {btn_post, btn_comment, btn_dismiss, btn_delete, btn_edit};
 };

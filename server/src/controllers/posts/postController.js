@@ -35,8 +35,34 @@ const createPost = async ( req, res, next)=>{
 };
 
 const editPost = async (req, res, next) => {
-  // const {title, image, body, tags} = req.body;
-  //
+  const {title, body, tags} = req.body;
+  const {postId} = req.params;
+  let imageUrl;
+  if ( req.file) {
+    imageUrl = await uploadImageToCloud(req.file.path);
+  }
+  try {
+    if (imageUrl) {
+      const updatePost = await Post.findByIdAndUpdate(postId, {
+        title: title,
+        body: body,
+        tags: tags,
+        image: imageUrl,
+      });
+      await updatePost.save();
+    } else {
+      const updatePost = await Post.findByIdAndUpdate(postId, {
+        title: title,
+        body: body,
+        tags: tags,
+      });
+      await updatePost.save();
+    }
+  } catch (error) {
+    throw new Error('Unable to update to server', 501);
+  }
+
+  return res.status(201).json('succesfully editted the post');
 };
 
 const getAllPosts = async (req, res, next) =>{

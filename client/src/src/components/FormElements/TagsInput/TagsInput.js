@@ -5,7 +5,6 @@ const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
     const [valid , setValid] = useState(false);
     
-    console.log(props.tags);
 
     useEffect(()=>{
         setTags(props.tags);

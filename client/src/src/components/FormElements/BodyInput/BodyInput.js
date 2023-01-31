@@ -15,8 +15,8 @@ const BodyInput = (props) => {
     //handle any changes of value
     const onChange = (value) => {
         let isValid = false;
-        setBody(value);
         if(valueRef.current.body !== '') {
+            setBody(value);
             isValid = true;
             setValid(isValid);
         }

@@ -1,12 +1,12 @@
 import MarkdownEditor from '@uiw/react-markdown-editor';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const BodyInput = (props) => {
     const [body, setBody] = useState();
     const [valid, setValid] = useState(false);
 
-    const valueRef = useRef();
-    valueRef.current = {body, valid};
+    // const valueRef = useRef();
+    // valueRef.current = {body, valid};
     // renders an prev value each time this component is being editted
     useEffect(()=>{
         setBody(props.value);
@@ -15,7 +15,7 @@ const BodyInput = (props) => {
     //handle any changes of value
     const onChange = (value) => {
         let isValid = false;
-        if(valueRef.current.body !== '') {
+        if(value !== '') {
             setBody(value);
             isValid = true;
             setValid(isValid);
@@ -24,7 +24,7 @@ const BodyInput = (props) => {
             isValid = false;
             setValid(isValid);
         }
-        props.onChange(props.label.toLowerCase(), body, valueRef.current.valid);
+        props.onChange(props.label.toLowerCase(), body, valid);
     };
 
     return (

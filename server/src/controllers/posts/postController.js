@@ -1,7 +1,10 @@
 const Post = require('../../models/posts/post');
 const {validationResult} = require('express-validator');
-const {uploadImageToCloud, getDateNow} = require('../../utils/utils');
+const {uploadImageToCloud,
+  getDateNow,
+  convertStrToArray} = require('../../utils/utils');
 const User = require('../../models/users/user');
+const {createTags, updateTags} = require('../tags/tags');
 
 const createPost = async ( req, res, next)=>{
   const error = validationResult(req.body);
@@ -15,6 +18,7 @@ const createPost = async ( req, res, next)=>{
   // upload image to cloud
   const imageUrl = await uploadImageToCloud(req.file.path);
   const createdAt = getDateNow();
+  const parsedTags = convertStrToArray(tags);
   let createdPost;
   try {
     const uploadContent = await new Post({
@@ -23,9 +27,9 @@ const createPost = async ( req, res, next)=>{
       createdAt: createdAt,
       image: imageUrl,
       author: author,
-      tags: tags,
     });
     await uploadContent.save();
+    await createTags(parsedTags, uploadContent);
     createdPost = uploadContent;
   } catch (error) {
     throw new Error('unable to upload to server');
@@ -46,16 +50,19 @@ const editPost = async (req, res, next) => {
       const updatePost = await Post.findByIdAndUpdate(postId, {
         title: title,
         body: body,
-        tags: tags,
         image: imageUrl,
-      });
+      }).populate('tags');
+
+      const parsedTags = convertStrToArray(tags);
+      await updateTags(parsedTags, updatePost);
       await updatePost.save();
     } else {
       const updatePost = await Post.findByIdAndUpdate(postId, {
         title: title,
         body: body,
-        tags: tags,
-      });
+      }).populate('tags');
+      const parsedTags = convertStrToArray(tags);
+      await updateTags(parsedTags, updatePost);
       await updatePost.save();
     }
   } catch (error) {
@@ -80,7 +87,9 @@ const getPostById = async ( req, res, next) => {
   const {postId} = req.params;
   let post;
   try {
-    post = await Post.findById(postId).populate('author');
+    post = await Post.findById(postId)
+        .populate('author')
+        .populate('tags');
   } catch (err) {
     next(new Error('Something wrong with the server', 500));
   }

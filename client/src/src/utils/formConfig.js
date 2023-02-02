@@ -111,7 +111,7 @@ export const prefillEditPostForm = (data) => {
             if (key === 'tags') {
                 let tags = [];
                 data[key].forEach((tag) => {
-                  tags.push(tag);
+                  tags.push(tag.name);
                 });
                 editPostForm = {
                   ...editPostForm,

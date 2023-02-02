@@ -5,11 +5,10 @@ const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
     const [valid , setValid] = useState(false);
     
-
     useEffect(()=>{
         setTags(props.tags);
     },[props.tags, setTags]);
-
+    
     const onKeyPress = (e) => {
         
         const tag = e.target.value;
@@ -19,6 +18,7 @@ const TagsInput = (props) => {
             e.target.value = '';
             setValid(true);
             props.onChange(props.label.toLowerCase(), [...tags, tag], valid);
+            console.log(tags);
         }
         if(tags.length === 0){
             setValid(false);
@@ -39,12 +39,12 @@ const TagsInput = (props) => {
     <div className={classes.container}>
     {   
         tags && tags.map((tag,index)=>{
-            return <>
+            return <div>
                 <div className={classes.tags}>
                     <p>{tag}</p>
                     <span onClick={()=>removeTags(index)} className={classes.btn}>x</span>
                 </div>
-            </>
+            </div>
         })
     }
     <input id={props.id}

@@ -8,7 +8,7 @@ const Post = new Schema({
   image: {type: String},
   author: {type: mongoose.Types.ObjectId, ref: 'User'},
   comments: [{type: mongoose.Types.ObjectId, ref: 'Comment', default: null}],
-  tags: [{type: String, ref: 'Tag', default: null}],
+  tags: [{type: mongoose.Types.ObjectId, ref: 'Tags', default: []}],
   likes: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],
   bookmarked: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],
   commented: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],

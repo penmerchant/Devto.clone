@@ -19,7 +19,26 @@ const getDateNow = () =>{
   return dateNow;
 };
 
+const convertStrToArray = (arr) => {
+  let str = '';
+  const newArray = [];
+  for ( let index = 0; index < arr.length; index++) {
+    if (arr[index] !== ',' || index === arr.length -1 ) {
+      str += arr[index];
+    }
+    if (arr[index] === ',') {
+      newArray.push(str);
+      str = '';
+    }
+    if ( index === arr.length - 1) {
+      newArray.push(str);
+    }
+  }
 
+  return newArray;
+};
+
+exports.convertStrToArray = convertStrToArray;
 exports.uploadImageToCloud = uploadImageToCloud;
 exports.getDateNow = getDateNow;
 

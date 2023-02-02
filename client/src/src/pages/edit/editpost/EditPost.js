@@ -18,7 +18,7 @@ const EditPost = () => {
     const formInputs = renderInputs();
     const formValues = renderValues();
     const {btn_edit} = ButtonStyle();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     let {postId} = useParams();
     useEffect(()=>{

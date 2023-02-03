@@ -187,8 +187,10 @@ const editProfile = async (req, res, next) => {
   const {userId} = req.params;
   const {firstName, lastName, bio, github, instagram} = req.body;
 
-
-  const imageUrl = uploadImageToCloud(req.file.path);
+  let imageUrl;
+  if ( req.file ) {
+    imageUrl = await uploadImageToCloud(req.file.path);
+  }
 
   try {
     if ( imageUrl) {

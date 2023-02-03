@@ -17,7 +17,6 @@ router.get('/:userId', getUserById);
 router.get('/recentPosts/:userId', getRecentPosts);
 router.get('/recentComments/:userId', getRecentComments);
 
-router.put('/edit-profile/:userId',
-    upload.single('profilePicture'),
+router.put('/edit-profile/:userId', upload.single('profilePicture'),
     editProfile);
 module.exports = router;

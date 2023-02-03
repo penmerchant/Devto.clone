@@ -45,7 +45,7 @@ const BioSection = (props) => {
 
         <div className={classes.row}>
             <div className={classes.social_link_wrapper}>
-                {props.instagram && <FaInstagram className={classes.link}/>}
+                {props.instagram && <a href={props.instagram}> <FaInstagram className={classes.link}/> </a>}
                     
             </div>
             <div className={classes.social_link_wrapper}>

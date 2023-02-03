@@ -12,13 +12,14 @@ import ButtonStyle from "../../../utils/ButtonStyle";
 const EditPost = () => {
     const [loadedPost , setLoaded] = useState({});
     const [isError, setError] = useState(false);
+    const [isPermitted, setPermission] = useState(true);
     const {renderInputs, renderValues, setForm, isFormValid} = useForm(editPostForm);
     const {sendRequest, isLoading} = useHttp();
     const {currentUser} = useContext(AuthContext);
     const formInputs = renderInputs();
     const formValues = renderValues();
     const {btn_edit} = ButtonStyle();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     let {postId} = useParams();
     useEffect(()=>{
@@ -35,7 +36,6 @@ const EditPost = () => {
     
     useEffect(()=>{
         try {
-            // if author.id === currentUser.id
             prefillEditPostForm(loadedPost);
             setForm(editPostForm);
         } catch (error) {
@@ -48,21 +48,20 @@ const EditPost = () => {
         const formData = appendData(formValues);
         if( currentUser.data.id === loadedPost.author._id) {
             try {
-                console.log(1);
                 await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/edit-post/${postId}`,
                     'PUT',
                     formData
                 );
                 setError(false);
                 alert('succesfully editted the post');
-                // navigate(to: '/edit-post/${postId}');
+                navigate(`/post-details/${postId}`, {replace: true});
             } catch (error) {
                 setError(true);
                 alert('fail');
             }
         }
         else {
-            alert('youre not logged in!');
+            setPermission(false);
         }
     };
 
@@ -72,6 +71,9 @@ const EditPost = () => {
     if (isError) {
         return <div> An error occurred</div>
     }
+    if (!isPermitted) {
+        return <div>You have no access to edit the post</div>
+    }
     return <div>{
             loadedPost && 
             <div className={classes.form}>
@@ -79,7 +81,7 @@ const EditPost = () => {
                 <Button onClick={submitHandler}
                 label='Edit'
                 style={btn_edit}
-                valid={isFormValid}/>
+                valid={!isFormValid}/>
             </div>
         }</div>
 

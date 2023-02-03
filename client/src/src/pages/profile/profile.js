@@ -30,7 +30,8 @@ const Profile = () => {
                 instagram={userProfile.instagram} 
                 firstName={userProfile.firstName}
                 lastName={userProfile.lastName}
-                createdAt={userProfile.createdAt} />
+                createdAt={userProfile.createdAt} 
+                userId={userProfile._id}/>
         }
         <div className={classes.grid_display}>
             <div>

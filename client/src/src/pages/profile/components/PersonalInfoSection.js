@@ -2,19 +2,35 @@ import classes from '../profile_section.module.css';
 import {FaBirthdayCake} from 'react-icons/fa';
 import {FaInstagram} from 'react-icons/fa';
 import {FaGithub} from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { formatDate } from '../../../utils';
 import {BsThreeDotsVertical} from 'react-icons/bs';
+import AuthContext from '../../../context/authContext';
+import { Link } from 'react-router-dom';
 
 const BioSection = (props) => {
     const [date, setDate] = useState();
+    const [isToggle, setToggle] = useState(false);
+    const {currentUser} = useContext(AuthContext);
     useEffect(()=>{
         const newDate = formatDate(props.createdAt);
         setDate(newDate);
     },[setDate, props.createdAt]);
+
+    const toggleDropdown = () => {
+        if( isToggle) setToggle(false);
+        else setToggle(true);
+    }
     return <div className={classes.content_center}>
         <div className={classes.action_btn}>
-            <BsThreeDotsVertical />
+            { currentUser.data.id === props.userId && <div onClick={toggleDropdown}> 
+                <BsThreeDotsVertical /> 
+                <div className={isToggle? classes.dropdown_show: classes.dropdown}>
+                    <Link to={`/edit-profile/${props.userId}`}>Edit Profile</Link>
+                    <p>Delete Account</p>
+                </div>
+                </div> 
+            }
         </div>
         <div className={classes.img_wrapper}>
            { props.profilePicture && <img className={classes.circle} src={props.profilePicture} alt='User Profile'/>}

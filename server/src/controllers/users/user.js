@@ -183,6 +183,39 @@ const getRecentPosts = async (req, res, next) => {
   return res.status(201).json(recentPosts);
 };
 
+const editProfile = async (req, res, next) => {
+  const {userId} = req.params;
+  const {firstName, lastName, bio, github, instagram} = req.body;
+
+
+  const imageUrl = uploadImageToCloud(req.file.path);
+
+  try {
+    if ( imageUrl) {
+      await User.findByIdAndUpdate(userId, {
+        firstName: firstName,
+        lastName: lastName,
+        bio: bio,
+        profilePicture: imageUrl,
+        github: github,
+        instagram: instagram,
+      });
+    } else {
+      await User.findByIdAndUpdate(userId, {
+        firstName: firstName,
+        lastName: lastName,
+        bio: bio,
+        github: github,
+        instagram: instagram,
+      });
+    }
+  } catch (error) {
+    throw new Error('Unable to update user profile', 501);
+  }
+
+
+  res.status(201).json('Sucessfully updated user profile');
+};
 // unfollow a user
 exports.followUser = followUser;
 exports.signUp = signUp;
@@ -190,3 +223,4 @@ exports.signIn = signIn;
 exports.getUserById = getUserById;
 exports.getRecentComments = getRecentComments;
 exports.getRecentPosts = getRecentPosts;
+exports.editProfile = editProfile;

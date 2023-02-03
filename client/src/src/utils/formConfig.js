@@ -105,6 +105,34 @@ export let editPostForm = {
     },
 };
 
+export let editProfile = {
+
+    firstName: {
+        ...createForm('text', 'firstName' , 'First name' , 'First name'),
+        key: '1',
+    },
+    lastName: {
+        ...createForm('text', 'lastName' , 'Last name', 'Last name'),
+        key: '2',
+    },
+    bio: {
+        ...createForm('text', 'bio', 'Bio', 'Write about yourself'),
+        key: '3',
+    },
+    github: {
+        ...createForm('text', 'github', 'Github', 'Your github account'),
+        key: '4',
+    },
+    instagram: {
+        ...createForm('text', 'instagram', 'Instagram', 'Your instagram account'),
+        key: '5',
+    },
+    profilePicture: {
+        ...createForm('file', 'image',  'Image'),
+        key: '6',
+    },
+};
+
 export const prefillEditPostForm = (data) => {
     for (let [key, value] of Object.entries(data)){
         if(key in editPostForm){
@@ -122,6 +150,17 @@ export const prefillEditPostForm = (data) => {
                 [key] : {...editPostForm[key], value, valid: true}
                 };
             }
+        }
+    }
+    
+};
+
+export const prefilledProfile = (data) => {
+    for (let [key, value] of Object.entries(data)){
+        if(key in editProfile){
+             editProfile = { ...editProfile,
+                [key] : {...editProfile[key], value, valid: true}
+                };
         }
     }
     

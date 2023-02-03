@@ -79,7 +79,7 @@ const EditPost = () => {
                 <Button onClick={submitHandler}
                 label='Edit'
                 style={btn_edit}
-                />
+                valid={isFormValid}/>
             </div>
         }</div>
 

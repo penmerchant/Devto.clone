@@ -3,6 +3,8 @@ import classes from './profilemenu.module.css';
 import AuthContext from '../../context/authContext';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button/Button';
+import ButtonStyle from '../../utils/ButtonStyle';
 
 const {ProfileMenuItems} = require('./ProfileMenuItems');
 
@@ -11,6 +13,7 @@ const ProfileMenu = () =>{
     const [show, setShow] = useState(false);
     const {logout,currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
+    const {btn_post} = ButtonStyle();
 
     const profilePicture =
     currentUser.data.profilePicture|| 'https://firebasestorage.googleapis.com/v0/b/testing-ba1e7.appspot.com/o/default%2Fdefault_pic.png?alt=media&token=9f6bcb7a-c5df-40e9-af2a-be0808b66b86';
@@ -42,7 +45,9 @@ const ProfileMenu = () =>{
                 </>
             })
         }
-        <button onClick={signout} >Sign out</button>
+        <Button style={btn_post}
+            onClick={signout}
+            label='Sign Out' />
         </ul>
         </>
     );

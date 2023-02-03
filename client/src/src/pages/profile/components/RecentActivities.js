@@ -38,10 +38,12 @@ const RecentActivities = ({userId}) => {
         <div>
             <b>Recent posts</b>
             {recentPosts && <PostLists user={recentPosts} posts={recentPosts.post}/>}
+            {errorPost && <div>An error occurred</div>}
         </div>
         <br></br>
         <div className={classes.info_wrapper}>
             <b>Recent comments</b>
+            {errorComments && <div>An error occurred</div>}
             {recentComments && <CommentList comments={recentComments.comments} user={recentComments}/>}
         </div>
     </div>;

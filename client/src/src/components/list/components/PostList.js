@@ -3,7 +3,6 @@ import PostCards from "./PostCards";
 
 const PostLists = (props) => {
     const {posts, user} = props;
-
     return <div>
         <Fragment>
             { posts && posts.map((post)=>{

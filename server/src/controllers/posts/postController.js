@@ -28,6 +28,7 @@ const createPost = async ( req, res, next)=>{
       image: imageUrl,
       author: author,
     });
+    await User.updateOne({_id: author}, {$push: {post: uploadContent._id}});
     await uploadContent.save();
     await createTags(parsedTags, uploadContent);
     createdPost = uploadContent;

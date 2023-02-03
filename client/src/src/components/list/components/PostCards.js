@@ -4,7 +4,6 @@ import { BsChatRight } from "react-icons/bs";
 import {Link} from 'react-router-dom';
 
 const PostCards = (props) => {
-    console.log()
     return <>
     <div className={classes.card}>
         <div className={classes.row} >

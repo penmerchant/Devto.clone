@@ -32,7 +32,9 @@ const ProfileMenu = () =>{
         <img src={profilePicture} onClick={showMenu}  className={classes.img} alt='user'/>
 
         <ul className={show? classes.dropdown_show :classes.dropdown}>
-
+            <Link to={`/profile/${currentUser.data.id}`}>
+                <li className={classes.menu_items}>My profile</li>
+            </Link>
         {
             ProfileMenuItems.map((menu,index)=>{
                 return <>   

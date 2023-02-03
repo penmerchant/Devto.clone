@@ -3,7 +3,7 @@ import { formatDate } from '../../../utils';
 import classes from '../list.module.css';
 
 const CommentsCards = (props) => {
-    const {comment, user} = props;
+    const {comment} = props;
     const {post} = comment;
     // user var is for deleting comments
     return <div className={classes.card}>

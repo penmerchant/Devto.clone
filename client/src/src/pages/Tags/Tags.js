@@ -8,11 +8,12 @@ import classes from './Tags.module.css';
 
 const TagsView = () => {
     const [tags, setTags] = useState([]);
+    // const [isHover, setHover] = useState(false);
     const {currentUser} = useContext(AuthContext);
     const {sendRequest,setError,isError,isLoading} = useHttp();
     const {state, handleAction} = useFollow({tags:tags, userId: currentUser.data.id});
     // const follow
-    const {btn_follow} = ButtonStyle();
+    const {style} = ButtonStyle();
     const effect = state.isTagFollowed? 'Following' : 'Follow';
     const action = state.isTagFollowed? 'unfollow' : 'follow';
     useEffect(()=>{
@@ -29,6 +30,14 @@ const TagsView = () => {
 
         fetchTags();
     },[setTags, sendRequest,setError]);
+    // const handleMouseLeave = (index) => {
+    //     setHover(()=>{
+    //         isHover = false;
+    //     });
+    // }
+    // const handleMouseEnter = (index) => {
+    //     setHover(true);
+    // };
 
     const handleSubmit = (tagId) => {
         if (currentUser.isLoggedin) {
@@ -47,9 +56,10 @@ const TagsView = () => {
         { tags && tags.map((tag)=>{
             return <div className={classes.tags_card}>
                 <div><b>{tag.name}</b></div>
-                <Button label={action}
-                 style={btn_follow}
-                 onClick={handleSubmit(tag._id)}/>
+                    <Button label={action}
+                        style={style.btn_follow}
+                        onClick={handleSubmit(tag._id)}/>
+              
             </div>
         })}
         </div>

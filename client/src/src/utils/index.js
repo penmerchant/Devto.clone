@@ -26,3 +26,15 @@ export const checkInArray = (arr, userId) => {
 export const countArrayLength = (arr) => {
   return arr && arr.length;
 };
+
+export const countCommentsLength = (comments) => {
+  let totalLength = comments.length;
+
+  for (const[i, comment] of comments.entries()) {
+    if (comment.replies.length > 0) {
+      totalLength += comment.replies.length;
+    }
+  }
+
+  return totalLength;
+}

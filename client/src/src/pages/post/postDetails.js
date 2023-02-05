@@ -7,7 +7,7 @@ import PostDetailsSkeleton from "../../components/Skeleton/PostDetailsSkeleton";
 import Comments from "./components/comments";
 import AuthorsProfile from "./components/profile";
 import PostReactions from "./components/PostReactions/PostReaction";
-import { formatDate } from "../../utils";
+import { countCommentsLength, formatDate } from "../../utils";
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import AuthContext from "../../context/authContext";
 
@@ -98,7 +98,7 @@ const PostDetails = () => {
                     
             <MarkdownPreview source={body} key={post.id} style={styles} />
             <div className={classes.comment_form}>
-                <h2>Comments ({comments.length})</h2>
+                <h2>Comments ({countCommentsLength(comments)})</h2>
                 <Comments comments={comments} post={postId}/>
             </div>
         </div>

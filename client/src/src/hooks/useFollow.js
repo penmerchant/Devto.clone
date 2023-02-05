@@ -12,7 +12,8 @@ const useFollow = ({tags, followedUsers, followers,userId}) => {
 
     const handleAction = async ({route, effect, userId, targetId}) => {
         // targetId is being used to follow and unfollow tags and users
-        // sendRequest('url/api/route/action')
+        // await sendRequest('url/api/route/action', 'PUT', 
+        // {userId: userId, targetId: targetId});
         // setState
     };
 

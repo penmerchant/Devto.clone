@@ -34,6 +34,19 @@ const updateTags = (tags, post) => {
   removeTags(tags, post);
 };
 
+const getTags = async (req, res) => {
+  let tags;
+
+  try {
+    tags = await Tags.find({});
+  } catch (error) {
+    throw new Error('Unable to get tags', 501);
+  }
+
+  res.status(201).json(tags);
+};
+
 exports.updateTags = updateTags;
 exports.removeTags = removeTags;
 exports.createTags = createTags;
+exports.getTags = getTags;

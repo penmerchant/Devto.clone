@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid_tags{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.tags_card{
+    background: #fff;
+    line-height: auto;
+    width: auto;
+    height: auto;
+}

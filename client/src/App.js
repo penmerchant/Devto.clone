@@ -11,6 +11,7 @@ import About from "./src/pages/about/about";
 import Profile from "./src/pages/profile/profile";
 import EditPost from "./src/pages/edit/editpost/EditPost";
 import EditProfile from "./src/pages/edit/editprofile/EditProfile";
+import TagsView from "./src/pages/Tags/Tags";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/edit-post/:postId' element={<EditPost />}/>
         <Route path='/edit-profile/:userId' element={<EditProfile />}/>
+        <Route path='/tags' element={<TagsView />}/>
       </Routes>
     </Layout>
     <Footer />

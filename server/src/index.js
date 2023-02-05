@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const PostRoute = require('./routes/posts/postRoute');
 const CommentRoute = require('./routes/comments/comment');
 const UserRoute = require('./routes/users/user');
+const TagsRoute = require('./routes/tags/tags');
 const app = express();
 require('dotenv').config();
 
@@ -35,6 +36,7 @@ app.use(cors({
 app.use('/api/posts/', PostRoute);
 app.use('/api/comments/', CommentRoute);
 app.use('/api/user/', UserRoute);
+app.use('/api/tags/', TagsRoute);
 
 app.listen(PORT, () => {
   console.log(`Listening to ${PORT}`);

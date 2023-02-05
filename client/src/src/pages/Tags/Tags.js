@@ -1,11 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Button from "../../components/Button/Button";
+import AuthContext from "../../context/authContext";
+import useFollow from "../../hooks/useFollow";
 import useHttp from "../../hooks/useHttp";
+import ButtonStyle from "../../utils/ButtonStyle";
 import classes from './Tags.module.css';
 
 const TagsView = () => {
     const [tags, setTags] = useState([]);
+    const {currentUser} = useContext(AuthContext);
     const {sendRequest,setError,isError,isLoading} = useHttp();
-
+    const {state, handleAction} = useFollow({tags:tags, userId: currentUser.data.id});
+    // const follow
+    const {btn_follow} = ButtonStyle();
+    const effect = state.isTagFollowed? 'Following' : 'Follow';
+    const action = state.isTagFollowed? 'unfollow' : 'follow';
     useEffect(()=>{
         
         const fetchTags = async () => {
@@ -20,15 +29,27 @@ const TagsView = () => {
 
         fetchTags();
     },[setTags, sendRequest,setError]);
+
+    const handleSubmit = (tagId) => {
+        if (currentUser.isLoggedin) {
+            handleAction('tags', effect, currentUser.data.id, tagId);
+        }
+    }
+
     if(isLoading) {
         return <div>Loading ...</div>
     }
-
+    if(isError){
+        return <div>An error occurred</div>
+    }
     return <div className={classes.container}>
         <div className={classes.grid_tags}>
         { tags && tags.map((tag)=>{
             return <div className={classes.tags_card}>
-                <div>{tag.name}</div>
+                <div><b>{tag.name}</b></div>
+                <Button label={action}
+                 style={btn_follow}
+                 onClick={handleSubmit(tag._id)}/>
             </div>
         })}
         </div>

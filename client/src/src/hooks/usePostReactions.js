@@ -13,7 +13,6 @@ const usePostReactions = ({likes, bookmarked, userId}) => {
     // action -> likes, comments, posts
     const handleReactions = async(effect, action , actionId, stateKey) => {
         try {
-            console.log(userId);
             // update reactions to api await sendRequest(`http://localhost:4444/api/action/, 'PUT'`)
             try {
                 await sendRequest(`${process.env.REACT_APP_API_URL}/api/${action}/${effect}/`,

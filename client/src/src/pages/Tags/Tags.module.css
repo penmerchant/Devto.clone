@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    margin-top: 1rem;
     justify-content: center;
     align-items: center;
 }
@@ -7,12 +8,15 @@
 .grid_tags{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    gap: 10px;
 }
 
 .tags_card{
     background: #fff;
+    padding: 1rem;
     line-height: auto;
-    width: auto;
-    height: auto;
+    width: 300px;
+    border-radius: 8px;
+    height: 100px;
+    border-top: 10px solid #019A66;
 }

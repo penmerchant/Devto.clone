@@ -13,10 +13,16 @@ const ButtonStyle = () =>{
     const btn_dismiss = {
         background: '#85959A',
         color: '#353A3B',
+
     };
 
     const btn_delete = {
 
+    };
+    const btn_follow = {
+        background: '#12383B',
+        color: '#fff',
+        width: '100%',
     };
 
     const btn_edit = {
@@ -24,7 +30,12 @@ const ButtonStyle = () =>{
         color : '#fff',
     };
 
-    return {btn_post, btn_comment, btn_dismiss, btn_delete, btn_edit};
+    return {btn_post,
+        btn_comment,
+        btn_dismiss,
+        btn_delete,
+        btn_edit,
+        btn_follow};
 };
 
 export default ButtonStyle;

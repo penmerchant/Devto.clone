@@ -1,6 +1,6 @@
 const Tags = require('../../models/tags/tags');
 const Post = require('../../models/posts/post');
-
+const User = require('../../models/users/user');
 const createTags = async (tags, post) => {
   for (const [i, tag] of tags.entries()) {
     console.log(i);
@@ -51,6 +51,8 @@ const followTag = async (req, res) => {
   const {userId, targetId} = req.body;
   try {
     await Tags.findByIdAndUpdate({_id: targetId}, {$push: {followers: userId}});
+    await User.updateOne({_id: userId},
+        {$push: {followedTags: targetId}});
   } catch (error) {
     throw new Error('Unable to follow the tag', 501);
   }
@@ -62,6 +64,9 @@ const unfollowTag = async (req, res) => {
   const {userId, targetId} = req.body;
   try {
     await Tags.findByIdAndUpdate({_id: targetId}, {$pull: {followers: userId}});
+    await User.updateOne({_id: userId}, {
+      $pull: {followedTags: targetId},
+    });
   } catch (error) {
     throw new Error('Unable to unfollow the tag', 501);
   }

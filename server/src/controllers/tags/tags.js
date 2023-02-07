@@ -46,6 +46,31 @@ const getTags = async (req, res) => {
   res.status(201).json(tags);
 };
 
+
+const followTag = async (req, res) => {
+  const {userId, targetId} = req.body;
+  try {
+    await Tags.findByIdAndUpdate({_id: targetId}, {$push: {followers: userId}});
+  } catch (error) {
+    throw new Error('Unable to follow the tag', 501);
+  }
+
+  res.status(201).json('Sucessfully followed the tag');
+};
+
+const unfollowTag = async (req, res) => {
+  const {userId, targetId} = req.body;
+  try {
+    await Tags.findByIdAndUpdate({_id: targetId}, {$pull: {followers: userId}});
+  } catch (error) {
+    throw new Error('Unable to unfollow the tag', 501);
+  }
+
+  res.status(201).json('Successfully unfollowed the tag');
+};
+
+exports.unfollowTag = unfollowTag;
+exports.followTag = followTag;
 exports.updateTags = updateTags;
 exports.removeTags = removeTags;
 exports.createTags = createTags;

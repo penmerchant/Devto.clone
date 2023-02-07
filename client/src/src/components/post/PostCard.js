@@ -2,7 +2,7 @@ import classes from './PostCard.module.css';
 import { useNavigate } from 'react-router-dom';
 import  HeartIcon  from  '../../images/card/heart.svg';
 import CommentIcon from '../../images/card/comment-pen.svg';
-import { formatDate } from '../../utils';
+import { countCommentsLength, formatDate } from '../../utils';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
@@ -25,7 +25,6 @@ const PostCard = (props) => {
     const onClick = () => {
         navigate(`/post-details/${_id}`, {replace: true});
     }   
-
     return (
         <div className={classes.card} onClick={onClick}>
             {index === 0 && !disable ? <img src={image} className={classes.img} alt='url'/>: null}
@@ -42,7 +41,7 @@ const PostCard = (props) => {
                 </div>
                 <div></div>
                 <div className={classes.clickable}>
-                {comments.length}
+                    <>{countCommentsLength(comments)}</>
                     <img src={CommentIcon} className={classes.icon} alt='?' />
                 </div>
             </div>

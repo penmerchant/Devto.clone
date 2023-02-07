@@ -77,7 +77,7 @@ const getAllPosts = async (req, res, next) =>{
   let posts = [];
 
   try {
-    posts = await Post.find().populate('author');
+    posts = await Post.find().populate('author').populate('comments');
   } catch (error) {
     throw error;
   }

@@ -30,9 +30,9 @@ export const countArrayLength = (arr) => {
 export const countCommentsLength = (comments) => {
   let totalLength = comments.length;
 
-  for (const[i, comment] of comments.entries()) {
-    if (comment.replies.length > 0) {
-      totalLength += comment.replies.length;
+  for (const[key] of comments.entries()) {
+    if (comments[key].replies.length > 0) {
+      totalLength += comments[key].replies.length;
     }
   }
 

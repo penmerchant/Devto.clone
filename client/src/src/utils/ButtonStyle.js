@@ -1,5 +1,5 @@
 
-const ButtonStyle = () =>{
+const ButtonStyle = (isHover) =>{
     const btn_post = {
         background: '#1D61E0',
         color: '#fff',
@@ -23,7 +23,7 @@ const ButtonStyle = () =>{
     const style = {
 
         btn_follow : {
-            background: '#12383B',
+            background: isHover? '#0a2123' : '#12383B',
             color: '#fff',
             width: '100%',
         },

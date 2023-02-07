@@ -7,8 +7,8 @@ const Button = (props) =>{
      onSubmit={props.onSubmit}
      style={props.style}
      disabled={props.valid}
-    //  onMouseLeave={props.onMouseLeave}
-    //  onMouseEnter={props.onMouseEnter}
+     onMouseLeave={props.onMouseLeave}
+     onMouseEnter={props.onMouseEnter}
     >{props.label}</button>
 }
 

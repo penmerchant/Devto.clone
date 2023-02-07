@@ -2,22 +2,30 @@ import { useState } from "react";
 import { checkInArray } from "../utils";
 import useHttp from "./useHttp";
 
-const useFollow = ({tags, followedUsers, followers,userId}) => {
+const useFollow = ({ followedUsers, followers,userId}) => {
     const [state, setState] = useState({
-        isTagFollowed: checkInArray(tags, userId),
+        isTagFollowed: checkInArray(followers, userId),
         isFollowed: checkInArray(followers, userId),
         isFollowing: checkInArray(followedUsers, userId),
     });
+    const [isError, setError] = useState(false);
     const {sendRequest} = useHttp();
 
-    const handleAction = async ({route, effect, userId, targetId}) => {
+    const handleAction = async (route, action, userId, targetId, stateKey) => {
         // targetId is being used to follow and unfollow tags and users
-        // await sendRequest('url/api/route/action', 'PUT', 
-        // {userId: userId, targetId: targetId});
-        // setState
+        try {
+            await sendRequest(`${process.env.REACT_APP_API_URL}/api/${route}/${action}`, 'PUT', 
+            JSON.stringify({userId: userId, targetId: targetId}), {
+                'Content-Type': 'application/json',
+            });
+            // setState
+            setState({...state, [stateKey]: !state[stateKey]});
+        } catch (error) {
+            setError(true);
+        }
     };
 
-    return {state, handleAction};
+    return {state, handleAction, isError};
 };
 
 export default useFollow;

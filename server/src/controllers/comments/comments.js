@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 const Post = require('../../models/posts/post');
 const Comment = require('../../models/comments/comment');
+const User = require('../../models/users/user');
 const {getDateNow} = require('../../utils/utils');
 
 const createComment = async ( req, res, next) => {
@@ -46,7 +47,7 @@ const createComment = async ( req, res, next) => {
     }
     await createdComment.save();
   } catch (error) {
-    return next(new Error('Unable to create a comment', 401));
+    return next(new Error('Unable to create a comment', 501));
   }
   // if user replies to any user's comments of viewed blog
   if (existingComment) {
@@ -56,8 +57,10 @@ const createComment = async ( req, res, next) => {
     await blog.comments.push(createdComment._id);
     await blog.save();
   }
-  // const {comments} = createdComment;
-  // res.status(201).json(comments);
+  await User.updateOne({_id: author}, {
+    $addToSet: {comments: createdComment._id},
+  });
+
   res.status(201).json(createdComment);
 };
 

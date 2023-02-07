@@ -34,6 +34,9 @@ const RecentActivities = ({userId}) => {
        
 
     },[setPost, setComments, userId, sendRequest]);
+    if(isLoading) {
+        return <div>Loading...</div>
+    }
     return <div>
         <div>
             <b>Recent posts</b>

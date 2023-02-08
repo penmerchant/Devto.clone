@@ -1,7 +1,7 @@
 import classes from './MainNavigation.module.css';
 import {NavLink} from 'react-router-dom';
 import AuthContext from '../../context/authContext';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
@@ -10,18 +10,19 @@ import ButtonStyle from '../../utils/ButtonStyle';
 
 const MainNavigation = () => {
     //get user provider
-    // const [initialValue , setInitial] = useState();
+    const [isHover, setHover] = useState(false);
     const { currentUser} = useContext(AuthContext);
     const {isLoggedin} = currentUser;
-    const {btn_post} = ButtonStyle();
+    const {btn_post} = ButtonStyle(isHover);
 
-    // useEffect(() => {
-    //    const initialVal = window.localStorage.getItem('currentUser');
-    //     // const {isLoggedin} = s;
-    //     setInitial(JSON.parse(initialVal));
-    //     // setLogin(s);
-        
-    // },[]);
+    const handleMouseLeave = () => {
+        setHover(false);
+    };
+
+    const handleMouseEnter = () => {
+        setHover(true);
+    };
+    
     if(!isLoggedin){
 
         return (
@@ -47,7 +48,10 @@ const MainNavigation = () => {
         <ul>
         <li> 
              <NavLink to='/register'>
-                    <Button label='Create account' style={btn_post}/>
+                    <Button label='Create account' style={btn_post}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                    />
              </NavLink>
             
             </li>
@@ -83,7 +87,9 @@ const MainNavigation = () => {
                 <ul>
                 <li> 
                     <NavLink to='/newPost'> 
-                    <Button label='Create Post' style={btn_post} />
+                    <Button label='Create Post' style={btn_post} 
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}/>
                     </NavLink> 
                     
                     </li>

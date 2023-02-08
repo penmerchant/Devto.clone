@@ -1,7 +1,7 @@
 
 const ButtonStyle = (isHover) =>{
     const btn_post = {
-        background: '#1D61E0',
+        background: isHover? '#113a86 ':'#1D61E0',
         color: '#fff',
     };
     
@@ -13,7 +13,7 @@ const ButtonStyle = (isHover) =>{
 
     const btn_dismiss = {
         background: '#85959A',
-        color: '#353A3B',
+        color: '#fff',
 
     };
 

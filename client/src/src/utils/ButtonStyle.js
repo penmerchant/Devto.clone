@@ -20,6 +20,13 @@ const ButtonStyle = (isHover) =>{
     const btn_delete = {
 
     };
+
+    const btn_sign_out ={
+        background: isHover? '#0f8b0a' : '#1ae811',
+        color: '#fff',
+        width: '100%',
+    };
+
     const style = {
 
         btn_follow : {
@@ -39,6 +46,7 @@ const ButtonStyle = (isHover) =>{
         btn_dismiss,
         btn_delete,
         btn_edit,
+        btn_sign_out,
         style};
 };
 

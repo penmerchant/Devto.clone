@@ -14,7 +14,7 @@ const ProfileMenu = () =>{
     const [isHover, setHover] = useState(false);
     const {logout,currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
-    const {btn_post} = ButtonStyle(isHover);
+    const {btn_sign_out} = ButtonStyle(isHover);
 
     const profilePicture =
     currentUser.data.profilePicture|| 'https://firebasestorage.googleapis.com/v0/b/testing-ba1e7.appspot.com/o/default%2Fdefault_pic.png?alt=media&token=9f6bcb7a-c5df-40e9-af2a-be0808b66b86';
@@ -56,7 +56,7 @@ const ProfileMenu = () =>{
                 </>
             })
         }
-        <Button style={btn_post}
+        <Button style={btn_sign_out}
             onClick={signout}
             label='Sign Out' 
             onMouseLeave={handleMouseLeave}

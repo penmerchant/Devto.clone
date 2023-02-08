@@ -1,8 +1,10 @@
 import classes from './PostCard.module.css';
-import { useNavigate } from 'react-router-dom';
-import  HeartIcon  from  '../../images/card/heart.svg';
-import CommentIcon from '../../images/card/comment-pen.svg';
-import { countCommentsLength, formatDate } from '../../utils';
+import {useNavigate} from 'react-router-dom';
+import {BsChatLeftText} from 'react-icons/bs';
+import {AiFillHeart} from "react-icons/ai";
+import {AiOutlineHeart} from "react-icons/ai";
+import {countCommentsLength, formatDate} from '../../utils';
+import usePostReactions from '../../hooks/usePostReactions';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
@@ -17,7 +19,8 @@ const PostCard = (props) => {
         createdAt,
         disable } = post;
     
-
+    const {state} = usePostReactions({likes: likes, userId: author._id});  
+    const {isLiked} = state;  
     const {firstName,
         lastName} = author;
     const fullName = firstName + ' ' + lastName;
@@ -37,12 +40,15 @@ const PostCard = (props) => {
             <div className={classes.row}>
                 <div className={classes.clickable}>
                 {likes.length} 
-                    <img src={HeartIcon} className={classes.icon} alt='?' />
+                {
+                    isLiked? <AiFillHeart className={classes.icon_hearted}/> : <AiOutlineHeart className={classes.icon}/>
+                }
+                    {/* <img src={HeartIcon} className={classes.icon} alt='?' /> */}
                 </div>
                 <div></div>
                 <div className={classes.clickable}>
                     <>{countCommentsLength(comments)}</>
-                    <img src={CommentIcon} className={classes.icon} alt='?' />
+                    <BsChatLeftText className={classes.icon}/>
                 </div>
             </div>
         </div>

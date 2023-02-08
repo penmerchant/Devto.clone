@@ -45,11 +45,22 @@
     height: 100vh;
 } */
 .icon{
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     margin-left: 10px;
 }
 
+.icon_hearted{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    color: #F65959;
+}
+.clickable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .clickable:hover{
     color: black;
 }

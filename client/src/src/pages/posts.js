@@ -6,7 +6,6 @@ const Post = () => {
     const {sendRequest, isError, isLoading} = useHttp();
     const [postData , setPostData] = useState([]);
     
-    // const BASE_URL = 'http://localhost:4444';
 
     useEffect(()=> {
         const fetchPost = async()=>{
@@ -24,15 +23,14 @@ const Post = () => {
             <HomeSkeleton />
         </div>
     }
+
     if(isError){
         return <div>There is no data</div>
     }
     if(postData || postData > 0){
 
-        return (
-                
-             <PostList post={postData}/>
-        ) ;
+        return <PostList post={postData}/>
+        
     }
         
     

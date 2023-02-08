@@ -184,7 +184,9 @@ a{
 }
 
 .bookmark_icon{
-    color: #0F76D1;
+    height: 20px;
+    width: 20px;
+    color: #12383B;
 }
 
 .heart_icon,

@@ -10,7 +10,7 @@ import PostReactions from "./components/PostReactions/PostReaction";
 import { countCommentsLength, formatDate } from "../../utils";
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import AuthContext from "../../context/authContext";
-
+// import ReactJsAlert from 'reactjs-alert';
 const PostDetails = () => {
     // get id of a post
     const {sendRequest, setError} = useHttp();
@@ -80,15 +80,17 @@ const PostDetails = () => {
         <div className={classes.sidebar_menu}>
             <PostReactions likes={post.likes} bookmarked={post.bookmarked} postId={postId}  />
         </div>
+       
         <div className={classes.post_section} >
+                    
                     {image && <img src={image} className={classes.post_img} alt='thumbnail of the post' />}
                     { currentUser.data.id === author._id &&
                         <div className={classes.align_right}>
                             <div onClick={toggleSettings} className={classes.toggle_setting}>
                                 <BsThreeDotsVertical />
                                 <ul className={isToggled? classes.dropdown_show: classes.dropdown}>
-                                    <Link to={`/edit-post/${postId}`}>Edit</Link>
-                                    <p>Delete</p>
+                                    <div><Link to={`/edit-post/${postId}`}>Edit</Link></div>
+                                    <div><Link to={`/delete-page/${postId}`}>Delete</Link></div>
                                 </ul>
                             </div>
                         </div> 

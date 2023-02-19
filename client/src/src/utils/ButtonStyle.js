@@ -18,7 +18,8 @@ const ButtonStyle = (isHover) =>{
     };
 
     const btn_delete = {
-
+        background: '#ca4f44',
+        color: '#fff',
     };
 
     const btn_sign_out ={

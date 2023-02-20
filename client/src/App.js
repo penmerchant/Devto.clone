@@ -30,7 +30,7 @@ function App() {
         <Route path='/edit-post/:postId' element={<EditPost />}/>
         <Route path='/edit-profile/:userId' element={<EditProfile />}/>
         <Route path='/tags' element={<TagsView />}/>
-        <Route path='/delete-page/:id' element={<DeletePage />}/>
+        <Route path='/delete-page/:type/:id' element={<DeletePage />}/>
       </Routes>
     </Layout>
     <Footer />

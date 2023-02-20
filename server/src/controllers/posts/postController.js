@@ -103,24 +103,13 @@ const getPostById = async ( req, res, next) => {
 };
 
 const deletePostById = async ( req, res, next) => {
-  const {postId} = req.params;
-
-  let post;
+  const {postId, userId} = req.body;
 
   try {
-    post = await Post.findById(postId);
+    await User.updateOne(userId, {$pull: {post: userId}});
+    await Post.deleteOne({_id: postId, author: userId});
   } catch (error) {
-    next( new Error('Something is wrong with the server', 500));
-  }
-
-  if (!post) {
-    return next( new Error('Unable to find the post', 401));
-  }
-
-  try {
-    await post.remove();
-  } catch ( error) {
-    return next(new Error('Unable to delete post ', 401));
+    next( new Error('Unable to delete the post', 500));
   }
 
   res.status(200).json({message: 'Post has been deleted'});

@@ -92,25 +92,13 @@ const getAllComments = async ( req, res, next) => {
   res.status(200).json(comments);
 };
 
-const deleteAllComments = async ( req, res, next) => {
-  const {commentId, postId} = req.params;
-  let comments;
-  let post;
+const deleteCommentById = async ( req, res, next) => {
+  const {commentId, postId} = req.body;
   try {
-    comments = await Comment.findById(commentId);
-    post = await Post.findById(postId);
+    await Post.updateOne(postId, {$pull: {comments: commentId}});
+    await Comment.deleteOne({_id: commentId});
   } catch (error) {
-    next( new Error('Something is wrong with the server', 500));
-  }
-
-  if (!comments) {
-    return next( new Error('no comment found'), 401);
-  }
-  try {
-    await comments.remove();
-    await post.comments.reduce();
-  } catch (error) {
-    return next( new Error('Unable to delele all of the comments'), 401);
+    next( new Error('Unable to delete comment', 500));
   }
 
   res.status(200).json('Succesfully deleted comments');
@@ -155,6 +143,6 @@ const unlikeComment = async (req, res, next) => {
 // reply a comment
 exports.getAllComments = getAllComments;
 exports.createComment = createComment;
-exports.deleteAllComments = deleteAllComments;
+exports.deleteCommentById = deleteCommentById;
 exports.likeComment = likeComment;
 exports.unlikeComment = unlikeComment;

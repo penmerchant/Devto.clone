@@ -16,19 +16,19 @@ const DeletePage = () => {
     const revertToPrevPage = () =>{
         navigate(`/post-details/${id}`, {replace: true});
     };
-
     const handleDelete = async () => {
-      
         if ( type === 'post'){
-            await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/delete`,
-            'DELETE',
-            JSON.stringify({postId: id, userId: currentUser.data.id}),
-            {
-                'Content-Type': 'application/json',
-            }
-            );
+            try{
+                await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/delete/`,
+                'DELETE',
+                JSON.stringify({postId: id, userId: currentUser.data.id}),
+                {
+                    'Content-Type': 'application/json',
+                });
+                alert('Succesfully deleted');
+            } catch (error){}
         }
-        else await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/delete`,
+        else await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/delete/`,
             'DELETE',
             JSON.stringify({commentId: id, userId: currentUser.data.id}),
             {

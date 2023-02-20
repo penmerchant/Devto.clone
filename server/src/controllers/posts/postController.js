@@ -104,9 +104,8 @@ const getPostById = async ( req, res, next) => {
 
 const deletePostById = async ( req, res, next) => {
   const {postId, userId} = req.body;
-
   try {
-    await User.updateOne(userId, {$pull: {post: userId}});
+    await User.updateOne({_id: userId}, {$pull: {post: postId}});
     await Post.deleteOne({_id: postId, author: userId});
   } catch (error) {
     next( new Error('Unable to delete the post', 500));

@@ -26,6 +26,8 @@ const PostDetails = () => {
         author,
         createdAt} = post;
     // reset input 
+    const type = 'post';
+
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {
@@ -90,7 +92,7 @@ const PostDetails = () => {
                                 <BsThreeDotsVertical />
                                 <ul className={isToggled? classes.dropdown_show: classes.dropdown}>
                                     <div><Link to={`/edit-post/${postId}`}>Edit</Link></div>
-                                    <div><Link to={`/delete-page/'post'/${postId}`}>Delete</Link></div>
+                                    <div><Link to={`/delete-page/${type}/${postId}`}>Delete</Link></div>
                                 </ul>
                             </div>
                         </div> 

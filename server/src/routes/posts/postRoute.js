@@ -16,7 +16,7 @@ const upload = require('../../middleware/file-upload');
 router.post('/', upload.single('image'), createPost);
 router.get('/', getAllPosts);
 router.get('/:postId', getPostById);
-router.delete('/delete', deletePostById);
+router.delete('/delete/', deletePostById);
 router.put('/like/', likePost);
 router.put('/bookmark/', savePost);
 router.put('/unBookmark/', unBookmarkedPost);

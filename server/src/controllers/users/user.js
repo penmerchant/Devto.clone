@@ -153,11 +153,7 @@ const getRecentComments = async (req, res, next) => {
     // populate: [{
     //   path: 'author',
     // },
-    recentComments = await searchedUser.populate({path: 'comments',
-      populate: [{
-        path: 'post',
-      }],
-    });
+    recentComments = await searchedUser.populate('comments');
   }
 
   return res.status(201).json(recentComments);

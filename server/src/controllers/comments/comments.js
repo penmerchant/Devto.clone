@@ -93,9 +93,11 @@ const getAllComments = async ( req, res, next) => {
 };
 
 const deleteCommentById = async ( req, res, next) => {
-  const {commentId, postId} = req.body;
+  const {commentId, userId} = req.body;
+  const comment = await Comment.findById(commentId);
   try {
-    await Post.updateOne(postId, {$pull: {comments: commentId}});
+    await Post.updateOne({_id: comment.post}, {$pull: {comments: commentId}});
+    await User.updateOne({_id: userId}, {$pull: {comments: commentId}});
     await Comment.deleteOne({_id: commentId});
   } catch (error) {
     next( new Error('Unable to delete comment', 500));

@@ -44,3 +44,40 @@
 .text_comment{
     color: black;
 }
+.align_right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+}
+.dropdown{
+    display: none;
+}
+.dropdown_show{
+  position:absolute;
+  width: 100px;
+  transform: translateX(-80%);
+  background: #fff;
+  border: var(--border);
+  border-radius: 5px;
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid #8B8C83;
+  z-index: 999;
+}
+
+.toggle_setting:hover{
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.toggle_setting:focus{
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+}

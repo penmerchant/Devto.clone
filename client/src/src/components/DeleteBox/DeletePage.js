@@ -25,18 +25,27 @@ const DeletePage = () => {
                 {
                     'Content-Type': 'application/json',
                 });
-                alert('Succesfully deleted');
+                navigate(`/home`, {replace: true});
             } catch (error){}
         }
-        else await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/delete/`,
-            'DELETE',
-            JSON.stringify({commentId: id, userId: currentUser.data.id}),
-            {
-                'Content-Type': 'application/json',
+        else {
+            try {
+              await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/delete/`,
+
+                'DELETE',
+                JSON.stringify({commentId: id, userId: currentUser.data.id}),
+                {
+                    'Content-Type': 'application/json',
+                }
+                );
+                navigate(`/home`, {replace: true});
+
+            } catch(error){
+
             }
-        );
        
-    };
+        }  
+    }
     if(isError) {
         return <>An error occurred...</>
     }

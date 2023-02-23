@@ -38,3 +38,7 @@ export const countCommentsLength = (comments) => {
 
   return totalLength;
 }
+
+export const shortenString = (str) => {
+  return str.length >= 15? str.substring(0, 10) + '...': str;
+};

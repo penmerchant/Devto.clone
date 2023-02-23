@@ -74,6 +74,25 @@ const unfollowTag = async (req, res) => {
   res.status(201).json('Successfully unfollowed the tag');
 };
 
+const getFollowedTagsPost = async (req, res) => {
+  const {userId} = req.params;
+
+  let taggedPosts = [];
+
+  try {
+    taggedPosts = await Tags.find({}).where('followers').equals(userId)
+        .populate('posts')
+        .limit(5);
+  } catch (error) {
+    return new Error('Unable to retrieve posts', 501);
+  }
+  res.status(201).json(taggedPosts);
+};
+
+const getAllTags = async (req, res) => {};
+
+exports.getAllTags = getAllTags;
+exports.getFollowedTagsPost = getFollowedTagsPost;
 exports.unfollowTag = unfollowTag;
 exports.followTag = followTag;
 exports.updateTags = updateTags;

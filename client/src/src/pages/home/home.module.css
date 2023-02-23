@@ -1,5 +1,6 @@
 .grid{
   display: grid;
+  grid-template-columns: 0.5fr 1.5fr 1fr;
   grid-template-areas: 'sb ps ts';
 }
 
@@ -8,16 +9,16 @@
 } */
 
 .sidebar{
-    max-width: 25vw;
+    /* width: 10vw; */
     grid-area: sb;
 }
 
 .post_section{
-    max-width: 50vw;
+    /* width: 50vw; */
     grid-area: ps;
 }
 
 .tag_section{
-  max-width: 25vw;
+  /* width: auto; */
   grid-area: ts;
 }

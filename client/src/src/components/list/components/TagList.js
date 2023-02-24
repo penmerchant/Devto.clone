@@ -35,7 +35,7 @@ const TagsList = () => {
                    </div>
                     
                 {tag.posts.map((tg)=>{
-                    return <TagsCard title={shortenString(tg.title)} comments={tg.comments}/>;
+                    return <TagsCard id={tg._id} title={shortenString(tg.title)} comments={tg.comments}/>;
                 })}
                     </div>
                 }

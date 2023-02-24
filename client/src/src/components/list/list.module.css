@@ -86,4 +86,5 @@
 
 .tag_link:hover{
     background: #e5e5e5;
+    cursor: pointer;
 }

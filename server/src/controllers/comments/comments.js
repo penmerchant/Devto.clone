@@ -142,7 +142,35 @@ const unlikeComment = async (req, res, next) => {
   // }
   res.status(201).json('You have unliked a comment');
 };
+
+const getCommentById = async (req, res) => {
+  const {commentId} = req.params;
+  let comment;
+
+  try {
+    comment = await Comment.findById(commentId);
+  } catch (error) {
+    return new Error('Unable to find a comment by id', 501);
+  }
+
+  res.status(201).json(comment);
+};
+
+const editComment = async (req, res) => {
+  const {commentId, userId, newComment} = req.body;
+
+  try {
+    await Comment.updateOne({_id: commentId, author: userId}, {
+      comment: newComment,
+    });
+  } catch (error) {
+    return new Error('Unable to update a comment', 501);
+  }
+  res. status(201).json('Successfully update a comment');
+};
 // reply a comment
+exports.editComment = editComment;
+exports.getCommentById = getCommentById;
 exports.getAllComments = getAllComments;
 exports.createComment = createComment;
 exports.deleteCommentById = deleteCommentById;

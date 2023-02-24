@@ -24,7 +24,7 @@ const CommentsCards = (props) => {
                 <div onClick={toggleSettings} className={classes.toggle_setting}>
                                 <BsThreeDotsVertical />
                                 <ul className={isToggled? classes.dropdown_show: classes.dropdown}>
-                                    <div><Link to={`/edit-post/${post._id}`}>Edit</Link></div>
+                                    <div><Link to={`/edit-comment/${comment._id}`}>Edit</Link></div>
                                     <div><Link to={`/delete-page/${type}/${comment._id}`}>Delete</Link></div>
                                 </ul>
                             </div>

@@ -13,7 +13,7 @@ import EditPost from "./src/pages/edit/editpost/EditPost";
 import EditProfile from "./src/pages/edit/editprofile/EditProfile";
 import TagsView from "./src/pages/Tags/Tags";
 import DeletePage from "./src/components/DeleteBox/DeletePage";
-
+import EditComment from "./src/pages/edit/editcomment/EditComment";
 function App() {
   return (
     <>
@@ -31,6 +31,7 @@ function App() {
         <Route path='/edit-profile/:userId' element={<EditProfile />}/>
         <Route path='/tags' element={<TagsView />}/>
         <Route path='/delete-page/:type/:id' element={<DeletePage />}/>
+        <Route path='/edit-comment/:commentId' element={<EditComment />} />
       </Routes>
     </Layout>
     <Footer />

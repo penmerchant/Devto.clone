@@ -1,9 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import classes from '../list.module.css';
 
 const TagsCard = (props) => {
-    return <div className={classes.tag_link} >
+    const navigate = useNavigate();
+
+    const navigateToPost = () => {
+        navigate(`/post-details/${props.id}`, {replace: true});
+    }
+    return <div onClick={navigateToPost} className={classes.tag_link} >
         <div className={classes.text_wrapper}>
-            <h3>{props.title}</h3>
+            <h3>
+                {props.title}
+            </h3>
             <p>{props.comments.length} comments</p>
         </div>
     </div>;

@@ -29,6 +29,10 @@
     margin-top: 10px;
 }
 
+.card:hover{
+    cursor: pointer;
+}
+
 .row{
     display: flex;
     align-items: center;

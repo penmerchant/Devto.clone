@@ -38,7 +38,7 @@ const ButtonStyle = (isHover) =>{
     };
 
     const btn_edit = {
-        background: '#000000',
+        background: isHover? '#191919' : '#000000',
         color : '#fff',
     };
 

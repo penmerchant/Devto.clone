@@ -4,11 +4,16 @@ import useHttp from "../../../hooks/useHttp";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../../context/authContext";
+import classes from "../editprofile/EditProfile.module.css";
+import ButtonStyle from "../../../utils/ButtonStyle";
+
 const EditComment = () => {
     const [prefilledComment , setPrefilledComment] = useState({}); 
+    const [isHovered, setHover] = useState(false);
     const {sendRequest, setError, isError} = useHttp();
     const {commentId} = useParams();
     const {currentUser} = useContext(AuthContext);
+    const {btn_edit} = ButtonStyle(isHovered);
     useEffect(()=>{
         const fetchComments = async() => {
             try {
@@ -37,6 +42,15 @@ const EditComment = () => {
             setError(true);
         }
     };
+
+    const handleMouseLeave = () =>{
+        setHover(false);
+    };
+
+    const handleMouseEnter = () => {
+        setHover(true);
+    };
+
     const onChange = (e) => {
         e.preventDefault();
         const {name, value} = e.target;
@@ -46,9 +60,15 @@ const EditComment = () => {
     if (isError) {
         return <div>An error occurred...</div>
     }
-    return <div>
+    return <div className={classes.container}>
+        <div className={classes.form}>
+        <h2>Edit comment</h2>
         <Input value={prefilledComment.comment} onChange={onChange} name='comment'/>
-        <Button label='Edit' onClick={handleSubmit} />
+        <Button label='Edit' onClick={handleSubmit}
+        style={btn_edit} 
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter} />
+        </div>
     </div>
 };
 

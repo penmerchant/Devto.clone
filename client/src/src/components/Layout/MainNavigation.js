@@ -7,13 +7,18 @@ import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 import SearchBar from '../FormElements/SearchBar/SearchBar';
 import ButtonStyle from '../../utils/ButtonStyle';
+import {AiOutlineBars} from 'react-icons/ai';
+import HomeSideBar from '../HomeSidebar/HomeSidebar';
+// import HomeSideBar from '../HomeSidebar/HomeSidebar';
 
 const MainNavigation = () => {
     //get user provider
     const [isHover, setHover] = useState(false);
+    const [isToggle, setToggle] = useState(false);
     const { currentUser} = useContext(AuthContext);
     const {isLoggedin} = currentUser;
     const {btn_post} = ButtonStyle(isHover);
+
 
     const handleMouseLeave = () => {
         setHover(false);
@@ -23,17 +28,25 @@ const MainNavigation = () => {
         setHover(true);
     };
 
+    const toggleSideBar = () =>{
+        setToggle(!isToggle);
+    };
+
     if(!isLoggedin){
 
         return (
-            
+            <>
         <div className={classes.header}>
           <div className={classes.nav}>
-        
+        <div >
+        <div className={classes.menu_bar} onClick={toggleSideBar}>
+            <AiOutlineBars />
+        </div>
+        </div>
         <div>
          <li>
            <NavLink to='/'>
-            <img src={logo} alt='png'/>
+            <img className={classes.img} src={logo} alt='png'/>
            </NavLink>
           </li>
         </div>
@@ -46,18 +59,18 @@ const MainNavigation = () => {
         </div>
         <div className={classes.nav}>
         <ul>
-        <li> 
+        <li className={classes.item}> 
              <NavLink to='/register'>
                     <Button label='Create account' style={btn_post}
                      onMouseEnter={handleMouseEnter}
                      onMouseLeave={handleMouseLeave}
-                    />
+                     />
              </NavLink>
             
-            </li>
-            </ul>
-            <ul>
-            <li>
+        </li>
+        </ul>
+         <ul>
+         <li className={classes.item}>
                 
              <NavLink to='/login'>Sign In</NavLink>
             
@@ -65,17 +78,25 @@ const MainNavigation = () => {
             </ul>
             </div>
             
-            </div> );
+            </div> 
+            <div className={isToggle? classes.sidebar_active: classes.sidebar}>
+                        <HomeSideBar />
+                    </div>
+            </>);
 
         } else{
 
-            
-            return  ( <div className={classes.header}>
+              
+            return  (<>
+                 <div className={classes.header}>
                 <div className={classes.nav}>
+                    <div className={classes.menu_bar} onClick={toggleSideBar}>
+                        <AiOutlineBars />
+                    </div>
                 <div>
                 <li>
                 <NavLink to='/'>
-                <img src={logo} alt='png'/>
+                <img className={classes.img} src={logo} alt='png'/>
                 </NavLink>
                 </li>
                 </div>
@@ -85,7 +106,7 @@ const MainNavigation = () => {
                 </div>
                 <div className={classes.nav}>
                 <ul>
-                <li> 
+                <li className={classes.item}> 
                     <NavLink to='/newPost'> 
                     <Button label='Create Post' style={btn_post} 
                      onMouseEnter={handleMouseEnter}
@@ -96,15 +117,16 @@ const MainNavigation = () => {
                     </ul>
                     <ul>
                     <li>
-                        
                          <ProfileMenu /> 
-                    
                     </li>
                     </ul>
                     </div>
                     
                     </div>
-            
+                    <div className={isToggle? classes.sidebar_active: classes.sidebar}>
+                        <HomeSideBar />
+                    </div>
+                     </>
             );
         }
     };

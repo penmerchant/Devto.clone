@@ -42,12 +42,26 @@ const ButtonStyle = (isHover) =>{
         color : '#fff',
     };
 
+    const btn_login ={
+        background: isHover? '#003633' : '#004440',
+        color: '#fff',
+        width: '100%',
+    };
+
+    const btn_register ={
+        background: isHover? '#191919' : '#000000',
+        color: '#fff',
+        width: '100%',
+    };
+
     return {btn_post,
         btn_comment,
         btn_dismiss,
         btn_delete,
         btn_edit,
         btn_sign_out,
+        btn_login,
+        btn_register,
         style};
 };
 

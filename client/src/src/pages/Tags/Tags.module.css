@@ -11,12 +11,46 @@
     gap: 10px;
 }
 
+@media screen and (max-width: 1000px) {
+    .grid_tags{
+        grid-template-columns: repeat(3, auto);
+    }
+    .container{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .grid_tags{
+        grid-template-columns: repeat(1, auto);
+    }
+    .container{
+        display: block;
+    }
+
+}
+
 .tags_card{
     background: #fff;
     padding: 1rem;
     line-height: auto;
     width: 300px;
     border-radius: 8px;
-    height: 100px;
+    height: auto;
     border-top: 10px solid #019A66;
+}
+
+@media screen and (max-width: 600px) {
+    .tags_card{
+        width: auto;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .tags_card{
+        width: auto;
+        border-radius: 0;
+    }
 }

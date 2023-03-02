@@ -17,8 +17,8 @@
 }
 
 .card{
-    height: 150px;
-    width: 350px;
+    height: auto;
+    width: 100%;
     background-color: #fff;
     overflow: hidden;
     margin: 1.5em 0;
@@ -27,7 +27,8 @@
 
 .post_card{
     display: block;
-    height: 500px;
+    height: auto;
+    width: 100%;
     background: #fff;
     border-radius: 10px;
 }
@@ -54,20 +55,33 @@
     animation: skeleton-loading 1s linear infinite alternate;
     margin-left: 5px;
     height: 50px;
-    width: 300px;
+    width: auto;
     border-radius: 5px;
     background: grey;
 }
 
 .container{
     display: grid;
+    width: 100%;
     margin-top: 1rem;
+    grid-template-columns: repeat(3, auto);
     grid-template-areas: 'grid1 grid2 grid3';
+}
+
+@media screen and (max-width: 600px) {
+    .container{
+        grid-template-columns: repeat(2, 100%);
+        grid-template-areas: 'grid2' 'grid3';
+    }
+    .post_card{
+        width: 100%;
+        height: auto;
+    }
 }
 
 .grid1{
     grid-area: grid1;
-    width: 20vw;
+    /* width: 20vw; */
 }
 .sidebar{
     display: grid;
@@ -82,7 +96,7 @@
     /* border-radius: 10px; */
     padding: 6px;
     /* background: #fff; */
-    width: 55vw;
+    /* width: 55vw; */
 }
 
 .image_shimmer{
@@ -95,7 +109,7 @@
 
 .grid3{
     grid-area: grid3;
-    width: 25vw;
+    /* width: 25vw; */
     height: 300px;
     overflow:hidden;
     border-radius: 10px;

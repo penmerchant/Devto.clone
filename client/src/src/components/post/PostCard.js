@@ -29,6 +29,7 @@ const PostCard = (props) => {
         navigate(`/post-details/${_id}`, {replace: true});
     }   
     return (
+
         <div className={classes.card} onClick={onClick}>
             {index === 0 && !disable ? <img src={image} className={classes.img} alt='url'/>: null}
             <div className={classes.row}>

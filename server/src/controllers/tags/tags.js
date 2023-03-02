@@ -81,8 +81,9 @@ const getFollowedTagsPost = async (req, res) => {
 
   try {
     taggedPosts = await Tags.find({}).where('followers').equals(userId)
-        .populate('posts')
-        .limit(5);
+        .populate({path: 'posts',
+          options: {limit: 5},
+        });
   } catch (error) {
     return new Error('Unable to retrieve posts', 501);
   }

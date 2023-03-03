@@ -19,7 +19,8 @@ const TagsList = () => {
                     );
 
                 }else {
-                    // response = await sendRequest()
+                    response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/tags/tags-related-post/`);
+                    
                 }
                 setTags(response);
             } catch (error) {}

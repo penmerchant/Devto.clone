@@ -95,7 +95,7 @@ const getAllTagsPost = async (req, res) => {
   try {
     taggedPosts = await Tags.find({}).populate({path: 'posts',
       options: {limit: 5},
-    }).limit(5);
+    }).limit(10);
   } catch (error) {
     return new Error('Unable to retrieve tag related post', 501);
   }

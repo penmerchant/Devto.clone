@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ProfileSkeleton from '../../components/Skeleton/ProfileSkeleton';
 import useHttp from '../../hooks/useHttp';
 import ActivitySection from './components/ActivitySection';
 import BioSection from './components/PersonalInfoSection';
@@ -9,7 +10,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const Profile = () => {
     const [userProfile , setProfile] = useState({});
-    const {sendRequest} = useHttp();
+    const {sendRequest, isLoading} = useHttp();
     let {userId} = useParams();
 
     // get user profile
@@ -22,9 +23,13 @@ const Profile = () => {
         fetchProfile();
     },[setProfile, sendRequest, userId]);
 
-
-    return <div className={classes.container}>{
-            userProfile && <BioSection profilePicture={userProfile.profilePicture}
+    if (isLoading) {
+        return <ProfileSkeleton />
+    }
+    return <div className={classes.container}>
+    <div className={classes.profile}>
+    <div >{
+        userProfile && <BioSection profilePicture={userProfile.profilePicture}
                 bio={userProfile.bio} 
                 github={userProfile.github}
                 instagram={userProfile.instagram} 
@@ -32,16 +37,18 @@ const Profile = () => {
                 lastName={userProfile.lastName}
                 createdAt={userProfile.createdAt} 
                 userId={userProfile._id}/>
-        }
+            }
         <div className={classes.grid_display}>
-            <div>
+            <div className={classes.activity}>
                 <ActivitySection post={userProfile.post}
                     comments={userProfile.comments}
                     tags={userProfile.followedTags}/>
             </div>
-            <div> <RecentActivities userId={userId} /></div>
+            <div className={classes.recentActivity}> <RecentActivities userId={userId} /></div>
         </div>
-        </div>;
+        </div>
+        </div>
+        </div>
 }
 
 export default Profile;

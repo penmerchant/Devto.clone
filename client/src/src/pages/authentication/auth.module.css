@@ -11,11 +11,12 @@
 }
 
 .form_container{
-    height: 100vh;
+    height: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
 }
+
 
 input{
     width: 50%;
@@ -24,7 +25,7 @@ input{
 }
 
 .form_btn{
-    width: 50%;
+    width: 100%;
     padding: 1rem;
     background: #0D0E0B;
     border: none;

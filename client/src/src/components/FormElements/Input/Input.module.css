@@ -1,6 +1,7 @@
 .input{
     margin-top: 16px;
     padding: 1rem;
+    width: 100%;
   } 
   
 .input:focus{

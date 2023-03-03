@@ -10,6 +10,7 @@ import Button from '../../../components/Button/Button';
 import usePostReactions from '../../../hooks/usePostReactions';
 import LikeReactionButton from './PostReactions/LikeReactionButton';
 import ButtonStyle from '../../../utils/ButtonStyle';
+import { useNavigate } from 'react-router-dom';
 
 const Comment = (props) => {
     const [isReplying, setReplying] = useState(false);
@@ -17,6 +18,7 @@ const Comment = (props) => {
     const {sendRequest} = useHttp();
     const {renderInputs, renderValues, isFormValid, setForm} = useForm(CommentForm);
     const formInputs = renderInputs();
+    const navigate = useNavigate();
 
     const {userId, comment} = props;
     const {likes , replies} = comment;
@@ -54,6 +56,10 @@ const Comment = (props) => {
         else alert('please login first');
     };
 
+    const navToUserProfile = (userId) => {
+        navigate(`/profile/${userId}`, {replace: true});
+    };
+
     const toggleReply = () => {
         setReplying(true);
     }
@@ -63,7 +69,7 @@ const Comment = (props) => {
     }
     return (
         <div>
-            <div className={classes.row} style={props.style}>
+            <div className={classes.row} style={props.style} onClick={()=>navToUserProfile(props.comment.author._id)}>
                 <img src={props.comment.author.profilePicture} className={classes.circle} alt='profilePicture'/>
                 <div className={classes.comment_box}>
                     <b>{props.comment.author.firstName}</b>

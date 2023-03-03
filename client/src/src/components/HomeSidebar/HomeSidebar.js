@@ -70,13 +70,13 @@ const HomeSideBar = () => {
                 {
                     !currentUser.isLoggedin && <div>
                         <Button label='Create account' 
-                            onClick={navToSignInPage}
+                            onClick={navToRegisterPage}
                             style={btn_register}
                             onMouseLeave={handleMouseLeave}
                             onMouseEnter={handleMouseEnter}
                             />
                         <Button label='Sign in' 
-                            onClick={navToRegisterPage}
+                            onClick={navToSignInPage}
                             style={btn_login}
                             />
                     </div>

@@ -90,9 +90,20 @@ const getFollowedTagsPost = async (req, res) => {
   res.status(201).json(taggedPosts);
 };
 
-const getAllTags = async (req, res) => {};
+const getAllTagsPost = async (req, res) => {
+  let taggedPosts = [];
+  try {
+    taggedPosts = await Tags.find({}).populate({path: 'posts',
+      options: {limit: 5},
+    }).limit(5);
+  } catch (error) {
+    return new Error('Unable to retrieve tag related post', 501);
+  }
 
-exports.getAllTags = getAllTags;
+  res. status(201).json(taggedPosts);
+};
+
+exports.getAllTagsPost = getAllTagsPost;
 exports.getFollowedTagsPost = getFollowedTagsPost;
 exports.unfollowTag = unfollowTag;
 exports.followTag = followTag;

@@ -5,7 +5,8 @@ const {signIn,
   followUser,
   getRecentPosts,
   getRecentComments,
-  editProfile} = require('../../controllers/users/user');
+  editProfile,
+  getSavedPost} = require('../../controllers/users/user');
 
 const router = new express.Router();
 const upload = require('../../middleware/file-upload');
@@ -16,7 +17,7 @@ router.post('/register', upload.single('image'), signUp);
 router.get('/:userId', getUserById);
 router.get('/recentPosts/:userId', getRecentPosts);
 router.get('/recentComments/:userId', getRecentComments);
-
+router.get('/saved-posts/:userId', getSavedPost);
 router.put('/edit-profile/:userId', upload.single('profilePicture'),
     editProfile);
 module.exports = router;

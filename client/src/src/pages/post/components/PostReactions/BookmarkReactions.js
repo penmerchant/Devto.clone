@@ -14,7 +14,7 @@ const BookmarkReactions = (props) =>{
     };
     
     return (<div className={classes.icon_wrapper} onClick={handleAction}>
-        {isBookmarked? <BsBookmarkFill className={classes.bookmark_icon} />: <BsBookmark />}
+        {isBookmarked? <BsBookmarkFill className={classes.bookmark_icon} />: <BsBookmark className={classes.bookmark_reaction}/>}
     </div>);
 };
 export default BookmarkReactions;

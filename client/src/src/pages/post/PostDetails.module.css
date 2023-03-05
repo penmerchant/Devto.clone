@@ -248,3 +248,11 @@ a{
   border: 1px solid #8B8C83;
   z-index: 999;
 }
+
+.heart_reaction:hover:hover{
+    color: #F65959;
+}
+
+.bookmark_reaction:hover{
+    color: #12383B;
+}

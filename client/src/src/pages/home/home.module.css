@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 1fr;
   grid-template-areas: 'sb ps ts';
+  column-gap: 10px;
 }
 
 @media screen and (max-width: 700px) {

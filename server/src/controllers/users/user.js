@@ -214,7 +214,27 @@ const editProfile = async (req, res, next) => {
 
   res.status(201).json('Sucessfully updated user profile');
 };
-// unfollow a user
+
+const getSavedPost = async (req, res) =>{
+  const {userId} = req.params;
+  let readingLists = [];
+  try {
+    readingLists = await User.findById(userId).populate({path: 'savedPost',
+      populate: [{
+        path: 'author',
+        select: ['firstName', 'lastName', 'profilePicture'],
+      }, {
+        path: 'tags',
+        select: 'name',
+      }],
+    }).populate({path: 'followedTags', select: 'name'});
+  } catch (error) {
+    return new Error('Unable to get saved posts', 501);
+  }
+  res.status(201).json(readingLists);
+};
+
+exports.getSavedPost = getSavedPost;
 exports.followUser = followUser;
 exports.signUp = signUp;
 exports.signIn = signIn;

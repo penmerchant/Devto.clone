@@ -213,6 +213,8 @@ const unlikePost = async (req, res, next) => {
   // }
   res.status(201).json(post + 'removed');
 };
+
+
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;

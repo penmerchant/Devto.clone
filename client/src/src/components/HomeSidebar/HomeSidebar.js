@@ -33,7 +33,7 @@ const HomeSideBar = () => {
         },
         {
             'subject' : 'Reading List',
-            'link': '/ReadingList',
+            'link': `/reading-list/${currentUser.data.id}`,
             'src': ReadingLogo
         },
         {

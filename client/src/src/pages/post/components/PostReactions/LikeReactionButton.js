@@ -8,7 +8,7 @@ const LikeReactionButton = (props) => {
         handleReactions(effect, props.action, props.actionId, 'isLiked');
     }
     return (<div className={classes.icon_wrapper} onClick={handleClick}>
-        {isLiked? <AiFillHeart className={classes.heart_icon} />: <AiOutlineHeart />}
+        {isLiked? <AiFillHeart className={classes.heart_icon} />: <AiOutlineHeart className={classes.heart_reaction}/>}
     </div>);
 }
 

@@ -1,7 +1,7 @@
 import classes from '../list.module.css';
 import {formatDate, shortenString} from '../../../utils/index';
 import { BsChatRight } from "react-icons/bs";
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const PostCards = (props) => {
     const navigate = useNavigate();

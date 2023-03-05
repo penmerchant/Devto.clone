@@ -1,0 +1,22 @@
+.grid_display{
+    display: grid;
+    justify-content: center;
+    /* background: black; */
+    grid-template-columns: repeat(1,50%);
+    /* width: auto; */
+}
+
+@media screen and (max-width: 790px) {
+    .grid_display{
+        /* display: grid; */
+        /* justify-content: center; */
+        /* background: black; */
+        grid-template-columns: repeat(1,100%);
+        /* width: auto; */
+    }
+}
+
+.row{
+    display: flex;
+    gap: 4px;
+}

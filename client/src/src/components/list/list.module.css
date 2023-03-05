@@ -4,6 +4,24 @@
     border-radius: 40px;
 }
 
+.tagLabel_container{
+    display: grid;
+    grid-template-columns: repeat(3, 0.2fr);
+}
+
+@media screen and (max-width: 500px) {
+    .tagLabel_container{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+    }
+}
+
+.tagLabelCard:hover{
+    cursor: pointer;
+    width: auto;
+    border: 1px solid #323232;
+}
+
 .text_wrapper{
     line-height: auto;
     color: #323232;

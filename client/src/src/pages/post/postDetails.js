@@ -1,4 +1,4 @@
-import {Link, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams } from "react-router-dom";
 import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import {useContext, useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import PostReactions from "./components/PostReactions/PostReaction";
 import { countCommentsLength, formatDate } from "../../utils";
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import AuthContext from "../../context/authContext";
+import TagLabel from "../../components/list/components/tagLabel";
 // import ReactJsAlert from 'reactjs-alert';
 const PostDetails = () => {
     // get id of a post
@@ -20,14 +21,16 @@ const PostDetails = () => {
     const [comments, setComments] = useState([]);
     const [isToggled, setToggle] = useState(false);
     const {postId} = useParams();
+    const navigate = useNavigate();
+
     const { body,
         title,
         image,
         author,
-        createdAt} = post;
+        createdAt,
+        tags } = post;
     // reset input 
     const type = 'post';
-
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {
@@ -42,6 +45,7 @@ const PostDetails = () => {
             }
         }
 
+       
         fetchPost();
         return () => {
             isCancelled = true;
@@ -62,7 +66,11 @@ const PostDetails = () => {
         fetchComments();
       
     },[sendRequest,post,postId]);
-    
+
+    const navigateToProfile = (userId) => {
+        navigate(`/profile/${userId}`, {replace: true});
+    }
+
     const toggleSettings = () => {
         if(isToggled){
             setToggle(false);
@@ -97,8 +105,15 @@ const PostDetails = () => {
                             </div>
                         </div> 
                     }
+                    <div onClick={()=> navigateToProfile(author._id)} className={classes.row}>
+                        <img className={classes.circle} 
+                            alt='profile'
+                            src={author.profilePicture}/>
+                            <p>{author.firstName + author.lastName}</p>
+                    </div>
                     <h1>{title}</h1>
                     <b>{formatDate(createdAt)}</b>
+                    { tags && <TagLabel tags={tags}/> }
                     
             <MarkdownPreview source={body} key={post.id} style={styles} />
             <div className={classes.comment_form}>

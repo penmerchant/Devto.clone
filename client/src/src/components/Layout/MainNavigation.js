@@ -101,7 +101,9 @@ const MainNavigation = () => {
                 </li>
                 </div>
                 <ul>
-                <li>Search bar</li>
+                <li>
+                    <SearchBar />
+                </li>
                 </ul>
                 </div>
                 <div className={classes.nav}>

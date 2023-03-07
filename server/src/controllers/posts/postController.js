@@ -215,6 +215,24 @@ const unlikePost = async (req, res, next) => {
 };
 
 
+const searchPostByTag = async (req, res) => {
+  const {tagId} = req.params;
+  let result = [];
+  try {
+    result = await Post.find({}).where('tags')
+        .equals(tagId)
+        .populate({path: 'author',
+          select: '-password',
+        })
+        .populate('tags');
+  } catch (error) {
+    return new Error('Unable to find post related by the tag', 501);
+  }
+
+  res.status(201).json(result);
+};
+
+exports.searchPostByTag = searchPostByTag;
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;
 exports.createPost = createPost;

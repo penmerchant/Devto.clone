@@ -5,11 +5,14 @@ import {AiFillHeart} from "react-icons/ai";
 import {AiOutlineHeart} from "react-icons/ai";
 import {countCommentsLength, formatDate} from '../../utils';
 import usePostReactions from '../../hooks/usePostReactions';
+import { useContext } from 'react';
+import AuthContext from '../../context/authContext';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
     const {post, index} = props;
-    
+    const {currentUser} = useContext(AuthContext);
+
     const {author,
         likes,
         comments,
@@ -19,7 +22,7 @@ const PostCard = (props) => {
         createdAt,
         disable } = post;
     
-    const {state} = usePostReactions({likes: likes, userId: author._id});  
+    const {state} = usePostReactions({ likes: likes, userId: currentUser.data.id});  
     const {isLiked} = state;  
     const {firstName,
         lastName} = author;

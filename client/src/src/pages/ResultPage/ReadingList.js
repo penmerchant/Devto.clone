@@ -1,4 +1,4 @@
-import { useCallback, useContext, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import DropDown from '../../components/FormElements/Dropdown/Dropdown';
 import PostCards from '../../components/list/components/PostCards'
 import HomeSkeleton from '../../components/Skeleton/HomeSkeleton';
@@ -18,7 +18,7 @@ const ReadingList = () => {
     const {btn_post} = ButtonStyle(isHover);
 
 
-    useMemo(()=>{
+    useEffect(()=>{
         const fetchTags = async () => {
             const response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/tags/`);
             settags(response);
@@ -28,7 +28,7 @@ const ReadingList = () => {
         
     },[settags, sendRequest]);
 
-    useMemo(()=>{
+    useEffect(()=>{
         // if(!isLoggedin){
 
         // }
@@ -53,8 +53,8 @@ const ReadingList = () => {
     },[setChosen]);
 
     // const handleChosenItem = useMemo(()=>{
-    //     setSavedPosts();
-    // },[setSavedPosts]);
+    //     fetchSortedPost();
+    // },[fetchSortedPost()]);
     const handleMouseLeave = () => {
         setHover(false);
     };
@@ -91,7 +91,7 @@ const ReadingList = () => {
         </div>
         <div >
             {
-                post? post.map((ps)=>{
+                post? post.map((ps, index)=>{
                     return <PostCards post={ps} user={ps.author}/>
                 }) : 'Found no result'
             }

@@ -223,6 +223,9 @@ const getSavedPost = async (req, res) =>{
       populate: [{
         path: 'author',
         select: ['firstName', 'lastName', 'profilePicture'],
+      }, {
+        path: 'tags',
+        select: 'name',
       }],
     }).populate({path: 'followedTags', select: 'name'});
   } catch (error) {

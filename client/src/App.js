@@ -15,6 +15,7 @@ import TagsView from "./src/pages/Tags/Tags";
 import DeletePage from "./src/components/DeleteBox/DeletePage";
 import EditComment from "./src/pages/edit/editcomment/EditComment";
 import ReadingList from "./src/pages/ResultPage/ReadingList";
+import TagsResultPage from "./src/pages/ResultPage/TagsResultList";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
         <Route path='/delete-page/:type/:id' element={<DeletePage />}/>
         <Route path='/edit-comment/:commentId' element={<EditComment />} />
         <Route path='/reading-list/:userId' element={<ReadingList />}/>
+        <Route path='/tag-result/:tagId' element={<TagsResultPage />}/>
       </Routes>
     </Layout>
     <Footer />

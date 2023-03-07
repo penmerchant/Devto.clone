@@ -4,6 +4,7 @@ import AuthContext from '../../../context/authContext';
 import TagsCard from './TagCard';
 import classes from '../list.module.css';
 import { shortenString } from '../../../utils';
+import { Link } from 'react-router-dom';
 
 const TagsList = () => {
     const [tags, setTags] = useState();
@@ -32,7 +33,9 @@ const TagsList = () => {
                 return <div>
                 {tag.posts.length !== 0 && <div className={classes.card}>
                    <div className={classes.text_wrapper}>
-                        <h2>{tag.name}</h2>
+                        <Link to={`/tag-result/${tag._id}`}> 
+                            <h2>{tag.name}</h2>
+                        </Link>
                    </div>
                     
                 {tag.posts.map((tg)=>{

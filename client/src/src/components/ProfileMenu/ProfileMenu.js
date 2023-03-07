@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import ButtonStyle from '../../utils/ButtonStyle';
 
-const {ProfileMenuItems} = require('./ProfileMenuItems');
 
 const ProfileMenu = () =>{
 
@@ -19,6 +18,22 @@ const ProfileMenu = () =>{
     const profilePicture =
     currentUser.data.profilePicture|| 'https://firebasestorage.googleapis.com/v0/b/testing-ba1e7.appspot.com/o/default%2Fdefault_pic.png?alt=media&token=9f6bcb7a-c5df-40e9-af2a-be0808b66b86';
     
+    const ProfileMenuItems = [
+        {
+            title: 'My profile',
+            url: `/profile/${currentUser.data.id}`,
+        },
+        {
+            title: 'Create post',
+            url: '/newPost',
+        },
+        {
+            title: 'Reading list',
+            url : `/reading-list/${currentUser.data.id}`,
+        },
+    
+    ];
+
     const handleMouseLeave = () => {
         setHover(false);
     };
@@ -41,9 +56,9 @@ const ProfileMenu = () =>{
         <img src={profilePicture} onClick={showMenu}  className={classes.img} alt='user'/>
 
         <ul className={show? classes.dropdown_show :classes.dropdown}>
-            <Link to={`/profile/${currentUser.data.id}`}>
+            {/* <Link to={`/profile/${currentUser.data.id}`}>
                 <li className={classes.menu_items}>My profile</li>
-            </Link>
+            </Link> */}
         {
             ProfileMenuItems.map((menu,index)=>{
                 return <>   

@@ -77,7 +77,10 @@ const getAllPosts = async (req, res, next) =>{
   let posts = [];
 
   try {
-    posts = await Post.find().populate('author').populate('comments');
+    posts = await Post.find().populate({path: 'author',
+      select: '-password'})
+        .populate('comments')
+        .populate('tags');
   } catch (error) {
     throw error;
   }
@@ -89,7 +92,8 @@ const getPostById = async ( req, res, next) => {
   let post;
   try {
     post = await Post.findById(postId)
-        .populate('author')
+        .populate({path: 'author',
+          select: '-password'})
         .populate('tags');
   } catch (err) {
     next(new Error('Something wrong with the server', 500));
@@ -233,6 +237,24 @@ const searchPostByTag = async (req, res) => {
   res.status(201).json(result);
 };
 
+
+const searchPostsByKeyword = async (req, res) => {
+  const {keyword} = req.params;
+  let result = [];
+  try {
+    result = await Post.find({title: {$regex: keyword}}).populate('comments')
+        .populate({path: 'author',
+          select: '-password',
+        })
+        .populate('tags');
+  } catch (error) {
+    return new Error('Unable to find post by keyword', 501);
+  }
+
+  res.status(201).json(result);
+};
+
+exports.searchPostsByKeyword = searchPostsByKeyword;
 exports.searchPostByTag = searchPostByTag;
 exports.getPostById = getPostById;
 exports.getAllPosts = getAllPosts;

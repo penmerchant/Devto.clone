@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {FaSearch} from "react-icons/fa";
 
 const SearchBar = () =>{
-    const [searchValue, setSearchValue] = useState();
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -13,7 +13,8 @@ const SearchBar = () =>{
     }
 
     const handleSubmit = () =>{
-        navigate(`/searchResult/${searchValue}`);
+        console.log(searchValue);
+        navigate(`/search-post/${searchValue}`, {replace: true});
     }
     return (
         <div className={classes.input}>

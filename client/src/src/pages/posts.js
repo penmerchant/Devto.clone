@@ -29,7 +29,7 @@ const Post = () => {
     }
     if(postData || postData > 0){
 
-        return <PostList post={postData}/>
+        return <PostList post={postData} disable={false}/>
         
     }
         

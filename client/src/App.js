@@ -4,7 +4,7 @@ import NewPost from "./src/pages/NewPost/createPost";
 import Home from "./src/pages/home/home";
 import Login from "./src/pages/login";
 import CreateAccount from "./src/pages/authentication/register";
-import SearchPage from "./src/pages/SearchPage/SearchPage";
+import SearchPage from "./src/pages/ResultPage/SearchPage";
 import PostDetails from "./src/pages/post/postDetails";
 import Footer from "./src/components/Footer/Footer";
 import About from "./src/pages/about/about";
@@ -36,6 +36,7 @@ function App() {
         <Route path='/edit-comment/:commentId' element={<EditComment />} />
         <Route path='/reading-list/:userId' element={<ReadingList />}/>
         <Route path='/tag-result/:tagId' element={<TagsResultPage />}/>
+        <Route path='/search-post/:keyword' element={<SearchPage /> } />
       </Routes>
     </Layout>
     <Footer />

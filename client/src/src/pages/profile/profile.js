@@ -12,7 +12,6 @@ const Profile = () => {
     const [userProfile , setProfile] = useState({});
     const {sendRequest, isLoading} = useHttp();
     let {userId} = useParams();
-
     // get user profile
     useEffect(()=>{
         const fetchProfile = async() => {

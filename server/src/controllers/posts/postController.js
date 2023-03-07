@@ -224,7 +224,8 @@ const searchPostByTag = async (req, res) => {
         .populate({path: 'author',
           select: '-password',
         })
-        .populate('tags');
+        .populate('tags')
+        .populate('comments');
   } catch (error) {
     return new Error('Unable to find post related by the tag', 501);
   }

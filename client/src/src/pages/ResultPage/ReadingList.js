@@ -65,7 +65,7 @@ const ReadingList = () => {
 
     const fetchSortedPost = () =>{
         const sortedTagsPost = allPost.filter(found=> {
-            return found.tags.find(elem => elem.name === chosenItem);
+            return found.tags.find(elem => elem._id === chosenItem);
         }); 
         setSavedPosts(sortedTagsPost);
     };

@@ -15,7 +15,7 @@ const DropDown = ({items, type, onChange}) => {
             <select name="item" className={classes.list} onChange={handleChanges}>
                 <option value="">--Please choose an option--</option>
                 { items && items.map((item)=>{
-                    return <option className={classes.options} value={item.name}>{item.name}</option>
+                    return <option className={classes.options} value={item._id}>{item.name}</option>
                 })
             }
         </select>

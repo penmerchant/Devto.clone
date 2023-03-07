@@ -40,5 +40,17 @@ export const countCommentsLength = (comments) => {
 }
 
 export const shortenString = (str) => {
-  return str.length >= 15? str.substring(0, 10) + '...': str;
+  return str.length >= 35? str.substring(0, 15) : str;
+};
+
+export const sortByDate = (posts, type) => {
+  let sortedPost = [];
+
+  if (type === 'Latest'){
+   
+  }else{
+
+  }
+
+  return sortedPost;
 };

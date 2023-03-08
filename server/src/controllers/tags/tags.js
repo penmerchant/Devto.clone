@@ -83,6 +83,9 @@ const getFollowedTagsPost = async (req, res) => {
     taggedPosts = await Tags.find({}).where('followers').equals(userId)
         .populate({path: 'posts',
           options: {limit: 5},
+          populate: [{
+            path: 'comments',
+          }],
         });
   } catch (error) {
     return new Error('Unable to retrieve posts', 501);
@@ -95,6 +98,9 @@ const getAllTagsPost = async (req, res) => {
   try {
     taggedPosts = await Tags.find({}).populate({path: 'posts',
       options: {limit: 5},
+      populate: [{
+        path: 'comments',
+      }],
     }).limit(10);
   } catch (error) {
     return new Error('Unable to retrieve tag related post', 501);

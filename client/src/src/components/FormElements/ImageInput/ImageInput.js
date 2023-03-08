@@ -56,7 +56,7 @@ const InputImage = (props) => {
       <div className={classes.image_container}>
         <div>
           {previewURL && <img src={previewURL} alt='preview' className={classes.image_preview}/>}
-          {!previewURL && <p>Please pick an image</p>}
+          {!previewURL && <b>Please pick an image</b>}
         </div>
         <button
           type='button'

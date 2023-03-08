@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 const TagsList = () => {
     const [tags, setTags] = useState();
     const {sendRequest} = useHttp();
-    const {currentUser} = useContext(AuthContext);
+    const {isLoggedin, currentUser} = useContext(AuthContext);
     useEffect(()=>{
         const fetchTags = async() => {
             let response = [];
             try {
-                if (currentUser.isLoggedin) {
+                if (isLoggedin) {
                     response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/tags//tag-related-post/${currentUser.data.id}/`,
                     'GET'
                     );
@@ -27,7 +27,7 @@ const TagsList = () => {
             } catch (error) {}
         };
         fetchTags();
-    },[sendRequest,setTags,currentUser]);
+    },[sendRequest,setTags,currentUser,isLoggedin]);
     return <>
             {tags && tags.map((tag)=>{
                 return <div>

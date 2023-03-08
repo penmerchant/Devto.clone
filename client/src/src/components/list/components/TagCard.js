@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { countCommentsLength } from '../../../utils';
 import classes from '../list.module.css';
 
 const TagsCard = (props) => {
@@ -13,7 +14,7 @@ const TagsCard = (props) => {
             <h3>
                 {props.title}
             </h3>
-            <p>{props.comments.length} comments</p>
+            <p>{countCommentsLength(props.comments)} comments</p>
         </div>
     </div>
     </div>;

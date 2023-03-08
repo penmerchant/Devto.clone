@@ -35,7 +35,7 @@ const TagsInput = (props) => {
 
 
     return <>
-    { <p>{props.label}</p>}
+    { <b>{props.label}</b>}
     <div className={classes.container}>
     {   
         tags && tags.map((tag,index)=>{

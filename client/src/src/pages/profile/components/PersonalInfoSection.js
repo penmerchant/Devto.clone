@@ -27,7 +27,6 @@ const BioSection = (props) => {
                 <BsThreeDotsVertical /> 
                 <div className={isToggle? classes.dropdown_show: classes.dropdown}>
                     <Link to={`/edit-profile/${props.userId}`}>Edit Profile</Link>
-                    <p>Delete Account</p>
                 </div>
                 </div> 
             }

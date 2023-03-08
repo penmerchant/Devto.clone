@@ -11,7 +11,6 @@ const Post = new Schema({
   tags: [{type: mongoose.Types.ObjectId, ref: 'Tags', default: []}],
   likes: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],
   bookmarked: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],
-  commented: [{type: mongoose.Types.ObjectId, ref: 'User', default: []}],
 });
 
 const Postschema = mongoose.model('Post', Post);

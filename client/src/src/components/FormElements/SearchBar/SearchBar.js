@@ -23,7 +23,7 @@ const SearchBar = () =>{
                 <input type='text'
                 placeholder='Search'
                 onChange={onChange} 
-                />
+                className={classes.input_bar}/>
             </div>
             {/* <Button label='Search'/> */}
             <span onClick={handleSubmit}

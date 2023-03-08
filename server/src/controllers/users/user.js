@@ -135,6 +135,36 @@ const followUser = async (req, res, next) => {
 
   res.status(201).json('Operation is succeded');
 };
+const unfollow = async (req, res, next) => {
+  const {userId, authorId} = req.params;
+  let currentUser;
+
+  try {
+    currentUser = await User.findById(userId);
+  } catch (error) {
+    return next( Error('This user is not exist'), 401);
+  }
+
+  let followedUser;
+  try {
+    followedUser = await User.findById(authorId);
+  } catch (error) {
+    return next( Error('This user is not exist'), 401);
+  }
+
+  if (currentUser && followedUser) {
+    try {
+      await currentUser.followed.pull(followedUser._id);
+      await followedUser.follower.pull(currentUser._id);
+      await followedUser.save();
+      await currentUser.save();
+    } catch (error) {
+      return next(new Error('Unable to follow the user'), 401);
+    }
+  }
+
+  res.status(201).json('Operation is succeded');
+};
 
 const getRecentComments = async (req, res, next) => {
   const {userId} = req.params;
@@ -242,3 +272,4 @@ exports.getUserById = getUserById;
 exports.getRecentComments = getRecentComments;
 exports.getRecentPosts = getRecentPosts;
 exports.editProfile = editProfile;
+exports.unfollow = unfollow;

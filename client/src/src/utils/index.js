@@ -23,6 +23,11 @@ export const checkInArray = (arr, userId) => {
   return arr && arr.indexOf(userId) !== -1;
 };
 
+
+export const checkFollow = (arr, userId) => {
+  return arr && arr.indexOf(userId) !== -1;
+};
+
 export const countArrayLength = (arr) => {
   return arr && arr.length;
 };

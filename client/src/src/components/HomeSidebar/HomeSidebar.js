@@ -1,5 +1,4 @@
 import HomeLogo  from '../../images/sidebar/home.png';
-import ContactLogo  from '../../images/sidebar/contact.png';
 import ReadingLogo  from '../../images/sidebar/readinglist.png';
 import AboutLogo  from '../../images/sidebar/about.png';
 import TagLogo from '../../images/sidebar/tags.png';
@@ -40,11 +39,6 @@ const HomeSideBar = () => {
             'subject' : 'About',
             'link': '/about',
             'src': AboutLogo
-        },
-        {
-            'subject' : 'Contact',
-            'link': '/contact',
-            'src': ContactLogo
         },
         {
             'subject': 'Tags',

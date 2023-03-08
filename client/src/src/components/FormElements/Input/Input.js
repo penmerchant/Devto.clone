@@ -7,7 +7,7 @@ const Input = (props) => {
         onChange} = props;
         
     return (<>
-    <p>{props.label}</p>
+    <b>{props.label}</b>
     <input className={classes.input}
     name={name}
     value={value} 

@@ -56,7 +56,7 @@ const PostDetails = () => {
         const fetchComments = async() => {
            
             try{
-                const response = await sendRequest(`http://localhost:4444/api/comments/${postId}`);
+                const response = await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/${postId}`);
                 setComments(response);
             } catch(error) {
             }

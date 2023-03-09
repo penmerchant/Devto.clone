@@ -11,6 +11,20 @@
     grid-template-areas: 'ps' 'ts';
     gap: 0px;
   }
+  .sidebar{  
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .grid{
+    grid-template-columns: repeat(2,100%);
+    grid-template-areas: 'ps' 'ts';
+    gap: 0px;
+  }
+  .sidebar{  
+    display: none;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -19,6 +33,21 @@
     grid-template-areas: 'ps' 'ts';
     gap: 0px;
   }
+  .sidebar{  
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 300px) {
+  .grid{
+    grid-template-columns: repeat(2,100%);
+    grid-template-areas: 'ps' 'ts';
+    gap: 0px;
+  }
+  .sidebar{  
+    display: none;
+  }
 }
 /* .container{
   height: 100%;
@@ -26,6 +55,7 @@
 
 .sidebar{
     height: auto;
+    width: auto;
     grid-area: sb;
 }
 

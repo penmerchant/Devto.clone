@@ -5,16 +5,18 @@ import {useContext, useState} from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
-import SearchBar from '../FormElements/SearchBar/SearchBar';
 import ButtonStyle from '../../utils/ButtonStyle';
 import {AiOutlineBars} from 'react-icons/ai';
 import HomeSideBar from '../HomeSidebar/HomeSidebar';
-// import HomeSideBar from '../HomeSidebar/HomeSidebar';
+import SearchBar from '../FormElements/SearchBar/SearchBar';
+import {FaSearch} from "react-icons/fa";
+import {MdCancel} from "react-icons/md";
 
 const MainNavigation = () => {
     //get user provider
     const [isHover, setHover] = useState(false);
     const [isToggle, setToggle] = useState(false);
+    const [isSearched, setSearch] = useState(false);
     const { currentUser} = useContext(AuthContext);
     const {isLoggedin} = currentUser;
     const {btn_post} = ButtonStyle(isHover);
@@ -30,6 +32,14 @@ const MainNavigation = () => {
 
     const toggleSideBar = () =>{
         setToggle(!isToggle);
+    };
+
+    const toggleSearch = () =>{
+        setSearch(true);
+    };
+
+    const cancelSearch = () => {
+        setSearch(false);
     };
 
     if(!isLoggedin){
@@ -50,10 +60,11 @@ const MainNavigation = () => {
            </NavLink>
           </li>
         </div>
-        
+        {isSearched? <MdCancel onClick={cancelSearch}/> : <FaSearch onClick={toggleSearch}/> }
+
         <ul>
          <li>
-            <SearchBar />
+            {/* <SearchBar /> */}
          </li>
         </ul>
         </div>
@@ -80,8 +91,11 @@ const MainNavigation = () => {
             
             </div> 
             <div className={isToggle? classes.sidebar_active: classes.sidebar}>
-                        <HomeSideBar />
-                    </div>
+                <HomeSideBar />
+            </div>
+            <div>
+                { isSearched && <SearchBar />}
+            </div>
             </>);
 
         } else{
@@ -93,21 +107,15 @@ const MainNavigation = () => {
                     <div className={classes.menu_bar} onClick={toggleSideBar}>
                         <AiOutlineBars />
                     </div>
-                <div>
                 <li>
                 <NavLink to='/'>
                 <img className={classes.img} src={logo} alt='png'/>
                 </NavLink>
                 </li>
-                </div>
-                <ul>
-                <li>
-                    <SearchBar />
-                </li>
-                </ul>
+                    {isSearched? <MdCancel onClick={cancelSearch}/> : <FaSearch onClick={toggleSearch}/> }
                 </div>
                 <div className={classes.nav}>
-                <ul>
+
                 <li className={classes.item}> 
                     <NavLink to='/newPost'> 
                     <Button label='Create Post' style={btn_post} 
@@ -116,17 +124,16 @@ const MainNavigation = () => {
                     </NavLink> 
                     
                     </li>
-                    </ul>
-                    <ul>
-                    <li>
-                         <ProfileMenu /> 
-                    </li>
-                    </ul>
-                    </div>
+                   
+                    <ProfileMenu /> 
+                </div>
                     
                     </div>
                     <div className={isToggle? classes.sidebar_active: classes.sidebar}>
                         <HomeSideBar />
+                    </div>
+                    <div>
+                        { isSearched && <SearchBar />}
                     </div>
                      </>
             );

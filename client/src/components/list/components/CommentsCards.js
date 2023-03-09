@@ -8,7 +8,7 @@ const CommentsCards = (props) => {
     const {comment} = props;
     const [isToggled, setToggle] = useState(false);
     // for updating and deleting comment on certain post
-    const {post} = comment;
+    // const {post} = comment;
     const type = 'comment';
     const toggleSettings = () => {
         if(isToggled){

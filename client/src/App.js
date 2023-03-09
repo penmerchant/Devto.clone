@@ -17,7 +17,10 @@ import DeletePage from "../src/components/DeleteBox/DeletePage";
 import EditComment from "../src/pages/edit/editcomment/EditComment";
 import ReadingList from "../src/pages/ResultPage/ReadingList";
 import TagsResultPage from "../src/pages/ResultPage/TagsResultList";
+
+
 function App() {
+ 
   return (
     <>
     <Layout>

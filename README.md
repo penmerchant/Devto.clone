@@ -17,6 +17,8 @@ This site consists of several pages and each of them has it owns functionality
 12. Search post 
 13. Search post by tags
 
+# Home Page
+
 
               
     

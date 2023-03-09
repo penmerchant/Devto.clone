@@ -37,6 +37,8 @@ const TagsInput = (props) => {
     return <>
     { <b>{props.label}</b>}
     <div className={classes.container}>
+        <div className={classes.grid_tags}>
+
     {   
         tags && tags.map((tag,index)=>{
             return <div>
@@ -47,11 +49,14 @@ const TagsInput = (props) => {
             </div>
         })
     }
-    <input id={props.id}
-    className={classes.input}
-    type={props.text}
-    onKeyDown={onKeyPress}
-    placeholder={props.placeholder}/> 
+    </div>
+    <div>
+        <input id={props.id}
+            className={classes.input}
+            type={props.text}
+            onKeyDown={onKeyPress}
+            placeholder={props.placeholder}/> 
+        </div>
     </div>
     </>
 };

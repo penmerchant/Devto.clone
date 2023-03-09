@@ -45,13 +45,13 @@ const NewPost = () =>{
     if (!isPermitted) {
         return <div>You need to sign in before creating a thread</div>
     }
-    return <div className={classes.form_container}>
+    return <>
 
-    <form className={classes.form} >
+    <form>
         {formInputs}
         <button className={classes.btn} onClick={handleSubmit} disabled={!isFormValid()}>Submit</button>
     </form>
-    </div>;
+    </>;
 };
 
 export default NewPost; 

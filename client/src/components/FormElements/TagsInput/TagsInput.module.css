@@ -2,12 +2,24 @@
     display: grid;
     margin-top: 16px;
     width: 100%;
+    height: auto;
     border: 1px solid black;
-    grid-template-columns: repeat(4, 0.5fr);
+    grid-template-columns: repeat(1, auto);
     background: #fff;
 }
 .input{
     border:none;
+}
+
+.grid_tags{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+@media screen and (max-width: 500px) {
+    .grid_tags{
+        grid-template-columns: repeat(2, 0.5fr);
+    }
 }
 
 .input:focus{

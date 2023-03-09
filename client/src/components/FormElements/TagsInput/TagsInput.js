@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from './TagsInput.module.css';
+import classes from "./TagsInput.module.css";
 
 const TagsInput = (props) => {
     const [tags, setTags] = useState([]);
@@ -9,7 +9,7 @@ const TagsInput = (props) => {
         setTags(props.tags);
     },[props.tags, setTags]);
     
-    const onKeyPress = (e) => {
+    const onChange = (e) => {
         
         const tag = e.target.value;
         if(!tag.trim()) return;
@@ -18,7 +18,6 @@ const TagsInput = (props) => {
             e.target.value = '';
             setValid(true);
             props.onChange(props.label.toLowerCase(), [...tags, tag], valid);
-            console.log(tags);
         }
         if(tags.length === 0){
             setValid(false);
@@ -35,7 +34,7 @@ const TagsInput = (props) => {
 
 
     return <>
-    { <b>{props.label}</b>}
+    { <b>{props.label}  (Press 'Enter' to add tag)</b>}
     <div className={classes.container}>
         <div className={classes.grid_tags}>
 
@@ -54,7 +53,7 @@ const TagsInput = (props) => {
         <input id={props.id}
             className={classes.input}
             type={props.text}
-            onKeyDown={onKeyPress}
+            onKeyDown={onChange}
             placeholder={props.placeholder}/> 
         </div>
     </div>

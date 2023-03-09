@@ -1,7 +1,7 @@
 import classes from './MainNavigation.module.css';
 import {NavLink} from 'react-router-dom';
 import AuthContext from '../../context/authContext';
-import {useContext, useState} from 'react';
+import {useCallback, useContext, useState} from 'react';
 import logo from '../../images/devto.png';
 import Button from '../Button/Button';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
@@ -33,6 +33,9 @@ const MainNavigation = () => {
     const toggleSideBar = () =>{
         setToggle(!isToggle);
     };
+    const cancelSideBar = useCallback((choice)=>{
+        setToggle(choice);
+    },[]);
 
     const toggleSearch = () =>{
         setSearch(true);
@@ -91,10 +94,10 @@ const MainNavigation = () => {
             
             </div> 
             <div className={isToggle? classes.sidebar_active: classes.sidebar}>
-                <HomeSideBar />
+                <HomeSideBar onClick={cancelSideBar} />
             </div>
             <div>
-                { isSearched && <SearchBar />}
+                { isSearched && <SearchBar/>}
             </div>
             </>);
 
@@ -130,7 +133,7 @@ const MainNavigation = () => {
                     
                     </div>
                     <div className={isToggle? classes.sidebar_active: classes.sidebar}>
-                        <HomeSideBar />
+                        <HomeSideBar onClick={cancelSideBar}/>
                     </div>
                     <div>
                         { isSearched && <SearchBar />}

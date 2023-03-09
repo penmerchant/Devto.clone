@@ -8,7 +8,7 @@ import { useContext, useState } from 'react';
 import AuthContext from '../../context/authContext';
 import Button from '../Button/Button';
 import ButtonStyle from '../../utils/ButtonStyle';
-const HomeSideBar = () => {
+const HomeSideBar = (props) => {
     const {currentUser} = useContext(AuthContext);
     const [isHover, setHover] = useState(false);
 
@@ -23,6 +23,9 @@ const HomeSideBar = () => {
         setHover(true);
     };
 
+    const cancelSideBar = () => {
+        props.onClick(false);
+    };
 
     const sidebarMenu = [
         {
@@ -80,7 +83,7 @@ const HomeSideBar = () => {
         {   
             sidebarMenu.map((items,index)=>{
                 return <div key={index} className={classes.sidebar}>
-                <NavLink to={items.link} className={classes.sidebar} >
+                <NavLink to={items.link} onClick={cancelSideBar} className={classes.sidebar} >
                     <div className={classes.row}>
                         <img src={items.src} className={classes.img} alt='logo'/>
                         <p>{items.subject}</p>

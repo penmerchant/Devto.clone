@@ -15,8 +15,8 @@ const BodyInput = (props) => {
     //handle any changes of value
     const onChange = (value) => {
         let isValid = false;
+        setBody(value);
         if(value !== '') {
-            setBody(value);
             isValid = true;
             setValid(isValid);
         }
@@ -24,7 +24,7 @@ const BodyInput = (props) => {
             isValid = false;
             setValid(isValid);
         }
-        props.onChange(props.label.toLowerCase(), body, valid);
+        props.onChange(props.label.toLowerCase(), value, valid);
     };
 
     return (

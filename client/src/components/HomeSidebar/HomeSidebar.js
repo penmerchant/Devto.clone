@@ -52,9 +52,11 @@ const HomeSideBar = (props) => {
 
     const navToSignInPage = () => {
         navigate(`/login`, {replace: true});
+        cancelSideBar();
     }
     const navToRegisterPage = () => {
         navigate(`/register`, {replace: true});
+        cancelSideBar();
     }
 
     return <div >

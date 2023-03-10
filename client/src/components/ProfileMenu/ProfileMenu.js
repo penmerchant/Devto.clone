@@ -44,7 +44,11 @@ const ProfileMenu = () =>{
 
     const showMenu = () =>{
         setShow(!show);
-    }
+    };
+
+    const closeMenu = () => {
+        setShow(false);
+    };
 
     const signout =() =>{
         logout();
@@ -62,7 +66,8 @@ const ProfileMenu = () =>{
         {
             ProfileMenuItems.map((menu,index)=>{
                 return <>   
-                <Link to={menu.url}>
+                <Link to={menu.url}
+                    onClick={closeMenu} >
                     <li key={index}
                     className={classes.menu_items}>
                     {menu.title}

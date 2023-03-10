@@ -13,8 +13,8 @@ const router = new express.Router();
 const upload = require('../../middleware/file-upload');
 
 router.post('/login', signIn);
-router.put('/follow/:userId/:authorId', followUser);
-router.put('/unfollow/:userId/:authorId', unfollow);
+router.put('/follow', followUser);
+router.put('/unfollow', unfollow);
 router.post('/register', upload.single('image'), signUp);
 router.get('/:userId', getUserById);
 router.get('/recentPosts/:userId', getRecentPosts);

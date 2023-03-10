@@ -106,61 +106,26 @@ const getUserById = async (req, res, next) => {
 };
 // follow a user
 const followUser = async (req, res, next) => {
-  const {userId, authorId} = req.params;
-  let currentUser;
-
+  const {userId, targetId} = req.body;
   try {
-    currentUser = await User.findById(userId);
+    await User.updateOne({_id: targetId}, {
+      $push: {follower: userId},
+    });
   } catch (error) {
-    return next( Error('This user is not exist'), 401);
+    return next(new Error('Unable to follow the user'), 401);
   }
 
-  let followedUser;
-  try {
-    followedUser = await User.findById(authorId);
-  } catch (error) {
-    return next( Error('This user is not exist'), 401);
-  }
-
-  if (currentUser && followedUser) {
-    try {
-      await currentUser.followed.push(followedUser._id);
-      await followedUser.follower.push(currentUser._id);
-      await followedUser.save();
-      await currentUser.save();
-    } catch (error) {
-      return next(new Error('Unable to follow the user'), 401);
-    }
-  }
 
   res.status(201).json('Operation is succeded');
 };
 const unfollow = async (req, res, next) => {
-  const {userId, authorId} = req.params;
-  let currentUser;
-
+  const {userId, targetId} = req.body;
   try {
-    currentUser = await User.findById(userId);
+    await User.updateOne({_id: targetId}, {
+      $pull: {follower: userId},
+    });
   } catch (error) {
-    return next( Error('This user is not exist'), 401);
-  }
-
-  let followedUser;
-  try {
-    followedUser = await User.findById(authorId);
-  } catch (error) {
-    return next( Error('This user is not exist'), 401);
-  }
-
-  if (currentUser && followedUser) {
-    try {
-      await currentUser.followed.pull(followedUser._id);
-      await followedUser.follower.pull(currentUser._id);
-      await followedUser.save();
-      await currentUser.save();
-    } catch (error) {
-      return next(new Error('Unable to follow the user'), 401);
-    }
+    return next(new Error('Unable to follow the user'), 401);
   }
 
   res.status(201).json('Operation is succeded');

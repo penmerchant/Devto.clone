@@ -10,7 +10,6 @@ const useFollow = ({ followedUsers, followers,userId}) => {
     });
     const [isError, setError] = useState(false);
     const {sendRequest} = useHttp();
-
     const handleAction = async (route, action, userId, targetId, stateKey) => {
         // targetId is being used to follow and unfollow tags and users
         try {

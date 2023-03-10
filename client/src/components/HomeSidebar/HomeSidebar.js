@@ -3,7 +3,7 @@ import ReadingLogo  from '../../images/sidebar/readinglist.png';
 import AboutLogo  from '../../images/sidebar/about.png';
 import TagLogo from '../../images/sidebar/tags.png';
 import classes from './HomeSidebar.module.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthContext from '../../context/authContext';
 import Button from '../Button/Button';
@@ -51,12 +51,14 @@ const HomeSideBar = (props) => {
     ];
 
     const navToSignInPage = () => {
+        props.onClick(false);
         navigate(`/login`, {replace: true});
-        cancelSideBar();
+        // cancelSideBar();
     }
     const navToRegisterPage = () => {
+        props.onClick(false);
         navigate(`/register`, {replace: true});
-        cancelSideBar();
+        // cancelSideBar();
     }
 
     return <div >
@@ -85,12 +87,12 @@ const HomeSideBar = (props) => {
         {   
             sidebarMenu.map((items,index)=>{
                 return <div key={index} className={classes.sidebar}>
-                <NavLink to={items.link} onClick={cancelSideBar} className={classes.sidebar} >
+                <Link to={items.link} onClick={cancelSideBar} className={classes.sidebar} >
                     <div className={classes.row}>
                         <img src={items.src} className={classes.img} alt='logo'/>
                         <p>{items.subject}</p>
                     </div>
-                </NavLink>
+                </Link>
                 </div>
             })
         }

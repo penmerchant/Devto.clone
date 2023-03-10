@@ -80,7 +80,8 @@ const getAllPosts = async (req, res, next) =>{
     posts = await Post.find().populate({path: 'author',
       select: '-password'})
         .populate('comments')
-        .populate('tags');
+        .populate('tags')
+        .sort({createdAt: -1});
   } catch (error) {
     throw error;
   }
@@ -229,7 +230,8 @@ const searchPostByTag = async (req, res) => {
           select: '-password',
         })
         .populate('tags')
-        .populate('comments');
+        .populate('comments')
+        .sort({createdAt: -1});
   } catch (error) {
     return new Error('Unable to find post related by the tag', 501);
   }
@@ -246,7 +248,8 @@ const searchPostsByKeyword = async (req, res) => {
         .populate({path: 'author',
           select: '-password',
         })
-        .populate('tags');
+        .populate('tags')
+        .sort({createdAt: -1});
   } catch (error) {
     return new Error('Unable to find post by keyword', 501);
   }

@@ -53,6 +53,7 @@ p{
     background: #bfefff;
     border-radius: 10px;
     text-decoration:  underline;
+    cursor: pointer;
 }
 .img{
     width: 60px;

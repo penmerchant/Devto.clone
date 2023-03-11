@@ -3,7 +3,7 @@ import ReadingLogo  from '../../images/sidebar/readinglist.png';
 import AboutLogo  from '../../images/sidebar/about.png';
 import TagLogo from '../../images/sidebar/tags.png';
 import classes from './HomeSidebar.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthContext from '../../context/authContext';
 import Button from '../Button/Button';
@@ -22,11 +22,6 @@ const HomeSideBar = (props) => {
     const handleMouseEnter = () => {
         setHover(true);
     };
-
-    const cancelSideBar = () => {
-        props.onClick(false);
-    };
-
     const sidebarMenu = [
         {
             'subject' : 'Home',
@@ -49,17 +44,26 @@ const HomeSideBar = (props) => {
             'src': TagLogo
         }
     ];
+    
+    const cancelSidebar = () => {
+        props.onClick(false);
+    };
 
     const navToSignInPage = () => {
-        props.onClick(false);
+        cancelSidebar();
         navigate(`/login`, {replace: true});
         // cancelSideBar();
     }
     const navToRegisterPage = () => {
-        props.onClick(false);
+        cancelSidebar();
         navigate(`/register`, {replace: true});
         // cancelSideBar();
     }
+
+    const navToPage = (page) => {
+        // cancelSidebar();
+        navigate(`${page}` , {replace: true});
+    };
 
     return <div >
         <div className={classes.box}>
@@ -87,12 +91,12 @@ const HomeSideBar = (props) => {
         {   
             sidebarMenu.map((items,index)=>{
                 return <div key={index} className={classes.sidebar}>
-                <Link to={items.link} onClick={cancelSideBar} className={classes.sidebar} >
+                    <div onClick={()=> { navToPage(items.link); cancelSidebar();}} className={classes.sidebar}>
                     <div className={classes.row}>
                         <img src={items.src} className={classes.img} alt='logo'/>
                         <p>{items.subject}</p>
                     </div>
-                </Link>
+                    </div>
                 </div>
             })
         }

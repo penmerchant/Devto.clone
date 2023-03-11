@@ -31,7 +31,8 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/searchResult/:searchValue' element={<SearchPage />} />
         <Route path='/register' element={<CreateAccount />}/>
-        <Route path='/post-details/:postId/' element={ <PostDetails />}/>
+        {/* <Route path='/post-details/:postId/' element={ <PostDetails />}/> */}
+        <Route path='/post-details' element={ <PostDetails />}/>
         <Route path='/about' element={<About />} />
         <Route path='/edit-post/:postId' element={<EditPost />}/>
         <Route path='/edit-profile/:userId' element={<EditProfile />}/>

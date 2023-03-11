@@ -1,5 +1,5 @@
 import classes from './PostCard.module.css';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {BsChatLeftText} from 'react-icons/bs';
 import {AiFillHeart} from "react-icons/ai";
 import {AiOutlineHeart} from "react-icons/ai";
@@ -33,7 +33,11 @@ const PostCard = (props) => {
     }   
     return (
 
-        <div className={classes.card} onClick={onClick}>
+        <div className={classes.card} 
+            // onClick={onClick}
+            >
+            <Link to={`/post-details`} state={{postId: _id}} >
+
             {index === 0 && !disable ? <img src={image} className={classes.img} alt='url'/>: null}
             <div className={classes.row}>
                 <img src={author.profilePicture} alt='user profile' className={classes.profile_picture}/>
@@ -55,6 +59,7 @@ const PostCard = (props) => {
                     <BsChatLeftText className={classes.icon}/>
                 </div>
             </div>
+                </Link>
         </div>
     );
 };

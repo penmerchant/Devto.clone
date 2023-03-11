@@ -1,4 +1,4 @@
-import {Link, useNavigate, useParams } from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import {useContext, useEffect, useState } from "react";
@@ -20,7 +20,9 @@ const PostDetails = () => {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
     const [isToggled, setToggle] = useState(false);
-    const {postId} = useParams();
+    let {state} = useLocation();
+    const {postId} = state;
+    // const {postId} = useParams();
     const navigate = useNavigate();
 
     const { body,

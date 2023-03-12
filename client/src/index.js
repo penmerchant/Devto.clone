@@ -5,11 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import UserProvider from '../src/provider/userProvider';
-import PagePersistent from './provider/pagePersistent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <PagePersistent>
   <UserProvider>
     <BrowserRouter>
      <React.StrictMode>
@@ -17,7 +15,6 @@ root.render(
      </React.StrictMode>
     </BrowserRouter>
   </UserProvider>
-  </PagePersistent>
 );
 
 // If you want to start measuring performance in your app, pass a function

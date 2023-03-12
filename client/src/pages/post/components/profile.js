@@ -32,7 +32,7 @@ const AuthorsProfile = (props) => {
             <img src={props.author.profilePicture} className={classes.circle} alt='profile'/>
             <div className={classes.wrapper}>
                 { props.author.firstName && <Link to={`/profile/${props.author._id}`}>
-                    <b>{props.author.firstName}</b>
+                    <b>{props.author.firstName + ' ' +props.author.lastName}</b>
             
                 </Link>
                 }

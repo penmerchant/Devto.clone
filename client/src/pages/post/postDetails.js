@@ -1,4 +1,4 @@
-import {Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import classes from './PostDetails.module.css';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import {useContext, useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import { countCommentsLength, formatDate } from "../../utils";
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import AuthContext from "../../context/authContext";
 import TagLabel from "../../components/list/components/tagLabel";
+import PageContext from "../../context/DataContext";
 // import ReactJsAlert from 'reactjs-alert';
 const PostDetails = () => {
     // get id of a post
@@ -20,9 +21,10 @@ const PostDetails = () => {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
     const [isToggled, setToggle] = useState(false);
-    let {state} = useLocation();
-    const {postId} = state;
+    // let {state} = useLocation();
+    // const {postId} = state;
     // const {postId} = useParams();
+    const {getPageData} = useContext(PageContext);
     const navigate = useNavigate();
 
     const { body,
@@ -33,6 +35,8 @@ const PostDetails = () => {
         tags } = post;
     // reset input 
     const type = 'post';
+    const postId = getPageData();
+
     useEffect(()=>{
         let isCancelled = false;
         const fetchPost = async() => {

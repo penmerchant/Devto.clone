@@ -1,5 +1,5 @@
 import classes from './PostCard.module.css';
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import {BsChatLeftText} from 'react-icons/bs';
 import {AiFillHeart} from "react-icons/ai";
 import {AiOutlineHeart} from "react-icons/ai";
@@ -7,12 +7,13 @@ import {countCommentsLength, formatDate} from '../../utils';
 import usePostReactions from '../../hooks/usePostReactions';
 import { useContext } from 'react';
 import AuthContext from '../../context/authContext';
+import PageContext from '../../context/DataContext';
 const PostCard = (props) => {
     const navigate = useNavigate();
     
     const {post, index} = props;
+    const {setPageData} = useContext(PageContext);
     const {currentUser} = useContext(AuthContext);
-
     const {author,
         likes,
         comments,
@@ -27,16 +28,17 @@ const PostCard = (props) => {
     const {firstName,
         lastName} = author;
     const fullName = firstName + ' ' + lastName;
-    
+
     const onClick = () => {
-        navigate(`/post-details/${_id}`, {replace: true});
+        setPageData(_id);
+        navigate('/post-details/', {replace: true});
     }   
     return (
 
         <div className={classes.card} 
-            // onClick={onClick}
+            onClick={() => onClick()}
             >
-            <Link to={`/post-details`} state={{postId: _id}} >
+            {/* <Link to={`/post-details`} state={{postId: _id}} > */}
 
             {index === 0 && !disable ? <img src={image} className={classes.img} alt='url'/>: null}
             <div className={classes.row}>
@@ -59,7 +61,7 @@ const PostCard = (props) => {
                     <BsChatLeftText className={classes.icon}/>
                 </div>
             </div>
-                </Link>
+                {/* </Link> */}
         </div>
     );
 };

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import classes from './DeleteBox.module.css';
 import Button from '../Button/Button';
 import ButtonStyle from '../../utils/ButtonStyle';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useHttp from '../../hooks/useHttp';
 import AuthContext from '../../context/authContext';
 
@@ -12,24 +12,27 @@ const DeletePage = () => {
     const {btn_delete} = ButtonStyle();
     const navigate = useNavigate();
     let {id,type} = useParams();
+    let {state} = useLocation();
 
     const revertToPrevPage = () =>{
-        navigate(`/post-details/${id}`, {replace: true});
+        if (type === 'post'){
+            navigate(`/post-details/${id}`, {replace: true});
+        }else{
+            navigate(`/profile/${state.userId}`, {replace: true});
+        }
     };
     const handleDelete = async () => {
         if ( type === 'post'){
-            try{
+            
                 await sendRequest(`${process.env.REACT_APP_API_URL}/api/posts/delete/`,
                 'DELETE',
                 JSON.stringify({postId: id, userId: currentUser.data.id}),
                 {
                     'Content-Type': 'application/json',
                 });
-                navigate(`/home`, {replace: true});
-            } catch (error){}
-        }
-        else {
-            try {
+                navigate(`/profile/${state.userId}`, {replace: true});
+           
+        }  else {
               await sendRequest(`${process.env.REACT_APP_API_URL}/api/comments/delete/`,
 
                 'DELETE',
@@ -38,11 +41,7 @@ const DeletePage = () => {
                     'Content-Type': 'application/json',
                 }
                 );
-                navigate(`/home`, {replace: true});
-
-            } catch(error){
-
-            }
+                navigate(`/profile/${state.userId}`, {replace: true});
        
         }  
     }

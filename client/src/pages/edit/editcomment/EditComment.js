@@ -2,7 +2,7 @@ import Input from "../../../components/FormElements/Input/Input";
 import Button from "../../../components/Button/Button";
 import useHttp from "../../../hooks/useHttp";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../../context/authContext";
 import classes from "../editprofile/EditProfile.module.css";
 import ButtonStyle from "../../../utils/ButtonStyle";
@@ -14,6 +14,9 @@ const EditComment = () => {
     const {commentId} = useParams();
     const {currentUser} = useContext(AuthContext);
     const {btn_edit} = ButtonStyle(isHovered);
+    let {state} = useLocation();
+    const navigate = useNavigate();
+
     useEffect(()=>{
         const fetchComments = async() => {
             try {
@@ -38,6 +41,7 @@ const EditComment = () => {
             });
             setError(false);
             alert('Succesfully submitted');
+            navigate(`/profile/${state.userId}`, {replace: true});
         } catch (error) {
             setError(true);
         }

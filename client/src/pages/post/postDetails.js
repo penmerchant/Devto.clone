@@ -102,8 +102,8 @@ const PostDetails = () => {
                             <div onClick={toggleSettings} className={classes.toggle_setting}>
                                 <BsThreeDotsVertical />
                                 <ul className={isToggled? classes.dropdown_show: classes.dropdown}>
-                                    <div><Link to={`/edit-post/${postId}`}>Edit</Link></div>
-                                    <div><Link to={`/delete-page/${type}/${postId}`}>Delete</Link></div>
+                                    <div><Link to={`/edit-post/${postId}`} >Edit</Link></div>
+                                    <div><Link to={`/delete-page/${type}/${postId}`} state={{userId: currentUser.data.id}}>Delete</Link></div>
                                 </ul>
                             </div>
                         </div> 

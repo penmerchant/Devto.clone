@@ -12,17 +12,17 @@ This site consists of several pages and each of them has it owns functionality
 
 # Features
 
-- Home page
-- Authentication page
-- Create post page
-- Edit post page
-- Delete post page
+- Home view
+- Authentication 
+- Create post 
+- Edit post 
+- Delete post 
 - Comment section
 - Edit comment
 - Delete comment
-- Profile page
+- Profile 
 - Edit profile
-- Reading list page (archived post)
+- Reading list (archived post)
 - Search post 
 - Search post by tags
 

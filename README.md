@@ -75,7 +75,14 @@ CLOUDINARY_API_KEY= cloudinary api key
 CLOUDINARY_API_SECRET= cloudinary api secret
 ```
 
+## Start project
 
+Navigate to ```/server``` and ```/client``` diretories.
+
+```shell
+$ cd /client && npm start
+$ cd /server && npm start
+```
               
     
 

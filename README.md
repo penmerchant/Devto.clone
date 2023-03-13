@@ -54,7 +54,7 @@ REACT_APP_API_URL=your backend api url
 
 ***server .env***
 
-You need to sign up/sign in to your cloudinary account first to do this step. 
+You need to have a cloudinary account first to do this step. 
 
 ```env
 PORT=your own port

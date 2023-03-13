@@ -75,7 +75,7 @@ CLOUDINARY_API_KEY= cloudinary api key
 CLOUDINARY_API_SECRET= cloudinary api secret
 ```
 
-## Start project
+## Run project
 
 Navigate to ```/server``` and ```/client``` directories.
 

@@ -52,14 +52,18 @@ REACT_APP_API_URL=your backend api url
 
 ```
 
-***client .env***
+***server .env***
 
 ```env
 PORT=your own port
 MONGODB=mongodb atlas url or self-setup mongodb
 ACCESS_TOKEN=base64 encryption
 CORS_ORIGIN=your client-side url
+CLOUD_NAME=your cloud name
+CLOUDINARY_API_KEY= cloudinary api key
+CLOUDINARY_API_SECRET= cloudinary api secret
 ```
+
 
               
     

@@ -77,7 +77,7 @@ CLOUDINARY_API_SECRET= cloudinary api secret
 
 ## Start project
 
-Navigate to ```/server``` and ```/client``` diretories.
+Navigate to ```/server``` and ```/client``` directories.
 
 ```shell
 $ cd /client && npm start

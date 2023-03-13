@@ -35,6 +35,12 @@ This site consists of several pages and each of them has it owns functionality
 
 clone or fork the repo https://github.com/penmerchant/Devto.clone.git .
 
+```shell
+$ git clone https://github.com/penmerchant/Devto.clone.git
+
+```
+
+
 **Setup**
 
 Navigate to the repo subdirectories ```/server``` && ```/client``` and install all of the depedencies with ```npm``` or ```yarn```.

@@ -2,6 +2,9 @@
 A clone of site known as devto which is a programming blog for every tech enthusiast. Made for learning and having fun. 
 This site consists of several pages and each of them has it owns functionality
 
+# [Live site](https://penmerchant-devtoclone.onrender.com)
+
+
 # Tech
 - Client - React
 - Backend - Express

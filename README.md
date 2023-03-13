@@ -43,7 +43,7 @@ $ git clone https://github.com/penmerchant/Devto.clone.git
 
 ## Setup
 
-Navigate to the repo subdirectories ```/server``` && ```/client``` and install all of the depedencies with ```npm``` or ```yarn```.
+Navigate to the repo subdirectories ```/server``` && ```/client``` and install the depedencies with ```npm``` or ```yarn```.
 ```shell
 $ cd /server && npm install
 $ cd /client && npm install

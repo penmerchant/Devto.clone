@@ -3,17 +3,16 @@ track progress
  [x] login page
  [x] sign up page
  [x] view homepage
- [ ] browse content using search function
+ [x] browse content using search function
  [x] create post
- [ ] edit post
- [ ] delete post
- [ ] save post
+ [x] edit post
+ [x] delete post
+ [x] save post
  [x] comment post
  [x] reply to comments
  [x] like post
  [x] like comments
- [ ] follow user
- [ ] view profile
- [ ] edit profile
- [ ] delete account
- [ ] contact form
+ [x] follow user
+ [x] view profile
+ [x] edit profile
+ [x] delete account

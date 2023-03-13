@@ -31,7 +31,7 @@ This site consists of several pages and each of them has it owns functionality
 
 # How to set up locally
 
-**Clone**
+## Clone
 
 clone or fork the repo https://github.com/penmerchant/Devto.clone.git .
 
@@ -41,7 +41,7 @@ $ git clone https://github.com/penmerchant/Devto.clone.git
 ```
 
 
-**Setup**
+## Setup
 
 Navigate to the repo subdirectories ```/server``` && ```/client``` and install all of the depedencies with ```npm``` or ```yarn```.
 ```shell
@@ -50,7 +50,7 @@ $ cd /client && npm install
 
 ```
 
-**Assigning values to .env**
+## Assigning values to .env
 
 There are 2 .env files in this repo that are located in ```/client``` and ```/server```
 

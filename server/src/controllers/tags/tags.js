@@ -1,6 +1,10 @@
 const Tags = require('../../models/tags/tags');
 const Post = require('../../models/posts/post');
 const User = require('../../models/users/user');
+/*
+* Map all the promises to resolve await response
+* It will improve the performace of handling promises response.
+*/
 const createTags = async (tags, post) => {
   for (const [i, tag] of tags.entries()) {
     console.log(i);
